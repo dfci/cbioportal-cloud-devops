@@ -1,0 +1,92 @@
+version: "3"
+services:
+  cbioportal:
+    image: cbioportal-local:latest
+    build:
+      context: ./cbioportal
+      args:
+        BRANCH: master
+        JDBC_DRIVER: com.mysql.jdbc.Driver
+        DB_HOST: &DB_HOST 192.168.0.1
+        DB_PORT: &DB_PORT "3306"
+        DB_USER: &DB_USER root
+        DB_PASSWORD: &DB_PASSWORD letmein
+        DB_NAME: cbioportal
+    ports:
+    - "8080:8080"
+    volumes:
+    - ./.m2:/root/.m2
+    restart: always
+  oncokb:
+    image: oncokb-local:latest
+    build:
+      context: ./oncokb
+      args:
+        BRANCH: v0.3.2
+        DB_HOST: *DB_HOST
+        DB_PORT: *DB_PORT
+        DB_USER: *DB_USER
+        DB_PASSWORD: *DB_PASSWORD
+        DB_NAME: oncokb
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./.m2:/root/.m2
+    restart: always
+  genome-nexus:
+    image: genome-nexus-local:latest
+    build:
+      context: ./genome-nexus
+      args:
+        BRANCH: master
+    environment:
+      GN_MONGO_HOST: genome-nexus-mongodb
+      GN_MONGO_PORT: "27017"
+      GN_MONGO_NAME: annotator
+      SERVER_PORT: 8888
+    volumes:
+    - ./.m2:/root/.m2
+    ports:
+      - "8888:8888"
+    links:
+      - genome-nexus-mongodb
+    depends_on:
+      - genome-nexus-mongodb
+    restart: always
+  genome-nexus-mongodb:
+    build: https://github.com/genome-nexus/genome-nexus-importer.git#v0.4
+    restart: always
+    ports:
+    - "27017:27017"
+  session-service:
+    image: session-service-local:latest
+    build:
+      context: ./session-service
+      args:
+        BRANCH: master
+    environment:
+      SS_MONGO_HOST: session-service-mongodb
+      SS_MONGO_PORT: "27018"
+      SS_MONGO_NAME: session-service
+      SERVER_PORT: "8090"
+    depends_on:
+    - session-service-mongodb
+    links:
+    - session-service-mongodb
+    ports:
+    - "8090:8090"
+    volumes:
+    - ./.m2:/root/.m2
+    restart: always
+  session-service-mongodb:
+    image: session-service-mongodb-local:latest
+    build:
+      context: ./session-service-mongodb
+    restart: always
+    ports:
+      - "27018:27017"
+
+
+networks:
+  cbio-bridge:
+    external: true
