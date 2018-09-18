@@ -56,8 +56,6 @@ services:
   genome-nexus-mongodb:
     build: https://github.com/genome-nexus/genome-nexus-importer.git#v0.4
     restart: always
-    ports:
-    - "27017:27017"
   session-service:
     image: session-service-local:latest
     build:
@@ -66,7 +64,7 @@ services:
         BRANCH: master
     environment:
       SS_MONGO_HOST: session-service-mongodb
-      SS_MONGO_PORT: "27018"
+      SS_MONGO_PORT: "27017"
       SS_MONGO_NAME: session-service
       SERVER_PORT: "8090"
     depends_on:
@@ -79,12 +77,8 @@ services:
     - ./.m2:/root/.m2
     restart: always
   session-service-mongodb:
-    image: session-service-mongodb-local:latest
-    build:
-      context: ./session-service-mongodb
+    image: mongo:3.6.2
     restart: always
-    ports:
-      - "27018:27017"
 
 
 networks:
