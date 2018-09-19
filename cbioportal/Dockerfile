@@ -1,7 +1,6 @@
 FROM tomcat:8
 WORKDIR /root
-RUN apt-get update && apt-get install -y locales
-RUN locale-gen en_US.UTF-8
+RUN apt-get update
 RUN apt-get install -y git openjdk-8-jdk maven
 RUN rm -rf /usr/local/tomcat/webapps/*
 
@@ -33,4 +32,3 @@ RUN sed -i "s/@PORT_PLACEHOLDER@/$DB_PORT/g" /usr/local/tomcat/conf/context.xml
 RUN sed -i "s/@DB_PLACEHOLDER@/$DB_NAME/g" /usr/local/tomcat/conf/context.xml
 
 RUN ln -s $PORTAL_HOME/portal/target/cbioportal.war /usr/local/tomcat/webapps/cbioportal.war
-# CMD ["/bin/bash", "-c", "java -Ddbconnector=dbcp -jar $PORTAL_HOME/portal/target/dependency/webapp-runner.jar --expand-war $PORTAL_HOME/portal/target/cbioportal.war"]
