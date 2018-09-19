@@ -12,8 +12,4 @@ ARG DB_PORT
 ARG DB_NAME
 ARG DB_USER
 ARG DB_PASSWORD
-RUN mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --port=$DB_PORT -e 'DROP DATABASE IF EXISTS '${DB_NAME}';'
-RUN mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --port=$DB_PORT -e 'CREATE DATABASE '${DB_NAME}';'
-RUN mysql --user=$DB_USER --password=$DB_PASSWORD --host=$DB_HOST --port=$DB_PORT $DB_NAME < \
-    oncokb/core/src/main/resources/spring/database/oncokb.sql
 ENV JAVA_OPTS="-Djdbc.driverClassName=com.mysql.jdbc.Driver -Djdbc.url='jdbc:mysql://'$DB_HOST':'$DB_PORT'/oncokb?useUnicode=yes&characterEncoding=UTF-8' -Djdbc.username=$DB_USER -Djdbc.password=$DB_PASSWORD"
