@@ -34,4 +34,5 @@
               testOnBorrow="true"
               validationQuery="SELECT 1"
               url="jdbc:mysql://@HOST_PLACEHOLDER@:@PORT_PLACEHOLDER@/@DB_PLACEHOLDER@"/>
+    <CookieProcessor className="org.apache.tomcat.util.http.LegacyCookieProcessor" />
 </Context>
