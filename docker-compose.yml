@@ -1,26 +1,66 @@
-version: "3"
+version: "2"
 services:
+  nginx-wrapper:
+    image: cbioportal-cloud-nginx-wrapper:latest
+    build:
+      context: ./nginx-wrapper
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./nginx-wrapper/nginx.conf:/etc/nginx/conf.d/default.conf
+    - ./nginx-wrapper/cert.crt:/etc/nginx/cert.crt
+    - ./nginx-wrapper/cert.key:/etc/nginx/cert.key
+    depends_on:
+      - cbioportal
+    links:
+      - cbioportal
+    networks:
+    - cbio-bridge
   cbioportal:
-    image: cbioportal-local:latest
+    image: cbioportal-cloud:latest
     build:
       context: ./cbioportal
       args:
         BRANCH: master
         JDBC_DRIVER: com.mysql.jdbc.Driver
-        DB_HOST: 192.168.0.1
+        DB_HOST: cbioportal-mysql
         DB_PORT: "3306"
         DB_USER: root
-        DB_PASSWORD: letmein
-        DB_NAME: cbioportal
-    ports:
-    - "8080:8080"
+        DB_PASSWORD: &mysql_root_password letmein
+        DB_NAME: &mysql_database cbioportal
     restart: always
+    volumes:
+    - ./host:/host
+    depends_on:
+      - cbioportal-mysql
+      - oncokb
+      - genome-nexus
+      - session-service
+    links:
+      - cbioportal-mysql
+      - oncokb
+      - genome-nexus
+      - session-service
     networks:
       cbio-bridge:
-        - ipv4_address: 192.187.10.1
-
+        ipv4_address: 10.255.0.1
+  cbioportal-mysql:
+    image: cbioportal-cloud-cbioportal-mysql:latest
+    build:
+      context: ./cbioportal-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: *mysql_root_password
+      MYSQL_DATABASE: *mysql_database
+    restart: always
+    volumes:
+    - ./host:/host
+    - ./cbioportal-mysql/mysql-data:/var/lib/mysql
+    networks:
+      cbio-bridge:
+        ipv4_address: 10.255.0.2
   oncokb:
-    image: oncokb-local:latest
+    image: cbioportal-cloud-oncokb:latest
     build:
       context: ./oncokb
       args:
@@ -31,10 +71,14 @@ services:
         DB_PASSWORD: letmein
         DB_NAME: oncokb
     restart: always
+    depends_on:
+      - oncokb-mysql
+    links:
+      - oncokb-mysql
     networks:
-      cbio-bridge:
+    - cbio-bridge
   oncokb-mysql:
-    image: oncokb-mysql-local:latest
+    image: cbioportal-cloud-oncokb-mysql:latest
     build:
       context: oncokb-mysql
       args:
@@ -42,10 +86,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: letmein
       MYSQL_DATABASE: oncokb
+    restart: always
     networks:
-      cbio-bridge:
+    - cbio-bridge
   genome-nexus:
-    image: genome-nexus-local:latest
+    image: cbioportal-cloud-genome-nexus:latest
     build:
       context: ./genome-nexus
       args:
@@ -55,20 +100,24 @@ services:
       GN_MONGO_PORT: "27017"
       GN_MONGO_NAME: annotator
       SERVER_PORT: 8888
-    links:
-    - genome-nexus-mongodb
     depends_on:
     - genome-nexus-mongodb
+    links:
+    - genome-nexus-mongodb
     restart: always
     networks:
-      cbio-bridge:
+    - cbio-bridge
   genome-nexus-mongodb:
-    build: https://github.com/genome-nexus/genome-nexus-importer.git#v0.4
+    image: cbioportal-cloud-genome-nexus-mongodb:latest
+    build:
+      context: ./genome-nexus-mongodb
+      args:
+        BRANCH: v0.4
     restart: always
     networks:
-      cbio-bridge:
+    - cbio-bridge
   session-service:
-    image: session-service-local:latest
+    image: cbioportal-cloud-session-service:latest
     build:
       context: ./session-service
       args:
@@ -84,14 +133,29 @@ services:
     - session-service-mongodb
     restart: always
     networks:
-      cbio-bridge:
+    - cbio-bridge
   session-service-mongodb:
-    image: mongo:3.6.2
+    image: cbioportal-cloud-session-service-mongodb:latest
+    build:
+      context: ./session-service-mongodb
     restart: always
     networks:
-      cbio-bridge:
-
+    - cbio-bridge
+  cancerhotspots:
+    image: cbioportal-cloud-cancerhotspots:latest
+    build:
+      context: ./cancerhotspots
+      args:
+        BRANCH: master
+    restart: always
+    networks:
+    - cbio-bridge
 
 networks:
   cbio-bridge:
-    external: true
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: "10.255.0.0/8"
+

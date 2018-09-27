@@ -1,12 +1,14 @@
 FROM tomcat:8
 WORKDIR /root
-RUN apt-get update
-RUN apt-get -y install openjdk-8-jdk git maven mysql-client
+RUN apt-get update && apt-get -y install openjdk-8-jdk git maven
 ARG BRANCH
-RUN git clone https://github.com/oncokb/oncokb.git --branch $BRANCH
-RUN mvn -f oncokb/pom.xml clean install -P backend -pl web,core -DskipTests
-RUN rm -rf /usr/local/tomcat/webapps/*
-RUN cp oncokb/web/target/oncokb.war /usr/local/tomcat/webapps/oncokb.war
+RUN git clone https://github.com/oncokb/oncokb.git --branch $BRANCH && \
+    mkdir -p oncokb/core/src/main/resources/properties && \
+    echo 'cancerhotspots.website.link=http://cancerhotspots.org' >> oncokb/core/src/main/resources/properties/config.properties && \
+    echo 'cancerhotspots.single=http://cancerhotspots:28080/api/hotspots/single' >> oncokb/core/src/main/resources/properties/config.properties && \
+    mvn -f oncokb/pom.xml clean install -P backend -pl web,core -DskipTests && \
+    rm -rf /usr/local/tomcat/webapps/* && \
+    cp oncokb/web/target/oncokb.war /usr/local/tomcat/webapps/oncokb.war
 ARG DB_HOST
 ARG DB_PORT
 ARG DB_NAME
