@@ -8,13 +8,22 @@ services:
     - "80:80"
     - "443:443"
     volumes:
-    - ./nginx-wrapper/nginx.conf:/etc/nginx/conf.d/default.conf
-    - ./nginx-wrapper/cert.crt:/etc/nginx/cert.crt
-    - ./nginx-wrapper/cert.key:/etc/nginx/cert.key
+    - type: bind
+      source: ./nginx-wrapper/nginx.conf
+      target: /etc/nginx/conf.d/default.conf
+      read-only: true
+    - type: bind
+      source: ./nginx-wrapper/cert.crt
+      target: /etc/nginx/cert.crt
+      read-only: true
+    - type: bind
+      source: ./nginx-wrapper/cert.key
+      target: /etc/nginx/cert.key
+      read-only: true
     depends_on:
-      - cbioportal
+    - cbioportal
     links:
-      - cbioportal
+    - cbioportal
     networks:
     - cbio-bridge
   cbioportal:
@@ -23,7 +32,6 @@ services:
       context: ./cbioportal
       args:
         BRANCH: master
-        JDBC_DRIVER: com.mysql.jdbc.Driver
         DB_HOST: cbioportal-mysql
         DB_PORT: "3306"
         DB_USER: root
@@ -35,19 +43,23 @@ services:
       source: ./host
       target: /host
       read-only: false
+    - type: bind
+      source: ./cbioportal/context.xml
+      target: /usr/local/tomcat/cont/context.xml
+      read-only: true
     depends_on:
-      - cbioportal-mysql
-      - oncokb
-      - genome-nexus
-      - session-service
+    - cbioportal-mysql
+    - oncokb
+    - genome-nexus
+    - session-service
     links:
-      - cbioportal-mysql
-      - oncokb
-      - genome-nexus
-      - session-service
+    - cbioportal-mysql
+    - oncokb
+    - genome-nexus
+    - session-service
     networks:
       cbio-bridge:
-        ipv4_address: 10.255.0.1
+        ipv4_address: 10.255.0.240
   cbioportal-mysql:
     image: cbioportal-cloud-cbioportal-mysql:latest
     build:
@@ -67,7 +79,7 @@ services:
       read-only: false
     networks:
       cbio-bridge:
-        ipv4_address: 10.255.0.2
+        ipv4_address: 10.255.0.241
   oncokb:
     image: cbioportal-cloud-oncokb:latest
     build:
@@ -81,9 +93,9 @@ services:
         DB_NAME: oncokb
     restart: always
     depends_on:
-      - oncokb-mysql
+    - oncokb-mysql
     links:
-      - oncokb-mysql
+    - oncokb-mysql
     networks:
     - cbio-bridge
   oncokb-mysql:
@@ -166,5 +178,5 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: "10.255.0.0/8"
+      - subnet: "10.255.0.255/28"
 

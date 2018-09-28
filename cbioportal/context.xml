@@ -27,12 +27,14 @@
     <!--
     <Manager pathname="" />
     -->
+    <!--if changing any attributes here, make sure they are reflected in
+        the cbioportal Dockerfile and cbioportal portal.properties-->
     <Resource name="jdbc/cbioportal" auth="Container" type="javax.sql.DataSource"
               maxActive="100" maxIdle="30" maxWait="10000"
-              username="@USERNAME_PLACEHOLDER@" password="@PASSWORD_PLACEHOLDER@" driverClassName="com.mysql.jdbc.Driver"
+              username="root" password="letmein" driverClassName="com.mysql.jdbc.Driver"
               connectionProperties="zeroDateTimeBehavior=convertToNull;"
               testOnBorrow="true"
               validationQuery="SELECT 1"
-              url="jdbc:mysql://@HOST_PLACEHOLDER@:@PORT_PLACEHOLDER@/@DB_PLACEHOLDER@"/>
+              url="jdbc:mysql://cbioportal-mysql:3306/cbioportal"/>
     <CookieProcessor className="org.apache.tomcat.util.http.LegacyCookieProcessor" />
 </Context>
