@@ -27,4 +27,9 @@ RUN rm -rf /usr/local/tomcat/webapps/* && \
     chmod +x /usr/local/tomcat/bin/setenv.sh
 
 #for running scripts and connecting to mysql in the container
-RUN apt-get install -y python3 python3-requests python3-jinja2 mysql-client
+RUN apt-get install -y python3-dev python3-requests python3-jinja2 \
+        python3-setuptools mysql-client default-libmysqlclient-dev python3-pip && \
+    pip3 install mysqlclient
+
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT /entrypoint.sh
