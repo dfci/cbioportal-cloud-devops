@@ -31,7 +31,10 @@ services:
         DB_NAME: &mysql_database cbioportal
     restart: always
     volumes:
-    - ./host:/host
+    - type: bind
+      source: ./host
+      target: /host
+      read-only: false
     depends_on:
       - cbioportal-mysql
       - oncokb
@@ -54,8 +57,14 @@ services:
       MYSQL_DATABASE: *mysql_database
     restart: always
     volumes:
-    - ./host:/host
-    - ./cbioportal-mysql/mysql-data:/var/lib/mysql
+    - type: bind
+      source: ./host
+      target: /host
+      read-only: false
+    - type: bind
+      source: ./cbioportal-mysql/mysql-data
+      target: /var/lib/mysql
+      read-only: false
     networks:
       cbio-bridge:
         ipv4_address: 10.255.0.2
