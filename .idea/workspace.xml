@@ -4,7 +4,6 @@
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cbioportal-mysql/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cbioportal-mysql/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +51,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="8380" />
+          <entry key="Dockerfile" value="8408" />
           <entry key="cbioportal_Dockerfile" value="1494" />
           <entry key="cnf" value="2" />
           <entry key="conf" value="159" />
@@ -60,20 +59,20 @@
           <entry key="md" value="1" />
           <entry key="properties" value="491" />
           <entry key="sh" value="123" />
-          <entry key="txt" value="173" />
+          <entry key="txt" value="179" />
           <entry key="xml" value="439" />
-          <entry key="yml" value="5697" />
+          <entry key="yml" value="5699" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="123" />
-          <entry key="Dockerfile" value="9874" />
+          <entry key="Dockerfile" value="9902" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="336" />
+          <entry key="PLAIN_TEXT" value="342" />
           <entry key="Properties" value="491" />
           <entry key="XML" value="439" />
-          <entry key="YAML" value="5697" />
+          <entry key="YAML" value="5699" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -88,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-694">
-              <caret line="78" column="20" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
+            <state relative-caret-position="273">
+              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -97,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cbioportal-mysql/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="60">
+              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -398,7 +397,21 @@
       <option name="project" value="LOCAL" />
       <updated>1538158536784</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="...">
+      <created>1538158738240</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1538158738240</updated>
+    </task>
+    <task id="LOCAL-00010" summary="!!!">
+      <created>1538159124491</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1538159124491</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -454,7 +467,9 @@
     <MESSAGE value="fix syntax read-only -&gt; read_only" />
     <MESSAGE value="genome-nexus Dockerfile fix" />
     <MESSAGE value="fix cbioportal Dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix cbioportal Dockerfile" />
+    <MESSAGE value="..." />
+    <MESSAGE value="!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="!!!" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mongo-backend/Dockerfile" />
@@ -608,15 +623,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-694">
-          <caret line="78" column="20" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
+        <state relative-caret-position="273">
+          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cbioportal-mysql/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="60">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
         </state>
       </provider>
     </entry>
