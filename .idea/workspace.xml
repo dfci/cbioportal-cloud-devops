@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genome-nexus/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/genome-nexus/Dockerfile" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +50,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="8320" />
+          <entry key="Dockerfile" value="8326" />
           <entry key="cbioportal_Dockerfile" value="1494" />
           <entry key="cnf" value="2" />
           <entry key="conf" value="159" />
@@ -59,7 +58,7 @@
           <entry key="md" value="1" />
           <entry key="properties" value="491" />
           <entry key="sh" value="123" />
-          <entry key="txt" value="118" />
+          <entry key="txt" value="173" />
           <entry key="xml" value="439" />
           <entry key="yml" value="5459" />
         </counts>
@@ -67,9 +66,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="123" />
-          <entry key="Dockerfile" value="9814" />
+          <entry key="Dockerfile" value="9820" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="281" />
+          <entry key="PLAIN_TEXT" value="336" />
           <entry key="Properties" value="491" />
           <entry key="XML" value="439" />
           <entry key="YAML" value="5459" />
@@ -111,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/genome-nexus/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+            <state relative-caret-position="120">
+              <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -147,11 +146,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cbioportal/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="343">
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -207,9 +206,9 @@
         <option value="$PROJECT_DIR$/cancerhotspots/Dockerfile" />
         <option value="$PROJECT_DIR$/cbioportal/resources/portal.properties" />
         <option value="$PROJECT_DIR$/cbioportal/context.xml" />
-        <option value="$PROJECT_DIR$/cbioportal/Dockerfile" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/genome-nexus/Dockerfile" />
+        <option value="$PROJECT_DIR$/cbioportal/Dockerfile" />
       </list>
     </option>
   </component>
@@ -371,7 +370,21 @@
       <option name="project" value="LOCAL" />
       <updated>1538153259203</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="genome-nexus Dockerfile fix">
+      <created>1538155620188</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1538155620188</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix cbioportal Dockerfile">
+      <created>1538157045912</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1538157045912</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -425,7 +438,9 @@
     <MESSAGE value="long form volumes - version support" />
     <MESSAGE value="refactoring" />
     <MESSAGE value="fix syntax read-only -&gt; read_only" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix syntax read-only -&gt; read_only" />
+    <MESSAGE value="genome-nexus Dockerfile fix" />
+    <MESSAGE value="fix cbioportal Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix cbioportal Dockerfile" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mongo-backend/Dockerfile" />
@@ -570,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cbioportal/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -586,8 +594,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/genome-nexus/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        <state relative-caret-position="120">
+          <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cbioportal/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
         </state>
       </provider>
     </entry>

@@ -59,7 +59,7 @@ services:
     - session-service
     networks:
       cbio-bridge:
-        ipv4_address: 10.255.0.240
+        ipv4_address: 172.28.10.10
   cbioportal-mysql:
     image: cbioportal-cloud-cbioportal-mysql:latest
     build:
@@ -79,7 +79,7 @@ services:
       read_only: false
     networks:
       cbio-bridge:
-        ipv4_address: 10.255.0.241
+        ipv4_address: 172.28.10.11
   oncokb:
     image: cbioportal-cloud-oncokb:latest
     build:
@@ -178,5 +178,5 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: "10.255.0.255/28"
+      - subnet: "172.28.10.0/24"
 
