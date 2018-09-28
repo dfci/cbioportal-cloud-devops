@@ -75,7 +75,7 @@ services:
       read_only: false
     - type: bind
       source: ./cbioportal-mysql/custom.cnf
-      target: ./etc/mysql/conf.d/custom.cnf
+      target: /etc/mysql/conf.d/custom.cnf
       read_only: true
     - type: bind
       source: ./cbioportal-mysql/mysql-data
