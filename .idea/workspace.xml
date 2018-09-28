@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cbioportal/main_entrypoint.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbioportal/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cbioportal/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,31 +53,31 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="8938" />
+          <entry key="Dockerfile" value="8984" />
           <entry key="cbioportal_Dockerfile" value="1494" />
           <entry key="cnf" value="2" />
           <entry key="conf" value="159" />
           <entry key="dummy" value="2" />
           <entry key="gitignore" value="2" />
           <entry key="md" value="1" />
-          <entry key="properties" value="491" />
+          <entry key="properties" value="526" />
           <entry key="py" value="13" />
           <entry key="sh" value="796" />
-          <entry key="txt" value="201" />
+          <entry key="txt" value="256" />
           <entry key="xml" value="439" />
-          <entry key="yml" value="5699" />
+          <entry key="yml" value="5702" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="796" />
-          <entry key="Dockerfile" value="10432" />
+          <entry key="Dockerfile" value="10478" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="366" />
-          <entry key="Properties" value="491" />
+          <entry key="PLAIN_TEXT" value="421" />
+          <entry key="Properties" value="526" />
           <entry key="Python" value="13" />
           <entry key="XML" value="439" />
-          <entry key="YAML" value="5699" />
+          <entry key="YAML" value="5702" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -90,11 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state relative-caret-position="139">
+              <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -153,17 +152,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cbioportal/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+            <state relative-caret-position="343">
+              <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cbioportal/main_entrypoint.sh">
+        <entry file="file://$PROJECT_DIR$/cbioportal/entrypoint.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
               <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
@@ -174,8 +173,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cbioportal/resources/portal.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="109" selection-start-line="2" selection-start-column="109" selection-end-line="2" selection-end-column="109" />
+            <state relative-caret-position="285">
+              <caret line="101" column="14" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -210,14 +209,14 @@
         <option value="$PROJECT_DIR$/genome-nexus-mongodb/Dockerfile" />
         <option value="$PROJECT_DIR$/nginx-wrapper/nginx.conf" />
         <option value="$PROJECT_DIR$/cancerhotspots/Dockerfile" />
-        <option value="$PROJECT_DIR$/cbioportal/resources/portal.properties" />
         <option value="$PROJECT_DIR$/cbioportal/context.xml" />
         <option value="$PROJECT_DIR$/genome-nexus/Dockerfile" />
-        <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/cbioportal-mysql/Dockerfile" />
         <option value="$PROJECT_DIR$/cbioportal/do_migration.py" />
         <option value="$PROJECT_DIR$/cbioportal/do_migration.sh" />
         <option value="$PROJECT_DIR$/cbioportal/Dockerfile" />
+        <option value="$PROJECT_DIR$/cbioportal/resources/portal.properties" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
       </list>
     </option>
   </component>
@@ -255,6 +254,12 @@
               <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
               <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
               <item name="cbioportal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="cbioportal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
@@ -420,7 +425,21 @@
       <option name="project" value="LOCAL" />
       <updated>1538159573287</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="cbioportal entrypoint">
+      <created>1538162799841</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1538162799841</updated>
+    </task>
+    <task id="LOCAL-00013" summary="enable live recaching of studies">
+      <created>1538164522874</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1538164522874</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -479,7 +498,9 @@
     <MESSAGE value="..." />
     <MESSAGE value="!!!" />
     <MESSAGE value="cbioportal-mysql..." />
-    <option name="LAST_COMMIT_MESSAGE" value="cbioportal-mysql..." />
+    <MESSAGE value="cbioportal entrypoint" />
+    <MESSAGE value="enable live recaching of studies" />
+    <option name="LAST_COMMIT_MESSAGE" value="enable live recaching of studies" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mongo-backend/Dockerfile" />
@@ -582,13 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cbioportal/resources/portal.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="109" selection-start-line="2" selection-start-column="109" selection-end-line="2" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cbioportal/context.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -624,13 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cbioportal-mysql/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -638,17 +645,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cbioportal/main_entrypoint.sh">
+    <entry file="file://$PROJECT_DIR$/cbioportal/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cbioportal/entrypoint.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cbioportal/Dockerfile">
+    <entry file="file://$PROJECT_DIR$/cbioportal/resources/portal.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        <state relative-caret-position="285">
+          <caret line="101" column="14" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
         </state>
       </provider>
     </entry>
