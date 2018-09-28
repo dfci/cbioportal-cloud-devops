@@ -11,15 +11,15 @@ services:
     - type: bind
       source: ./nginx-wrapper/nginx.conf
       target: /etc/nginx/conf.d/default.conf
-      read-only: true
+      read_only: true
     - type: bind
       source: ./nginx-wrapper/cert.crt
       target: /etc/nginx/cert.crt
-      read-only: true
+      read_only: true
     - type: bind
       source: ./nginx-wrapper/cert.key
       target: /etc/nginx/cert.key
-      read-only: true
+      read_only: true
     depends_on:
     - cbioportal
     links:
@@ -42,11 +42,11 @@ services:
     - type: bind
       source: ./host
       target: /host
-      read-only: false
+      read_only: false
     - type: bind
       source: ./cbioportal/context.xml
       target: /usr/local/tomcat/cont/context.xml
-      read-only: true
+      read_only: true
     depends_on:
     - cbioportal-mysql
     - oncokb
@@ -72,11 +72,11 @@ services:
     - type: bind
       source: ./host
       target: /host
-      read-only: false
+      read_only: false
     - type: bind
       source: ./cbioportal-mysql/mysql-data
       target: /var/lib/mysql
-      read-only: false
+      read_only: false
     networks:
       cbio-bridge:
         ipv4_address: 10.255.0.241
