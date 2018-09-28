@@ -27,4 +27,4 @@ RUN rm -rf /usr/local/tomcat/webapps/* && \
     chmod +x /usr/local/tomcat/bin/setenv.sh
 
 #for running scripts and connecting to mysql in the container
-RUN apt-get install python3 python3-requests python3-jinja2 mysql-client
+RUN apt-get install -y python3 python3-requests python3-jinja2 mysql-client
