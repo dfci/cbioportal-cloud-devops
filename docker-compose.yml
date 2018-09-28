@@ -89,7 +89,7 @@ services:
     build:
       context: ./oncokb
       args:
-        BRANCH: v0.3.1
+        BRANCH: &oncokb_branch v0.3.1
         DB_HOST: oncokb-mysql
         DB_PORT: "3306"
         DB_USER: root
@@ -107,7 +107,7 @@ services:
     build:
       context: oncokb-mysql
       args:
-        BRANCH: v0.3.2
+        BRANCH: *oncokb_branch
     environment:
       MYSQL_ROOT_PASSWORD: letmein
       MYSQL_DATABASE: oncokb
