@@ -18,7 +18,7 @@ This repo contains Dockerfiles and supporting files for getting a private instan
      * [context.xml](./services/cbioportal/context.xml) - *context.xml for tomcat, attached as a bind-mount - there should be no reason to change this*
      * [Dockerfile](./services/cbioportal/Dockerfile)
      * [entrypoint.sh](./services/cbioportal/entrypoint.sh) - *Copied to the container at build time, overrides the default entrypoint to run the migration script on startup*
-     * [resources](./services/cbioportal/resources) - *Contents of this folder are copied to the container at build time, before the maven build step, to ${PORTAL_HOME/src/main/resources*
+     * [resources](./services/cbioportal/resources) - *Contents of this folder are copied to the container at build time, before the maven build step, to ${PORTAL_HOME}/src/main/resources*
        * [portal.properties](./services/cbioportal/resources/portal.properties) - *portal.properties file for configuring your instance of cBioPortal.  As with everything else in this directory, it is copied to the container at build time. This is the most likely file for you to need change*
    * [cbioportal-mysql](./services/cbioportal-mysql) - *MySQL backend for cBioPortal, data is stored in a directory bind-mounted to the container at runtime, [./mountpoints/cbioportal-mysql-data](./mountpoints/cbioportal-mysql-data)
      * [custom.cnf](./services/cbioportal-mysql/custom.cnf) - *bind-mounted to the container at runtime for performance tuning, feel free to modify this based on the specs of the machine you're running the container on*
