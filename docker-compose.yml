@@ -3,21 +3,21 @@ services:
   nginx-wrapper:
     image: cbioportal-cloud-nginx-wrapper:latest
     build:
-      context: ./nginx-wrapper
+      context: services/nginx-wrapper
     ports:
     - "80:80"
     - "443:443"
     volumes:
     - type: bind
-      source: ./nginx-wrapper/nginx.conf
+      source: ./services/nginx-wrapper/nginx.conf
       target: /etc/nginx/conf.d/default.conf
       read_only: true
     - type: bind
-      source: ./nginx-wrapper/cert.crt
+      source: ./services/nginx-wrapper/cert.crt
       target: /etc/nginx/cert.crt
       read_only: true
     - type: bind
-      source: ./nginx-wrapper/cert.key
+      source: ./services/nginx-wrapper/cert.key
       target: /etc/nginx/cert.key
       read_only: true
     depends_on:
@@ -29,7 +29,7 @@ services:
   cbioportal:
     image: cbioportal-cloud:latest
     build:
-      context: ./cbioportal
+      context: services/cbioportal
       args:
         BRANCH: master
         DB_HOST: cbioportal-mysql
@@ -40,11 +40,11 @@ services:
     restart: always
     volumes:
     - type: bind
-      source: ./host
+      source: ./mountpoints/host
       target: /host
       read_only: false
     - type: bind
-      source: ./cbioportal/context.xml
+      source: ./services/cbioportal/context.xml
       target: /usr/local/tomcat/cont/context.xml
       read_only: true
     depends_on:
@@ -63,22 +63,22 @@ services:
   cbioportal-mysql:
     image: cbioportal-cloud-cbioportal-mysql:latest
     build:
-      context: ./cbioportal-mysql
+      context: services/cbioportal-mysql
     environment:
       MYSQL_ROOT_PASSWORD: *mysql_root_password
       MYSQL_DATABASE: *mysql_database
     restart: always
     volumes:
     - type: bind
-      source: ./host
+      source: ./mountpoints/host
       target: /host
       read_only: false
     - type: bind
-      source: ./cbioportal-mysql/custom.cnf
+      source: ./services/cbioportal-mysql/custom.cnf
       target: /etc/mysql/conf.d/custom.cnf
       read_only: true
     - type: bind
-      source: ./cbioportal-mysql/mysql-data
+      source: ./mountpoints/cbioportal-mysql-data
       target: /var/lib/mysql
       read_only: false
     networks:
@@ -87,7 +87,7 @@ services:
   oncokb:
     image: cbioportal-cloud-oncokb:latest
     build:
-      context: ./oncokb
+      context: services/oncokb
       args:
         BRANCH: &oncokb_branch v0.3.1
         DB_HOST: oncokb-mysql
@@ -105,7 +105,7 @@ services:
   oncokb-mysql:
     image: cbioportal-cloud-oncokb-mysql:latest
     build:
-      context: oncokb-mysql
+      context: services/oncokb-mysql
       args:
         BRANCH: *oncokb_branch
     environment:
@@ -117,7 +117,7 @@ services:
   genome-nexus:
     image: cbioportal-cloud-genome-nexus:latest
     build:
-      context: ./genome-nexus
+      context: services/genome-nexus
       args:
         BRANCH: master
     environment:
@@ -135,7 +135,7 @@ services:
   genome-nexus-mongodb:
     image: cbioportal-cloud-genome-nexus-mongodb:latest
     build:
-      context: ./genome-nexus-mongodb
+      context: services/genome-nexus-mongodb
       args:
         BRANCH: v0.4
     restart: always
@@ -144,7 +144,7 @@ services:
   session-service:
     image: cbioportal-cloud-session-service:latest
     build:
-      context: ./session-service
+      context: services/session-service
       args:
         BRANCH: master
     environment:
@@ -162,14 +162,14 @@ services:
   session-service-mongodb:
     image: cbioportal-cloud-session-service-mongodb:latest
     build:
-      context: ./session-service-mongodb
+      context: services/session-service-mongodb
     restart: always
     networks:
     - cbio-bridge
   cancerhotspots:
     image: cbioportal-cloud-cancerhotspots:latest
     build:
-      context: ./cancerhotspots
+      context: services/cancerhotspots
       args:
         BRANCH: master
     restart: always
