@@ -8,7 +8,7 @@ MIGRATION_COMMAND="${PYTHON} ${MIGRATE_SCRIPT} \
     --sql ${MIGRATION_SQL}"
 RUN_CMD="/usr/local/tomcat/bin/catalina.sh run"
 
-if [ -z "${DO_DB_MIGRATE}" ]; then
+if [ ! -z "${DO_DB_MIGRATE}" ]; then
     yes y | eval ${MIGRATION_COMMAND};
 fi
 
