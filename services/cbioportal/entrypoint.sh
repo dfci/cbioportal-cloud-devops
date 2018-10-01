@@ -8,12 +8,26 @@ MIGRATION_COMMAND="${PYTHON} ${MIGRATE_SCRIPT} \
     --sql ${MIGRATION_SQL}"
 RUN_CMD="/usr/local/tomcat/bin/catalina.sh run"
 
-MYSQL_CONNECT_RETRIES=45
+MYSQL_CONNECT_RETRIES=120
 MYSQL_CONNECT_RETRY_COUNTER=1
+
+if [ ! -d /host/cbioportal ]; then
+    git clone https://github.com/cBioPortal/cbioportal.git --branch ${BRANCH} $PORTAL_HOME
+fi
+
+cp /resources/* ${PORTAL_HOME}/src/main/resources/
+
+mvn -f ${PORTAL_HOME}/pom.xml -DskipTests -Djdbc.driver=${JDBC_DRIVER} -Dfinal.war.name=cbioportal \
+    -Ddb.host=${DB_HOST} -Ddb.user=${DB_USER} -Ddb.password=${DB_PASSWORD} \
+    -Ddb.connection_string=jdbc:mysql://${DB_HOST}:${DB_PORT}/ \
+    -Ddb.portal_db_name=${DB_NAME} clean install
+
+unzip $PORTAL_HOME/portal/target/cbioportal.war -d /usr/local/tomcat/webapps/cbioportal && \
+cp -n $PORTAL_HOME/src/main/resources/* /usr/local/tomcat/webapps/cbioportal/WEB-INF/classes/ && \
 
 echo "Attempting to connect to mysql://${DB_HOST}:${DB_PORT}"
 while ! mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "show databases;" > /dev/null 2>&1; do
-    echo "Connection Attempt ${MYSQL_CONNECT_RETRY_COUNTER} failed"
+    echo "Connection Attempt ${MYSQL_CONNECT_RETRY_COUNTER} of ${MYSQL_CONNECT_RETRIES} failed"
     sleep 1
     MYSQL_CONNECT_RETRY_COUNTER=$(expr ${MYSQL_CONNECT_RETRY_COUNTER} + 1)
     if [ ${MYSQL_CONNECT_RETRY_COUNTER} -gt ${MYSQL_CONNECT_RETRIES} ]; then
