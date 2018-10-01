@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cbioportal-mysql/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/cbioportal-mysql/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cbioportal/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/cbioportal/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/cbioportal/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/services/cbioportal/entrypoint.sh" afterDir="false" />
-    </list>
+    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,18 +60,18 @@
           <entry key="md" value="1" />
           <entry key="properties" value="526" />
           <entry key="py" value="13" />
-          <entry key="sh" value="3066" />
-          <entry key="txt" value="536" />
+          <entry key="sh" value="3067" />
+          <entry key="txt" value="585" />
           <entry key="xml" value="439" />
           <entry key="yml" value="6282" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="3066" />
+          <entry key="Bash" value="3067" />
           <entry key="Dockerfile" value="10596" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="931" />
+          <entry key="PLAIN_TEXT" value="980" />
           <entry key="Properties" value="526" />
           <entry key="Python" value="13" />
           <entry key="XML" value="439" />
@@ -93,11 +87,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
-              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+            <state relative-caret-position="374">
+              <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -139,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/gce_debian_9_setup.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+            <state relative-caret-position="90">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -640,7 +634,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538413703272</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="entrypoint.sh for cbioportal wait for mysql">
+      <created>1538417206697</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1538417206697</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -710,7 +711,8 @@
     <MESSAGE value="more restructuring" />
     <MESSAGE value="Only run DB migrate script if env var DO_DB_MIGRATE is set" />
     <MESSAGE value="GCE Debian helper script" />
-    <option name="LAST_COMMIT_MESSAGE" value="GCE Debian helper script" />
+    <MESSAGE value="entrypoint.sh for cbioportal wait for mysql" />
+    <option name="LAST_COMMIT_MESSAGE" value="entrypoint.sh for cbioportal wait for mysql" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mongo-backend/Dockerfile" />
@@ -856,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/gce_debian_9_setup.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/generate_self_signed_keys_for_nginx.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -872,8 +867,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+        <state relative-caret-position="374">
+          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/gce_debian_9_setup.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
