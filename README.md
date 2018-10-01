@@ -48,10 +48,21 @@ This assumes that you have shell access to the environment you will be using, ei
 The instructions will be using a Debian GNU/Linux 9 (stretch) VM on Google Compute Engine, but the instructions should be more or less the same on any \*nix system that meets the prerequisites.
 
 ### Step 0 - Creating a VM on GCE with proper storage and volumes
-Skip this step if you already have an environment.
+Skip this step if you already have an environment.  Following steps will assume you already have the repo cloned.
 
 1. Create a new VM instance on GCE
     - Debian GNU/Linux (stretch) 9
     - Boot Dist: SSD Persistent Disk, 24GB (should be bigger than the default 10GB just because we'll have lots of intermediate container images)
     - Firewall: Allow HTTP and HTTPS traffic
     - Disks: 1x blank 32GB+ SSD Persistent Disk, R/W (for the cbioportal-mysql data)
+2. SSH into the new instance, switch to root user (no point in doing it all through sudo on single-purpose system), install git, and clone the repo
+```
+emarriott@cbiorportal-cloud-edenstate-2:~$ sudo su
+root@cbiorportal-cloud-edenstate-2:~# apt-get update && apt-get install git
+root@cbiorportal-cloud-edenstate-2:~# cd
+root@cbiorportal-cloud-edenstate-2:~# git clone git@github.com:dfci/cbioportal-cloud-devops.git
+root@cbiorportal-cloud-edenstate-2:~# cd cbioportal-cloud-devops/
+```
+
+3. Run the script scripts/gce_debian_9_setup.sh
+
