@@ -19,5 +19,5 @@ readlink_f () {
 MAIN_PATH=$(dirname $(dirname $(readlink_f "$0")))
 
 openssl req -new -x509 -nodes -days 365 -newkey rsa:2048 -subj "/" \
-    -keyout ${MAIN_PATH}/services/nginx-wrapper/cert.key \
-    -out ${MAIN_PATH}/services/nginx-wrapper/cert.crt
+    -keyout ${MAIN_PATH}/mountpoints/nginx-wrapper/cert.key \
+    -out ${MAIN_PATH}/mountpoints/nginx-wrapper/cert.crt

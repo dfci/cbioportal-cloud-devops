@@ -13,11 +13,11 @@ services:
       target: /etc/nginx/conf.d/default.conf
       read_only: true
     - type: bind
-      source: ./services/nginx-wrapper/cert.crt
+      source: ./mountpoints/nginx-wrapper/cert.crt
       target: /etc/nginx/cert.crt
       read_only: true
     - type: bind
-      source: ./services/nginx-wrapper/cert.key
+      source: ./mountpoints/nginx-wrapper/cert.key
       target: /etc/nginx/cert.key
       read_only: true
     depends_on:
