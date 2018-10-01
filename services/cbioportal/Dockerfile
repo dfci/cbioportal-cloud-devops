@@ -29,7 +29,12 @@ RUN rm -rf /usr/local/tomcat/webapps/* && \
 #for running scripts and connecting to mysql in the container
 RUN apt-get install -y python3-dev python3-requests python3-jinja2 \
         python3-setuptools mysql-client default-libmysqlclient-dev python3-pip && \
-    pip3 install mysqlclient
+    pip3 install mysqlclient wget
+
+RUN wget -O schema.sql \
+     https://raw.githubusercontent.com/cBioPortal/cbioportal/v1.13.1/db-scripts/src/main/resources/cgds.sql && \
+    wget -O seed-db.sql.gz \
+     https://github.com/cBioPortal/datahub/raw/master/seedDB/seed-cbioportal_hg19_v2.6.0.sql.gz
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
