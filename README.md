@@ -2,7 +2,7 @@
 This repo contains Dockerfiles and supporting files for getting a private instance of cBioPortal running with all external dependencies.
 
 ## Getting Started
-### Project tree
+## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
  * [scripts](./scripts)
      * [generate_self_signed_keys_for_nginx.sh](./scripts/generate_self_signed_keys_for_nginx.sh) - *Generates self-signed cert and key to use with nginx-wrapper, so you can test with HTTPS enabled, puts them in [./mountpoints/nginx-wrapper](./mountpoints/nginx-wrapper)*
@@ -38,3 +38,20 @@ This repo contains Dockerfiles and supporting files for getting a private instan
    * [cancerhotspots](./services/cancerhotspots) - *Cancer Hotspots service for OncoKB, making it a secondary requirement for cBioPortal*
      * [Dockerfile](./services/cancerhotspots/Dockerfile)
 
+## Prerequisites
+All that is needed is docker-compose and docker >= 17.04.0.
+To generate a self-signed cert, openssl is needed.
+
+## Instructions
+This assumes that you have shell access to the environment you will be using, either as the root user, or as a user who is a member of the docker group.
+
+The instructions will be using a Debian GNU/Linux 9 (stretch) VM on Google Compute Engine, but the instructions should be more or less the same on any \*nix system that meets the prerequisites.
+
+### Step 0 - Creating a VM on GCE with proper storage and volumes
+Skip this step if you already have an environment.
+
+1. Create a new VM instance on GCE
+    - Debian GNU/Linux (stretch) 9
+    - Boot Dist: SSD Persistent Disk, 24GB (should be bigger than the default 10GB just because we'll have lots of intermediate container images)
+    - Firewall: Allow HTTP and HTTPS traffic
+    - Disks: 1x blank 32GB+ SSD Persistent Disk, R/W (for the cbioportal-mysql data)
