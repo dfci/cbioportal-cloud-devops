@@ -8,7 +8,29 @@ MIGRATION_COMMAND="${PYTHON} ${MIGRATE_SCRIPT} \
     --sql ${MIGRATION_SQL}"
 RUN_CMD="/usr/local/tomcat/bin/catalina.sh run"
 
-if [ ! -z "${DO_DB_MIGRATE}" ]; then
+MYSQL_CONNECT_RETRIES=45
+MYSQL_CONNECT_RETRY_COUNTER=1
+
+echo "Attempting to connect to mysql://${DB_HOST}:${DB_PORT}"
+while ! mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "show databases;" > /dev/null 2>&1; do
+    echo "Connection Attempt ${MYSQL_CONNECT_RETRY_COUNTER} failed"
+    sleep 1
+    MYSQL_CONNECT_RETRY_COUNTER=$(expr ${MYSQL_CONNECT_RETRY_COUNTER} + 1)
+    if [ ${MYSQL_CONNECT_RETRY_COUNTER} -gt ${MYSQL_CONNECT_RETRIES} ]; then
+        >&2 echo "We have been waiting for MySQL too long already; failing."
+        exit 1
+    fi;
+done
+echo "Connection Attempt ${MYSQL_CONNECT_RETRY_COUNTER} succeeded"
+
+if ! mysqlshow -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME}; then
+    mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "CREATE DATABASE ${DB_NAME};";
+    mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME} < /root/schema.sql;
+    zcat /root/seed-db.sql.gz | mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME};
+    DATABASE_CREATED="yes"
+fi
+
+if [ "${DO_DB_MIGRATE}" == "yes" ] || [ "${DATABASE_CREATED}" == "yes" ]; then
     yes y | eval ${MIGRATION_COMMAND};
 fi
 

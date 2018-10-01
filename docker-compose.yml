@@ -38,6 +38,8 @@ services:
         DB_PASSWORD: &mysql_root_password letmein
         DB_NAME: &mysql_database cbioportal
     restart: always
+    environment:
+      DO_DB_MIGRATE: ${DO_DB_MIGRATE:-no}
     volumes:
     - type: bind
       source: ./mountpoints/host
