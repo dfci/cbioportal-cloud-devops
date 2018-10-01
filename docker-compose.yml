@@ -30,20 +30,27 @@ services:
     image: cbioportal-cloud:latest
     build:
       context: services/cbioportal
-      args:
-        BRANCH: master
-        DB_HOST: cbioportal-mysql
-        DB_PORT: "3306"
-        DB_USER: root
-        DB_PASSWORD: &mysql_root_password letmein
-        DB_NAME: &mysql_database cbioportal
     restart: always
     environment:
+      BRANCH: master
+      DB_HOST: cbioportal-mysql
+      DB_PORT: "3306"
+      DB_USER: root
+      DB_PASSWORD: &mysql_root_password letmein
+      DB_NAME: &mysql_database cbioportal
       DO_DB_MIGRATE: ${DO_DB_MIGRATE:-no}
     volumes:
     - type: bind
       source: ./mountpoints/host
       target: /host
+      read_only: false
+    - type: bind
+      source: ./mountpoints/mvn-repo
+      target: /root/.m2/repository
+      read_only: false
+    - type: bind
+      source: ./services/cbioportal/resources
+      target: /resources
       read_only: false
     - type: bind
       source: ./services/cbioportal/context.xml
@@ -61,7 +68,7 @@ services:
     - session-service
     networks:
       cbio-bridge:
-        ipv4_address: 172.28.10.10
+        ipv4_address: 172.28.10.11
   cbioportal-mysql:
     image: cbioportal-cloud-cbioportal-mysql:latest
     build:
@@ -85,7 +92,7 @@ services:
       read_only: false
     networks:
       cbio-bridge:
-        ipv4_address: 172.28.10.11
+        ipv4_address: 172.28.10.12
   oncokb:
     image: cbioportal-cloud-oncokb:latest
     build:
