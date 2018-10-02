@@ -22,5 +22,5 @@ gcloud auth activate-service-account --key-file "$1"
 curl https://get.acme.sh | sh
 echo "Please enter the domain name of this server, e.g. example.com"
 read DOMAIN
-source ${HOME}/.acme.sh/acme.sh.env
+. ${HOME}/.acme.sh/acme.sh.env
 acme.sh --test --issue -d ${DOMAIN} -d *.cbiodfci.org --dns dns_gcloud
