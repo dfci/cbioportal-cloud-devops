@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,18 +63,18 @@
           <entry key="md" value="1" />
           <entry key="properties" value="526" />
           <entry key="py" value="13" />
-          <entry key="sh" value="4998" />
-          <entry key="txt" value="671" />
+          <entry key="sh" value="5165" />
+          <entry key="txt" value="699" />
           <entry key="xml" value="439" />
           <entry key="yml" value="6620" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="4998" />
+          <entry key="Bash" value="5165" />
           <entry key="Dockerfile" value="10774" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="1066" />
+          <entry key="PLAIN_TEXT" value="1094" />
           <entry key="Properties" value="526" />
           <entry key="Python" value="13" />
           <entry key="XML" value="439" />
@@ -153,7 +153,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -676,7 +676,21 @@
       <option name="project" value="LOCAL" />
       <updated>1538498336739</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="letsencrypt helper script">
+      <created>1538500735467</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1538500735467</updated>
+    </task>
+    <task id="LOCAL-00031" summary="letsencrypt helper script">
+      <created>1538501006779</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1538501006779</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -725,7 +739,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ready for being a cloud" />
     <MESSAGE value="long form volumes" />
     <MESSAGE value="long form volumes - version support" />
     <MESSAGE value="refactoring" />
@@ -750,7 +763,8 @@
     <MESSAGE value="fix gce script" />
     <MESSAGE value="Moving maven stuff outside the build" />
     <MESSAGE value="rm blank script" />
-    <option name="LAST_COMMIT_MESSAGE" value="rm blank script" />
+    <MESSAGE value="letsencrypt helper script" />
+    <option name="LAST_COMMIT_MESSAGE" value="letsencrypt helper script" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mongo-backend/Dockerfile" />
@@ -940,7 +954,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
         </state>
       </provider>
     </entry>
