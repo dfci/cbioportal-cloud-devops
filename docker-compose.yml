@@ -39,6 +39,8 @@ services:
       DB_PASSWORD: &mysql_root_password letmein
       DB_NAME: &mysql_database cbioportal
       DO_DB_MIGRATE: ${DO_DB_MIGRATE:-no}
+      MVN_GOALS: clean install
+      FORCE_MVN_BUILD: ${FORCE_MVN_BUILD:-no}
     volumes:
     - type: bind
       source: ./mountpoints/host
