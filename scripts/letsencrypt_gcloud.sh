@@ -20,7 +20,7 @@ MAIN_PATH=$(dirname $(dirname $(readlink_f "$0")))
 gcloud auth activate-service-account --key-file "$1"
 
 curl https://get.acme.sh | sh
-source ${HOME}/.bashrc
 echo "Please enter the domain name of this server, e.g. example.com"
 read DOMAIN
+source ${HOME}/.acme.sh/acme.sh.env
 acme.sh --test --issue -d ${DOMAIN} -d *.cbiodfci.org --dns dns_gcloud
