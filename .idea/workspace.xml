@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,9 +60,9 @@
           <entry key="dummy" value="2" />
           <entry key="gitignore" value="2" />
           <entry key="md" value="1" />
-          <entry key="properties" value="526" />
+          <entry key="properties" value="532" />
           <entry key="py" value="13" />
-          <entry key="sh" value="5165" />
+          <entry key="sh" value="6054" />
           <entry key="txt" value="699" />
           <entry key="xml" value="439" />
           <entry key="yml" value="6620" />
@@ -71,11 +70,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="5165" />
+          <entry key="Bash" value="6054" />
           <entry key="Dockerfile" value="10774" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1094" />
-          <entry key="Properties" value="526" />
+          <entry key="Properties" value="532" />
           <entry key="Python" value="13" />
           <entry key="XML" value="439" />
           <entry key="YAML" value="6825" />
@@ -102,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+            <state relative-caret-position="360">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -152,8 +151,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state relative-caret-position="367">
+              <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -690,7 +689,35 @@
       <option name="project" value="LOCAL" />
       <updated>1538501006779</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="letsencrypt helper script">
+      <created>1538501106230</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1538501106230</updated>
+    </task>
+    <task id="LOCAL-00033" summary="letsencrypt helper script">
+      <created>1538501175432</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1538501175432</updated>
+    </task>
+    <task id="LOCAL-00034" summary="letsencrypt helper script">
+      <created>1538501219186</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1538501219186</updated>
+    </task>
+    <task id="LOCAL-00035" summary="letsencrypt helper script">
+      <created>1538501880670</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1538501880670</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -892,13 +919,6 @@
     <entry file="file://$PROJECT_DIR$/mountpoints/mvn-repo/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/gce_debian_9_setup.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -951,10 +971,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh">
+    <entry file="file://$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_gcloud.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
         </state>
       </provider>
     </entry>
