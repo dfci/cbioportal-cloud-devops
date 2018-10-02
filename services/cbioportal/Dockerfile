@@ -15,7 +15,6 @@ ENV PORTAL_HOME=/host/cbioportal JDBC_DRIVER=com.mysql.jdbc.Driver \
 
 
 RUN rm -rf /usr/local/tomcat/webapps/* && \
-    mkdir -p /usr/local/tomcat/webapps/ROOT && \
     echo 'JAVA_OPTS="$JAVA_OPTS -Ddbconnector=dbcp"' >> /usr/local/tomcat/bin/setenv.sh && \
     chmod +x /usr/local/tomcat/bin/setenv.sh
 

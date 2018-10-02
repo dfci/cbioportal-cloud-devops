@@ -11,19 +11,23 @@ RUN_CMD="/usr/local/tomcat/bin/catalina.sh run"
 MYSQL_CONNECT_RETRIES=120
 MYSQL_CONNECT_RETRY_COUNTER=1
 
-if [ ! -d /host/cbioportal ]; then
-    git clone https://github.com/cBioPortal/cbioportal.git --branch ${BRANCH} $PORTAL_HOME
+if [ ! -d ${PORTAL_HOME} ]; then
+    git clone https://github.com/cBioPortal/cbioportal.git --branch ${BRANCH} ${PORTAL_HOME}
 fi
 
 cp /resources/* ${PORTAL_HOME}/src/main/resources/
 
-mvn -f ${PORTAL_HOME}/pom.xml -DskipTests -Djdbc.driver=${JDBC_DRIVER} -Dfinal.war.name=cbioportal \
-    -Ddb.host=${DB_HOST} -Ddb.user=${DB_USER} -Ddb.password=${DB_PASSWORD} \
-    -Ddb.connection_string=jdbc:mysql://${DB_HOST}:${DB_PORT}/ \
-    -Ddb.portal_db_name=${DB_NAME} clean install
+if [ "${FORCE_MVN_BUILD}" == "yes" ] || [ ! -d /usr/local/tomcat/webapps/ROOT ]; then
+    mvn -f ${PORTAL_HOME}/pom.xml -DskipTests -Djdbc.driver=${JDBC_DRIVER} -Dfinal.war.name=cbioportal \
+        -Ddb.host=${DB_HOST} -Ddb.user=${DB_USER} -Ddb.password=${DB_PASSWORD} \
+        -Ddb.connection_string=jdbc:mysql://${DB_HOST}:${DB_PORT}/ \
+        -Ddb.portal_db_name=${DB_NAME} ${MVN_GOALS};
+    echo "Exploding cbioportal.war to webapps ROOT directory";
+    unzip ${PORTAL_HOME}/portal/target/cbioportal.war -d /usr/local/tomcat/webapps/ROOT > /dev/null 2>&1;
+fi;
 
-unzip $PORTAL_HOME/portal/target/cbioportal.war -d /usr/local/tomcat/webapps/cbioportal && \
-cp -n $PORTAL_HOME/src/main/resources/* /usr/local/tomcat/webapps/cbioportal/WEB-INF/classes/ && \
+echo "Copying uncopied resources to classpath"
+cp -n ${PORTAL_HOME}/src/main/resources/* /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/ > /dev/null 2>&1
 
 echo "Attempting to connect to mysql://${DB_HOST}:${DB_PORT}"
 while ! mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "show databases;" > /dev/null 2>&1; do
@@ -37,14 +41,19 @@ while ! mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "show database
 done
 echo "Connection Attempt ${MYSQL_CONNECT_RETRY_COUNTER} succeeded"
 
-if ! mysqlshow -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME}; then
+echo "Checking for existence of database ${DB_NAME}";
+if ! mysqlshow -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME} > /dev/null 2>&1; then
+    echo "Database ${DB_NAME} does not exist, creating";
     mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "CREATE DATABASE ${DB_NAME};";
     mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME} < /root/schema.sql;
     zcat /root/seed-db.sql.gz | mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" ${DB_NAME};
     DATABASE_CREATED="yes"
+else
+    echo "Database ${DB_NAME} exists"
 fi
 
 if [ "${DO_DB_MIGRATE}" == "yes" ] || [ "${DATABASE_CREATED}" == "yes" ]; then
+    echo "Running database migration script";
     yes y | eval ${MIGRATION_COMMAND};
 fi
 
