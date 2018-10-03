@@ -61,6 +61,10 @@ Skip this section if you already have an environment.  Following steps will assu
     - ```DO_DB_MIGRATE=yes docker-compose up -d --no-deps cbioportal```
 - Start cbioportal, forcing build, and running the db migrate script 
     - ```FORCE_MVN_BUILD=yes DO_DB_MIGRATE=yes docker-compose up -d --no-deps cbioportal```
+- Get a shell in cbioportal container
+    - ```docker-compose exec cbioportal bash```
+- Get a mysql prompt to cbioportal-mysql
+    - ```docker-compose exec cbioportal-mysql mysql -pletmein cbioportal```
     
 ## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
