@@ -6,10 +6,13 @@ This repo contains Dockerfiles and supporting files for getting a private instan
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
  * [scripts](./scripts)
      * [generate_self_signed_keys_for_nginx.sh](./scripts/generate_self_signed_keys_for_nginx.sh) - *Generates self-signed cert and key to use with nginx-wrapper, so you can test with HTTPS enabled, puts them in [./mountpoints/nginx-wrapper](./mountpoints/nginx-wrapper)*
+     * [gce_debian_9_setup.sh](./scripts/gce_debian_9_setup.sh) - *Setup script for Debian image in Google Cloud*
+     * [letsencrypt_gcloud.sh](./scripts/letsencrypt_gcloud.sh) - *Helper script to issue SSL certs from LetsEncrypt on Google Cloud*
  * [mountpoints](./mountpoints)
    * [cbioportal-mysql-data](./mountpoints/cbioportal-mysql-data) - *Directory that is bind-mounted to cbioportal-mysql to serve as the data directory*
    * [host](./mountpoints/host) - *Directory that is bind-mounted to /host on cbioportal and cbioportal-mysql, so files can be accessed on both easily if needed*
    * [nginx-wrapper](./mountpoints/nginx-wrapper) - *Directory to put cert.key and cert.crt for nginx-wrapper*
+   * [mvn-repo](./mountpoints/mvn-repo) - *Directory that is bind-mounted to /root/.m2/repository on the cbioportal container, to cache maven dependencies*
  * [services](./services) - *One folder for each service, containing the Dockerfile and supporting files*
    * [nginx-wrapper](./services/nginx-wrapper) - *Only service that binds to host ports, proxies traffic to cbioportal*
      * [Dockerfile](./services/nginx-wrapper/Dockerfile)
@@ -39,7 +42,7 @@ This repo contains Dockerfiles and supporting files for getting a private instan
      * [Dockerfile](./services/cancerhotspots/Dockerfile)
 
 ## Prerequisites
-All that is needed is docker-compose and docker >= 17.04.0.
+All that is needed is docker-compose >= 1.12.0 and docker >= 17.04.0.
 To generate a self-signed cert, openssl is needed.
 
 ## Instructions
@@ -56,13 +59,15 @@ Skip this step if you already have an environment.  Following steps will assume 
     - Firewall: Allow HTTP and HTTPS traffic
     - Disks: 1x blank 32GB+ SSD Persistent Disk, R/W (for the cbioportal-mysql data)
 2. SSH into the new instance, switch to root user (no point in doing it all through sudo on single-purpose system), install git, and clone the repo
-```
-emarriott@cbiorportal-cloud-edenstate-2:~$ sudo su
-root@cbiorportal-cloud-edenstate-2:~# apt-get update && apt-get install git
-root@cbiorportal-cloud-edenstate-2:~# cd
-root@cbiorportal-cloud-edenstate-2:~# git clone git@github.com:dfci/cbioportal-cloud-devops.git
-root@cbiorportal-cloud-edenstate-2:~# cd cbioportal-cloud-devops/
-```
+    ```
+    emarriott@cbiorportal-cloud-edenstate-2:~$ sudo su
+    root@cbiorportal-cloud-edenstate-2:~# apt-get update && apt-get install git
+    root@cbiorportal-cloud-edenstate-2:~# cd
+    root@cbiorportal-cloud-edenstate-2:~# git clone git@github.com:dfci/cbioportal-cloud-devops.git
+    root@cbiorportal-cloud-edenstate-2:~# cd cbioportal-cloud-devops/
+    ```
 
 3. Run the script scripts/gce_debian_9_setup.sh
+4. If there is a DNS record for the server and you wish to have valid CA certs for the server, you can run ```./scripts/letsencrypt_gcloud.sh /path/to/service_worker_authorization.json```, where serivce_worker_authorization.json is an authorization file from google for a service worker with Cloud DNS admin privileges, and follow the prompts.  Otherwise, run [./scripts/generate_self_signed_keys_for_nginx.sh](./scripts/generate_self_signed_keys_for_nginx.sh) to generate a self-signed cert and key for nginx.
+
 
