@@ -56,7 +56,11 @@ services:
       read_only: false
     - type: bind
       source: ./services/cbioportal/context.xml
-      target: /usr/local/tomcat/cont/context.xml
+      target: /usr/local/tomcat/conf/context.xml
+      read_only: true
+    - type: bind
+      source: ./services/cbioportal/server.xml
+      target: /usr/local/tomcat/conf/server.xml
       read_only: true
     depends_on:
     - cbioportal-mysql
