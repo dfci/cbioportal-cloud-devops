@@ -20,6 +20,7 @@ connection = sqlite3.connect(DB_LOCATION)
 sql = SQL(connection)
 dbx = DropBoxSync(ACCESS_TOKEN, sql)
 syncer = StudySync(sql, dbx, DOWNLOAD_DIR)
+syncer.run()
 validator_path = os.path.join(PORTAL_HOME, 'core/src/main/scripts/importer/validateData.py')
 study_versions_needing_validation = syncer.StudyVersionRepo.get_study_versions_needing_validation()
 for study_version in study_versions_needing_validation:
