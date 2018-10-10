@@ -1,5 +1,6 @@
 import dropbox
 import sqlite3
+import os
 import hashlib
 from collections import defaultdict
 
