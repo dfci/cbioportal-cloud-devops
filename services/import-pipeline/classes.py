@@ -1,7 +1,10 @@
 import dropbox
 import sqlite3
 import os
+import subprocess
+import shutil
 import hashlib
+import time
 from collections import defaultdict
 
 
@@ -329,16 +332,24 @@ class FileRepo(object):
 
 
 class StudySync(object):
-    def __init__(self, sql: SQL, sync: FileSyncSource, download_dir):
+    def __init__(self,
+                 connection,
+                 sync_class,
+                 sync_class_args,
+                 download_dir,
+                 validator_path,
+                 study_link_dir):
+        self._study_link_dir = study_link_dir
         self._download_dir = download_dir
-        self._sql = sql
-        self._sync = sync
-        self.StudyVersionValidationRepo = StudyVersionValidationRepo(sql)
-        self.StudyVersionFileRepo = StudyVersionFileRepo(sql)
-        self.StudyVersionRepo = StudyVersionRepo(sql)
-        self.StudyRepo = StudyRepo(sql)
-        self.OrganizationsRepo = OrganizationsRepo(sql)
-        self.FileRepo = FileRepo(sql)
+        self._validator_path = validator_path
+        self._sql = SQL(connection)
+        self._sync = sync_class(**sync_class_args)
+        self.StudyVersionValidationRepo = StudyVersionValidationRepo(self._sql)
+        self.StudyVersionFileRepo = StudyVersionFileRepo(self._sql)
+        self.StudyVersionRepo = StudyVersionRepo(self._sql)
+        self.StudyRepo = StudyRepo(self._sql)
+        self.OrganizationsRepo = OrganizationsRepo(self._sql)
+        self.FileRepo = FileRepo(self._sql)
 
     def run(self):
         self._sync.run()
@@ -407,3 +418,30 @@ class StudySync(object):
                                                                                  file,
                                                                                  path,
                                                                                  server_modified)
+
+    def _run_study_version_validation(self):
+        study_versions_needing_validation = self.StudyVersionRepo.get_study_versions_needing_validation()
+        for study_version in study_versions_needing_validation:
+            study_version_tmp_path = os.path.join(self._study_link_dir, str(study_version.get_id()))
+            if os.path.exists(study_version_tmp_path):
+                shutil.rmtree(study_version_tmp_path)
+            for study_version_file in study_version.get_study_version_files():
+                file_path = self.FileRepo.get_file_from_study_version_file(study_version_file).get_path()
+                link_path = study_version_file.get_file_path()
+                full_link_path = os.path.join(study_version_tmp_path, link_path)
+                os.makedirs(os.path.dirname(full_link_path), exist_ok=True)
+                os.symlink(file_path, full_link_path)
+            try:
+                p = subprocess.check_output("python {} -s {} -n".format(self._validator_path, study_version_tmp_path),
+                                            shell=True,
+                                            stderr=subprocess.STDOUT)
+                status_code = 0
+                output = p.decode('utf-8')
+            except subprocess.CalledProcessError as e:
+                status_code = e.returncode
+                output = e.output.decode('utf-8')
+            if status_code in {0, 3}:
+                success = True
+            else:
+                success = False
+            study_version.add_study_version_validation(status_code, success, output, int(time.time()))
