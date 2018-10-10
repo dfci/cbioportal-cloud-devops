@@ -190,6 +190,29 @@ services:
     restart: always
     networks:
     - cbio-bridge
+  import-pipeline:
+    build:
+      context: services/import-pipeline
+    environment:
+      PORTAL_HOME: /host/cbioportal
+      DOWNLOAD_DIR: /importer/files
+      DB_LOCATION: /importer/main.db
+      ACCESS_TOKEN: ${DROPBOX_ACCESS_TOKEN}
+      ALLOWED_FOLDER: ${DROPBOX_ALLOWED_FOLDERS}
+    volumes:
+      - ./mountpoints/importer:/importer
+      - ./mountpoints/host:/host
+      - ./services/import-pipeline/schema.sql:/schema.sql
+    networks:
+      - cbio-bridge
+    depends_on:
+      - cbioportal
+      - cbioportal-mysql
+    links:
+      - cbioportal
+      - cbioportal-mysql
+    ports:
+      - "8181:8000"
 
 networks:
   cbio-bridge:
