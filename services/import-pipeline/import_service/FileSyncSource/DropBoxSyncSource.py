@@ -1,6 +1,6 @@
 import dropbox
 from collections import defaultdict
-from .. import FileSyncSource
+from . import FileSyncSource
 
 
 class DropBoxSyncSource(FileSyncSource):

@@ -24,4 +24,4 @@ RUN apt-get install -y curl grep sed dpkg && \
 RUN /bin/bash -c 'conda install -y jupyterlab dropbox requests'
 RUN mkdir -p /importer/notebooks
 EXPOSE 8000
-ENTRYPOINT /bin/bash -c "mkdir -p /importer/notebooks && jupyter-lab --no-browser --notebook-dir=/importer/notebooks --ip='0.0.0.0' --port=8000 --allow-root"
+ENTRYPOINT /bin/bash -c "mkdir -p /importer/notebooks && jupyter-lab --no-browser --notebook-dir=/importer --ip='0.0.0.0' --port=8000 --allow-root"

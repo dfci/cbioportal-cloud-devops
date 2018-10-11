@@ -1,4 +1,4 @@
-from .utils import SQL
+from import_service.StudyUtil.utils import SQL
 
 
 class StudyVersionValidationRepo(object):
