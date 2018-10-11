@@ -94,6 +94,9 @@ class Organization(object):
         self._org_name = org_name
         self.sql = sql
 
+    def get_name(self):
+        return self._org_name
+
     def get_studies(self, available=None):
         statement = ('SELECT id, org_id, study_name, available '
                      'FROM studies '
@@ -402,7 +405,7 @@ class StudySync(object):
 
     def _run_update_orgs(self):
         print("Running orgs update...")
-        orgs_in_db = {org.org_name for org in self.OrganizationsRepo.list_all_orgs()}
+        orgs_in_db = {org.get_name() for org in self.OrganizationsRepo.list_all_orgs()}
         new_orgs = [org for org in set(self._sync.all_entries.keys()) - orgs_in_db]
         for org_name in new_orgs:
             self.OrganizationsRepo.add_org(org_name)
