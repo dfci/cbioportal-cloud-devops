@@ -1,5 +1,8 @@
+import os
+import sqlite3
 from time import sleep
-from .classes import *
+from .lib.FileSyncSourceImplementations.DropBoxSyncSource import DropBoxSyncSource
+from .lib.StudySync import StudySync
 
 DOWNLOAD_DIR = os.environ['DOWNLOAD_DIR']
 PORTAL_HOME = os.environ['PORTAL_HOME']
@@ -11,6 +14,7 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 ALLOWED_FOLDERS = set(os.environ['ALLOWED_FOLDER'].split(','))
 STUDY_LINK_DIR = os.environ['STUDY_LINK_DIR']
 SLEEP_DURATION = int(os.environ['SLEEP_DURATION'])
+SCHEMA_SQL_PATH = os.environ['SCHEMA_SQL_PATH']
 
 while True:
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
@@ -18,12 +22,13 @@ while True:
 
     connection = sqlite3.connect(DB_LOCATION)
     sync = StudySync(connection=connection,
-                     sync_class=DropBoxSync,
+                     sync_class=DropBoxSyncSource,
                      sync_class_args={'dbx_access_token': ACCESS_TOKEN,
                                       'allowed_folders': ALLOWED_FOLDERS},
                      download_dir=DOWNLOAD_DIR,
                      portal_home=PORTAL_HOME,
-                     study_link_dir=STUDY_LINK_DIR)
+                     study_link_dir=STUDY_LINK_DIR,
+                     schema_sql_path=SCHEMA_SQL_PATH)
     sync.run()
     connection.close()
     sleep(SLEEP_DURATION)

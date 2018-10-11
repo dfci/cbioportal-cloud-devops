@@ -194,17 +194,19 @@ services:
     build:
       context: services/import-pipeline
     environment:
+      ACCESS_TOKEN: ${DROPBOX_ACCESS_TOKEN}
+      ALLOWED_FOLDER: ${DROPBOX_ALLOWED_FOLDERS}
       PORTAL_HOME: /host/cbioportal
       DOWNLOAD_DIR: /importer/files
       DB_LOCATION: /importer/main.db
-      ACCESS_TOKEN: ${DROPBOX_ACCESS_TOKEN}
-      ALLOWED_FOLDER: ${DROPBOX_ALLOWED_FOLDERS}
       STUDY_LINK_DIR: /study_link_dir
+      SCHEMA_SQL_PATH: /schema.sql
       SLEEP_DURATION: 1
     volumes:
       - ./mountpoints/importer:/importer
       - ./mountpoints/host:/host
       - ./services/import-pipeline/schema.sql:/schema.sql
+      - ./services/import-pipeline/import-service:/importer/import-service
     networks:
       - cbio-bridge
     depends_on:
