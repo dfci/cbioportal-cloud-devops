@@ -356,11 +356,17 @@ class StudySync(object):
                  sync_class,
                  sync_class_args,
                  download_dir,
-                 validator_path,
+                 portal_home,
                  study_link_dir):
+        self._portal_home = portal_home
+        self._validator_path = os.path.join(self._portal_home,
+                                            'core/src/main/scripts/importer/validateData.py')
+        self._cbioportalimporter_path = os.path.join(self._portal_home,
+                                                     'core/src/main/scripts/importer/cbioportalImporter.py')
+        self._metaimport_path = os.path.join(self._portal_home,
+                                             'core/src/main/scripts/importer/metaImport.py')
         self._study_link_dir = study_link_dir
         self._download_dir = download_dir
-        self._validator_path = validator_path
         self._sql = SQL(connection)
         self._sync = sync_class(**sync_class_args)
         self.StudyVersionValidationRepo = StudyVersionValidationRepo(self._sql)

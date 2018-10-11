@@ -4,6 +4,8 @@ from .classes import *
 DOWNLOAD_DIR = os.environ['DOWNLOAD_DIR']
 PORTAL_HOME = os.environ['PORTAL_HOME']
 VALIDATOR_PATH = os.path.join(PORTAL_HOME, 'core/src/main/scripts/importer/validateData.py')
+CBIOIMPORTER_PATH = os.path.join(PORTAL_HOME, 'core/src/main/scripts/importer/cbioportalImporter.py')
+METAIMPORT_PATH = os.path.join(PORTAL_HOME, 'core/src/main/scripts/importer/metaImport.py')
 DB_LOCATION = os.environ['DB_LOCATION']
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 ALLOWED_FOLDERS = set(os.environ['ALLOWED_FOLDER'].split(','))
@@ -20,7 +22,7 @@ while True:
                      sync_class_args={'dbx_access_token': ACCESS_TOKEN,
                                       'allowed_folders': ALLOWED_FOLDERS},
                      download_dir=DOWNLOAD_DIR,
-                     validator_path=VALIDATOR_PATH,
+                     portal_home=PORTAL_HOME,
                      study_link_dir=STUDY_LINK_DIR)
     sync.run()
     connection.close()
