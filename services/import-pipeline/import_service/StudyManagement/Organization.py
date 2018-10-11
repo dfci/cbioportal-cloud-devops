@@ -1,5 +1,5 @@
-from .utils import SQL
-from .Study import Study
+from import_service.StudyUtil.utils import SQL
+from import_service.StudyManagement.Study import Study
 
 
 class OrganizationsRepo(object):

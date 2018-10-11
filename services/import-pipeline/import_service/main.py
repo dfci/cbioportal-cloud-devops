@@ -1,8 +1,11 @@
 import os
 import sqlite3
-from time import sleep
-from .lib.FileSyncSourceImplementations.DropBoxSyncSource import DropBoxSyncSource
-from .lib.StudySync import StudySync
+import time
+import sys
+
+print(sys.path)
+from import_service.FileSyncSource.DropBoxSyncSource import DropBoxSyncSource
+from import_service.StudySync.StudySync import StudySync
 
 DOWNLOAD_DIR = os.environ['DOWNLOAD_DIR']
 PORTAL_HOME = os.environ['PORTAL_HOME']
@@ -21,14 +24,19 @@ while True:
     os.makedirs(STUDY_LINK_DIR, exist_ok=True)
 
     connection = sqlite3.connect(DB_LOCATION)
-    sync = StudySync(connection=connection,
-                     sync_class=DropBoxSyncSource,
-                     sync_class_args={'dbx_access_token': ACCESS_TOKEN,
-                                      'allowed_folders': ALLOWED_FOLDERS},
-                     download_dir=DOWNLOAD_DIR,
-                     portal_home=PORTAL_HOME,
-                     study_link_dir=STUDY_LINK_DIR,
-                     schema_sql_path=SCHEMA_SQL_PATH)
-    sync.run()
+    try:
+        with connection:
+            sync = StudySync(connection=connection,
+                             sync_class=DropBoxSyncSource,
+                             sync_class_args={'dbx_access_token': ACCESS_TOKEN,
+                                              'allowed_folders': ALLOWED_FOLDERS},
+                             download_dir=DOWNLOAD_DIR,
+                             portal_home=PORTAL_HOME,
+                             study_link_dir=STUDY_LINK_DIR,
+                             schema_sql_path=SCHEMA_SQL_PATH)
+            sync.run()
+    except sqlite3.IntegrityError as e:
+        print(time.time(), e)
+
     connection.close()
-    sleep(SLEEP_DURATION)
+    time.sleep(SLEEP_DURATION)

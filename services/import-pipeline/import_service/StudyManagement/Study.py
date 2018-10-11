@@ -1,5 +1,5 @@
-from .utils import SQL
-from .Organization import Organization
+from import_service.StudyUtil.utils import SQL
+from import_service.StudyManagement.Organization import Organization
 
 
 class Study(object):

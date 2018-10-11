@@ -2,22 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/File.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSource.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSourceImplementations/DropBoxSyncSource.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSourceImplementations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/Organization.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/Study.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudySync.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionFile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionValidation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyUtil/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cbio_dockerfiles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cbio_dockerfiles.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/classes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import-service/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/File.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/File.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSource.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource/FileSyncSource.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSourceImplementations/DropBoxSyncSource.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource/DropBoxSyncSource.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSourceImplementations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/Organization.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Organization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/Study.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Study.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudySync.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync/StudySync.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersion.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionFile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionValidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionValidation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/lib/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyUtil/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import-service/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +75,7 @@
           <entry key="key" value="1" />
           <entry key="md" value="2" />
           <entry key="properties" value="5" />
-          <entry key="py" value="30" />
+          <entry key="py" value="47" />
           <entry key="sh" value="11" />
           <entry key="sql" value="2" />
           <entry key="xml" value="7" />
@@ -86,7 +90,7 @@
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="17" />
           <entry key="Properties" value="5" />
-          <entry key="Python" value="30" />
+          <entry key="Python" value="47" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="1" />
           <entry key="XML" value="7" />
@@ -104,12 +108,12 @@
           <entry key="gitignore" value="2" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="20773" />
+          <entry key="py" value="21327" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="169" />
           <entry key="txt" value="996" />
           <entry key="xml" value="447" />
-          <entry key="yml" value="7578" />
+          <entry key="yml" value="7582" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -119,10 +123,10 @@
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="1408" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="21150" />
+          <entry key="Python" value="21704" />
           <entry key="SQL" value="169" />
           <entry key="XML" value="447" />
-          <entry key="YAML" value="7931" />
+          <entry key="YAML" value="7935" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -135,41 +139,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="208" column="60" selection-start-line="208" selection-start-column="60" selection-end-line="208" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Organization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/Study.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#0#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudySync.py">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/File.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
+            <state>
+              <caret lean-forward="true" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -178,61 +176,60 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersion.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionFile.py">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Study.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionValidation.py">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="21" selection-start-column="21" selection-end-column="21" />
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/utils.py">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionFile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionValidation.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync/StudySync.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyUtil/utils.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="13" selection-start-column="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSourceImplementations/DropBoxSyncSource.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -258,17 +255,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cbioportal_Dockerfile" />
-        <option value="$PROJECT_DIR$/create-network.sh" />
-        <option value="$PROJECT_DIR$/mysql-proxy/Dockerfile" />
-        <option value="$PROJECT_DIR$/cbioportal/portal.properties" />
-        <option value="$PROJECT_DIR$/cbioportal-mysql/custom.cnf" />
-        <option value="$PROJECT_DIR$/nginx-wrapper/Dockerfile" />
-        <option value="$PROJECT_DIR$/oncokb-mysql/Dockerfile" />
-        <option value="$PROJECT_DIR$/session-service/Dockerfile" />
-        <option value="$PROJECT_DIR$/oncotree/Dockerfile" />
-        <option value="$PROJECT_DIR$/oncokb/Dockerfile" />
-        <option value="$PROJECT_DIR$/cbioportal-mysql/mysql-data/.gitignore" />
         <option value="$PROJECT_DIR$/host/.gitignore" />
         <option value="$PROJECT_DIR$/generate_self_signed_keys_for_nginx.sh" />
         <option value="$PROJECT_DIR$/session-service-mongodb/Dockerfile" />
@@ -308,7 +294,18 @@
         <option value="$PROJECT_DIR$/services/import-pipeline/lib/StudyVersion.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/main.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/lib/StudySync.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import-service/FileSyncSource/DropBoxSyncSource.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import-service/StudyManagement/File.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import-service/main.py" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/File.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionValidation.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionFile.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersion.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Study.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Organization.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync/StudySync.py" />
       </list>
     </option>
   </component>
@@ -394,7 +391,39 @@
               <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
               <item name="import-pipeline" type="462c0819:PsiDirectoryNode" />
-              <item name="import-service" type="462c0819:PsiDirectoryNode" />
+              <item name="import_service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="import-pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="import_service" type="462c0819:PsiDirectoryNode" />
+              <item name="FileSyncSource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="import-pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="import_service" type="462c0819:PsiDirectoryNode" />
+              <item name="StudyManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="import-pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="import_service" type="462c0819:PsiDirectoryNode" />
+              <item name="StudySync" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="import-pipeline" type="462c0819:PsiDirectoryNode" />
+              <item name="import_service" type="462c0819:PsiDirectoryNode" />
+              <item name="StudyUtil" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
@@ -407,6 +436,10 @@
               <item name="cbio_dockerfiles" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
               <item name="oncokb" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cbio_dockerfiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -422,129 +455,20 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mountpoints/importer" />
-      <recent name="$PROJECT_DIR$/mountpoints/mvn-repo" />
-      <recent name="$PROJECT_DIR$/mountpoints/cbioportal-mysql-data/cbioportal" />
-      <recent name="$PROJECT_DIR$/mountpoints/nginx-wrapper" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/services/import-pipeline/import-service" />
-      <recent name="$PROJECT_DIR$/services/import-pipeline/lib" />
-      <recent name="$PROJECT_DIR$/scripts" />
-      <recent name="$PROJECT_DIR$/mountpoints" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/StudyUtil" />
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/FileSyncSource" />
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/StudyManagement" />
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/StudySync" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/README.md</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/FileSyncSource" />
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/StudyManagement" />
+      <recent name="$PROJECT_DIR$/services/import-pipeline/import-service/StudySync" />
+      <recent name="$PROJECT_DIR$/mountpoints/importer" />
+      <recent name="$PROJECT_DIR$/mountpoints/mvn-repo" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -948,11 +872,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3419" y="-453" width="1510" height="1153" extended-state="0" />
+    <frame x="-3364" y="-517" width="1957" height="1415" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24795641" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1916449" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893497" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32899627" />
@@ -1046,41 +972,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="adding importer info" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/services/nginx-wrapper/cert.crt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/nginx-wrapper/cert.key">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oncotree/Dockerfile" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/session-service-mongodb/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/cancerhotspots/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mountpoints/cbioportal-mysql-data/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/genome-nexus-mongodb/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1119,19 +1010,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mountpoints/cbioportal-mysql-data/cbioportal/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mountpoints/cbioportal-mysql-data/cbioportal/.gitignore" />
     <entry file="file://$PROJECT_DIR$/mountpoints/mvn-repo/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_generate_certs.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/letsencrypt_generate_certs.sh" />
     <entry file="file://$PROJECT_DIR$/services/session-service/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1225,9 +1108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="3839" column="16" selection-start-line="3839" selection-start-column="16" selection-end-line="3839" selection-end-column="16" />
-          <folding>
-            <element signature="e#997#1007#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1266,64 +1146,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/lib/File/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/lib/classes.py">
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/lib/File/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/lib/classes.py" />
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="390">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/StudySync/File.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/File.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/StudySync/FileSyncSourceImplementations/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSource.py">
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/StudySync/FileSyncSourceImplementations/DropBox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/Organization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionValidation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/FileSyncSourceImplementations/DropBoxSyncSource.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
+        <state relative-caret-position="45">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
@@ -1331,54 +1178,113 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/Study.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudyVersionFile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import-service/lib/StudySync.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="208" column="60" selection-start-line="208" selection-start-column="60" selection-end-line="208" selection-end-column="60" />
+        <state relative-caret-position="520">
+          <caret line="208" column="49" selection-start-line="208" selection-start-column="49" selection-end-line="208" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource/DropBoxSyncSource.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource/FileSyncSource.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/File.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Organization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/Study.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagement/StudyVersionValidation.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyUtil/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync/StudySync.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
         </state>
       </provider>
     </entry>

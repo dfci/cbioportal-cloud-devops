@@ -1,6 +1,6 @@
-from .utils import SQL
-from .StudyVersionFile import StudyVersionFile
-from .Study import Study
+from import_service.StudyUtil.utils import SQL
+from import_service.StudyManagement.StudyVersionFile import StudyVersionFile
+from import_service.StudyManagement.Study import Study
 
 
 class StudyVersion(object):

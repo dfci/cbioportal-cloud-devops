@@ -3,14 +3,14 @@ import hashlib
 import shutil
 import time
 import subprocess
-from .utils import content_hasher, SQL
-from .FileSyncSource import FileSyncSource
-from .Organization import OrganizationsRepo
-from .Study import StudyRepo
-from .StudyVersionValidation import StudyVersionValidationRepo
-from .StudyVersionFile import StudyVersionFileRepo
-from .StudyVersion import StudyVersionRepo
-from .File import FileRepo
+from import_service.StudyUtil.utils import content_hasher, SQL
+from import_service.FileSyncSource.FileSyncSource import FileSyncSource
+from import_service.StudyManagement.Organization import OrganizationsRepo
+from import_service.StudyManagement.Study import StudyRepo
+from import_service.StudyManagement.StudyVersionValidation import StudyVersionValidationRepo
+from import_service.StudyManagement.StudyVersionFile import StudyVersionFileRepo
+from import_service.StudyManagement.StudyVersion import StudyVersionRepo
+from import_service.StudyManagement.File import FileRepo
 
 
 class StudySync(object):
