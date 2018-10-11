@@ -7,6 +7,12 @@ import hashlib
 import time
 from collections import defaultdict
 
+__old_print__ = print
+
+
+def print(*args, **kwargs):
+    return __old_print__(time.time(), *args, **kwargs)
+
 
 def content_hasher(file_name):
     block_size = 4 * 1024 * 1024
@@ -91,10 +97,13 @@ class Organization(object):
     def get_studies(self, available=None):
         statement = ('SELECT id, org_id, study_name, available '
                      'FROM studies '
-                     'WHERE org_id = ? '
-                     'AND available = ?' if available else '')
-        results = self.sql.exec_sql(statement, self.get_id(), available if available is not None else ())
-        return [Study(*result, self.sql) for result in results] if results else None
+                     'WHERE org_id = ? ')
+        if available is not None:
+            statement += 'AND available = ?'
+            results = self.sql.exec_sql(statement, self.get_id(), available)
+        else:
+            results = self.sql.exec_sql(statement, self.get_id())
+        return [Study(*result, self.sql) for result in results] if results else list()
 
     def get_study_by_name(self, study_name):
         statement = ('SELECT id, org_id, study_name, available '
@@ -102,7 +111,7 @@ class Organization(object):
                      'WHERE org_id = ? '
                      'AND study_name = ?')
         result = self.sql.exec_sql(statement, self.get_id(), study_name, fetchall=False)
-        return Study(*result[0], self.sql) if result else None
+        return Study(*result, self.sql) if result else None
 
     def get_id(self):
         return self._id
@@ -187,7 +196,7 @@ class StudyVersion(object):
                      'INNER JOIN study_version_files f ON sv.id = f.study_version_id '
                      'WHERE sv.id = ?')
         results = self.sql.exec_sql(statement, self.get_id())
-        return [StudyVersionFile(*result, self.sql) for result in results] if results is not None else results
+        return [StudyVersionFile(*result, self.sql) for result in results] if results is not None else list()
 
 
 class StudyVersionValidationRepo(object):
@@ -232,11 +241,11 @@ class StudyVersionRepo(object):
 
     def get_study_version(self, study: Study, aggregate_hash):
         statement = ('SELECT id, study_id, aggregate_hash, passes_validation, loads_successfully, currently_loaded '
-                     'FROM study_verions '
+                     'FROM study_versions '
                      'WHERE study_id = ? '
                      'AND aggregate_hash = ?')
         result = self.sql.exec_sql(statement, study.get_id(), aggregate_hash, fetchall=False)
-        return StudyVersion(*result[0], self.sql) if result else None
+        return StudyVersion(*result, self.sql) if result else None
 
     def study_version_exists(self, study: Study, aggregate_hash):
         return True if self.get_study_version(study, aggregate_hash) is not None else False
@@ -250,22 +259,29 @@ class StudyVersionRepo(object):
     def get_study_versions_needing_validation(self, study: Study = None):
         statement = ('SELECT sv.id, sv.study_id, sv.aggregate_hash, '
                      'sv.passes_validation, sv.loads_successfully, sv.currently_loaded '
-                     'FROM study_verions sv '
+                     'FROM study_versions sv '
                      'INNER JOIN studies s ON s.id = sv.study_id '
-                     'WHERE v.passes_validation IS NULL '
-                     'AND study_id = ?' if study is not None else '')
-        results = self.sql.exec_sql(statement, study.get_id() if study is not None else ())
-        return [StudyVersion(*result, self.sql) for result in results] if results is not None else results
+                     'WHERE sv.passes_validation IS NULL ')
+        if study is not None:
+            statement += 'AND study_id = ?'
+            results = self.sql.exec_sql(statement, study.get_id())
+        else:
+            results = self.sql.exec_sql(statement)
+        return [StudyVersion(*result, self.sql) for result in results] if results is not None else list()
 
     def get_study_versions_needing_import_test(self, study: Study = None):
         statement = ('SELECT sv.id, sv.study_id, sv.aggregate_hash, '
                      'sv.passes_validation, sv.loads_successfully, sv.currently_loaded '
-                     'FROM study_verions sv '
+                     'FROM study_versions sv '
                      'INNER JOIN studies s ON s.id = sv.study_id '
-                     'WHERE v.loads_successfully IS NULL '
-                     'AND study_id = ?' if study is not None else '')
-        results = self.sql.exec_sql(statement, study.get_id() if study is not None else ())
-        return [StudyVersion(*result, self.sql) for result in results] if results is not None else results
+                     'WHERE v.loads_successfully IS NULL ')
+        if study is not None:
+            statement += 'AND study_id = ?'
+        if study is not None:
+            results = self.sql.exec_sql(statement, study.get_id())
+        else:
+            results = self.sql.exec_sql(statement, statement)
+        return [StudyVersion(*result, self.sql) for result in results] if results is not None else list()
 
 
 class StudyRepo(object):
@@ -285,7 +301,7 @@ class OrganizationsRepo(object):
     def list_all_orgs(self):
         statement = 'SELECT id, org_name FROM orgs'
         results = self.sql.exec_sql(statement)
-        return [Organization(*result, self.sql) for result in results] if results else None
+        return [Organization(*result, self.sql) for result in results] if results else list()
 
     def add_org(self, org_name):
         statement = 'INSERT INTO orgs (org_name) VALUES (?)'
@@ -294,7 +310,7 @@ class OrganizationsRepo(object):
     def get_org_by_name(self, org_name):
         statement = 'SELECT id, org_name FROM orgs WHERE org_name = ?'
         result = self.sql.exec_sql(statement, org_name, fetchall=False)
-        return Organization(*result[0], self.sql) if result else None
+        return Organization(*result, self.sql) if result else None
 
 
 class FileRepo(object):
@@ -306,7 +322,7 @@ class FileRepo(object):
     def get_file_by_content_hash(self, content_hash):
         statement = 'SELECT id, content_hash, path FROM files WHERE content_hash = ?'
         result = self.sql.exec_sql(statement, content_hash)
-        return File(*result, self.sql) if result else None
+        return File(*result[0], self.sql) if result else None
 
     def delete_files_by_content_hash(self, content_hash):
         statement = 'DELETE FROM files WHERE content_hash = ?'
@@ -328,7 +344,7 @@ class FileRepo(object):
                      'AND svf.file_id = ?')
         result = self.sql.exec_sql_to_single_val(statement, study_version_file.get_study_version_id(),
                                                  study_version_file.get_file_id())
-        return self.get_file_by_content_hash(result) if result is not None else result
+        return self.get_file_by_content_hash(result[0]) if result is not None else result
 
 
 class StudySync(object):
@@ -358,35 +374,41 @@ class StudySync(object):
         self._run_update_orgs()
         self._run_update_studies()
         self._run_update_study_versions()
+        self._run_study_version_validation()
 
     def _run_local_db_init(self):
+        print("Running schema setup...")
         with open('/schema.sql') as schema_file:
             statements = schema_file.read().split(';')
             for statement in statements:
                 self._sql.connection.execute(statement)
 
     def _run_files_download(self):
+        print("Running files download...")
         for content_hash, remote_path in self._sync.content_hash_to_remote_path.items():
             file_from_db = self.FileRepo.get_file_by_content_hash(content_hash)
-            do_download = any((file_from_db is None,
-                               not os.path.isfile(file_from_db.path),
-                               content_hash == content_hasher(file_from_db.path)))
-            if file_from_db is None:
+            do_download = True if file_from_db is None or (
+                not os.path.isfile(file_from_db.get_path())) or content_hash != content_hasher(
+                file_from_db.get_path()) else False
+            if file_from_db is None or do_download:
                 self.FileRepo.delete_files_by_content_hash(content_hash)
             if do_download:
                 file_download_path = os.path.join(self._download_dir, content_hash)
-                print("Downloading file {} with content_hash {}".format(remote_path, content_hash))
-                self._sync.do_download(local_path=file_download_path, remote_path=remote_path)
-                assert content_hash == content_hasher(file_download_path)
+                if not (os.path.isfile(file_download_path) and content_hash == content_hasher(file_download_path)):
+                    print("Downloading file {} with content_hash {}".format(remote_path, content_hash))
+                    self._sync.do_download(local_path=file_download_path, remote_path=remote_path)
+                    assert content_hash == content_hasher(file_download_path)
                 self.FileRepo.insert_file_path_with_content_hash(content_hash, file_download_path)
 
     def _run_update_orgs(self):
+        print("Running orgs update...")
         orgs_in_db = {org.org_name for org in self.OrganizationsRepo.list_all_orgs()}
         new_orgs = [org for org in set(self._sync.all_entries.keys()) - orgs_in_db]
         for org_name in new_orgs:
             self.OrganizationsRepo.add_org(org_name)
 
     def _run_update_studies(self):
+        print("Running studies update...")
         for org_name, study_entries in self._sync.all_entries.items():
             org = self.OrganizationsRepo.get_org_by_name(org_name)
             studies_in_db = org.get_studies()
@@ -401,6 +423,7 @@ class StudySync(object):
                     self.StudyRepo.new_study(org, study_name, available=True)
 
     def _run_update_study_versions(self):
+        print("Running study versions update...")
         for org_name, study_entries in self._sync.all_entries.items():
             org = self.OrganizationsRepo.get_org_by_name(org_name)
             for study_name, path_entries in study_entries.items():
@@ -420,6 +443,7 @@ class StudySync(object):
                                                                                  server_modified)
 
     def _run_study_version_validation(self):
+        print("Running study version validation...")
         study_versions_needing_validation = self.StudyVersionRepo.get_study_versions_needing_validation()
         for study_version in study_versions_needing_validation:
             study_version_tmp_path = os.path.join(self._study_link_dir, str(study_version.get_id()))

@@ -199,6 +199,8 @@ services:
       DB_LOCATION: /importer/main.db
       ACCESS_TOKEN: ${DROPBOX_ACCESS_TOKEN}
       ALLOWED_FOLDER: ${DROPBOX_ALLOWED_FOLDERS}
+      STUDY_LINK_DIR: /study_link_dir
+      SLEEP_DURATION: 1
     volumes:
       - ./mountpoints/importer:/importer
       - ./mountpoints/host:/host
