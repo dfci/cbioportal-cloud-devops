@@ -13,8 +13,13 @@ DB_LOCATION = os.environ['DB_LOCATION']
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 ALLOWED_FOLDERS = set(os.environ['ALLOWED_FOLDER'].split(','))
 STUDY_LINK_DIR = os.environ['STUDY_LINK_DIR']
-SLEEP_DURATION = int(os.environ['SLEEP_DURATION'])
 SCHEMA_SQL_PATH = os.environ['SCHEMA_SQL_PATH']
+CBIOPORTAL_DB_CONNECTION_INFO = {
+    "host": os.environ['DB_HOST'],
+    "db": os.environ['DB_NAME'],
+    "user": os.environ["DB_USER"],
+    "passwd": os.environ["DB_PASSWORD"]
+}
 
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 os.makedirs(STUDY_LINK_DIR, exist_ok=True)

@@ -201,22 +201,25 @@ services:
       DB_LOCATION: /importer/main.db
       STUDY_LINK_DIR: /study_link_dir
       SCHEMA_SQL_PATH: /schema.sql
-      SLEEP_DURATION: 1
+      DB_HOST: cbioportal-mysql
+      DB_NAME: *mysql_database
+      DB_USER: root
+      DB_PASSWORD: *mysql_root_password
     volumes:
-      - ./mountpoints/importer:/importer
-      - ./mountpoints/host:/host
-      - ./services/import-pipeline/schema.sql:/schema.sql
-      - ./services/import-pipeline/import_service:/importer/import_service
+    - ./mountpoints/importer:/importer
+    - ./mountpoints/host:/host
+    - ./services/import-pipeline/schema.sql:/schema.sql
+    - ./services/import-pipeline/import_service:/importer/import_service
     networks:
-      - cbio-bridge
+    - cbio-bridge
     depends_on:
-      - cbioportal
-      - cbioportal-mysql
+    - cbioportal
+    - cbioportal-mysql
     links:
-      - cbioportal
-      - cbioportal-mysql
+    - cbioportal
+    - cbioportal-mysql
     ports:
-      - "8181:8000"
+    - "8181:8000"
 
 networks:
   cbio-bridge:
