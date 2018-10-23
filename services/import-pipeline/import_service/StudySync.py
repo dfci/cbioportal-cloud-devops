@@ -9,6 +9,8 @@ from StudyManagementAccess import *
 
 
 class StudySync(object):
+    UNVERSIONED_FILE_NAMES = {'access.txt'}
+
     def __init__(self,
                  connection,
                  sync_class: type(FileSyncSource),
@@ -100,7 +102,8 @@ class StudySync(object):
                 study = org.get_study_by_name(study_name)
                 aggregate_list = [path.encode('utf-8') + content_hash.encode('utf-8')
                                   for path, content_hash_entries in path_entries.items()
-                                  for content_hash in content_hash_entries.keys()]
+                                  for content_hash in content_hash_entries.keys()
+                                  if os.path.basename(path) not in self.UNVERSIONED_FILE_NAMES]
                 aggregate_hash = hashlib.sha256(b''.join(sorted(aggregate_list))).hexdigest()
                 if not self.StudyVersionAccess.study_version_exists(study, aggregate_hash):
                     study_version = self.StudyVersionAccess.new_study_version(study, aggregate_hash)
