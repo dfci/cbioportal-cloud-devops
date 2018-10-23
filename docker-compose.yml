@@ -206,7 +206,7 @@ services:
       - ./mountpoints/importer:/importer
       - ./mountpoints/host:/host
       - ./services/import-pipeline/schema.sql:/schema.sql
-      - ./services/import-pipeline/import_service:/importer/import-service
+      - ./services/import-pipeline/import_service:/importer/import_service
     networks:
       - cbio-bridge
     depends_on:
