@@ -5,7 +5,8 @@ ENV PATH /opt/conda/bin:$PATH
 
 RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
-    git mercurial subversion
+    git mercurial subversion \
+    openjdk-8-jre
 
 RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
@@ -20,8 +21,7 @@ RUN apt-get install -y curl grep sed dpkg && \
     dpkg -i tini.deb && \
     rm tini.deb && \
     apt-get clean
-
-RUN /bin/bash -c 'conda install -y jupyterlab dropbox requests'
+RUN /bin/bash -c 'conda install -y jupyterlab dropbox requests && conda update -y sqlite'
 RUN mkdir -p /importer/notebooks
 EXPOSE 8000
 ENTRYPOINT /bin/bash -c "mkdir -p /importer/notebooks && jupyter-lab --no-browser --notebook-dir=/importer --ip='0.0.0.0' --port=8000 --allow-root"

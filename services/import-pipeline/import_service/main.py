@@ -1,11 +1,8 @@
 import os
 import sqlite3
 import time
-import sys
-
-print(sys.path)
-from import_service.FileSyncSource.DropBoxSyncSource import DropBoxSyncSource
-from import_service.StudySync.StudySync import StudySync
+from FileSyncSource import DropBoxSyncSource
+from StudySync import StudySync
 
 DOWNLOAD_DIR = os.environ['DOWNLOAD_DIR']
 PORTAL_HOME = os.environ['PORTAL_HOME']
@@ -19,24 +16,22 @@ STUDY_LINK_DIR = os.environ['STUDY_LINK_DIR']
 SLEEP_DURATION = int(os.environ['SLEEP_DURATION'])
 SCHEMA_SQL_PATH = os.environ['SCHEMA_SQL_PATH']
 
-while True:
-    os.makedirs(DOWNLOAD_DIR, exist_ok=True)
-    os.makedirs(STUDY_LINK_DIR, exist_ok=True)
+os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+os.makedirs(STUDY_LINK_DIR, exist_ok=True)
 
-    connection = sqlite3.connect(DB_LOCATION)
-    try:
-        with connection:
-            sync = StudySync(connection=connection,
-                             sync_class=DropBoxSyncSource,
-                             sync_class_args={'dbx_access_token': ACCESS_TOKEN,
-                                              'allowed_folders': ALLOWED_FOLDERS},
-                             download_dir=DOWNLOAD_DIR,
-                             portal_home=PORTAL_HOME,
-                             study_link_dir=STUDY_LINK_DIR,
-                             schema_sql_path=SCHEMA_SQL_PATH)
-            sync.run()
-    except sqlite3.IntegrityError as e:
-        print(time.time(), e)
+connection = sqlite3.connect(DB_LOCATION)
+try:
+    with connection:
+        sync = StudySync(connection=connection,
+                         sync_class=DropBoxSyncSource,
+                         sync_class_args={'dbx_access_token': ACCESS_TOKEN,
+                                          'allowed_folders': ALLOWED_FOLDERS},
+                         download_dir=DOWNLOAD_DIR,
+                         portal_home=PORTAL_HOME,
+                         study_link_dir=STUDY_LINK_DIR,
+                         schema_sql_path=SCHEMA_SQL_PATH)
+        sync.run()
+except sqlite3.IntegrityError as e:
+    print(time.time(), e)
 
-    connection.close()
-    time.sleep(SLEEP_DURATION)
+connection.close()
