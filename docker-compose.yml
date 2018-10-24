@@ -196,6 +196,7 @@ services:
     environment:
       ACCESS_TOKEN: ${DROPBOX_ACCESS_TOKEN}
       ALLOWED_FOLDER: ${DROPBOX_ALLOWED_FOLDERS}
+      ADMIN_EMAILS: ${ADMIN_EMAILS}
       PORTAL_HOME: /host/cbioportal
       DOWNLOAD_DIR: /importer/files
       DB_LOCATION: /importer/main.db

@@ -1,8 +1,11 @@
 import os
 import sqlite3
 import time
+import MySQLdb
 from FileSyncSource import DropBoxSyncSource
+from StudyManagementAccess import AuthorizationManager
 from StudySync import StudySync
+from Util import SQL
 
 DOWNLOAD_DIR = os.environ['DOWNLOAD_DIR']
 PORTAL_HOME = os.environ['PORTAL_HOME']
@@ -25,9 +28,10 @@ os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 os.makedirs(STUDY_LINK_DIR, exist_ok=True)
 
 connection = sqlite3.connect(DB_LOCATION)
+cbio_con = MySQLdb.connect(**CBIOPORTAL_DB_CONNECTION_INFO)
 try:
     with connection:
-        sync = StudySync(connection=connection,
+        sync = StudySync(connection=SQL(connection),
                          sync_class=DropBoxSyncSource,
                          sync_class_args={'dbx_access_token': ACCESS_TOKEN,
                                           'allowed_folders': ALLOWED_FOLDERS},
@@ -39,4 +43,10 @@ try:
 except sqlite3.IntegrityError as e:
     print(time.time(), e)
 
+try:
+    with cbio_con, connection:
+        auth_sync = AuthorizationManager(SQL(connection), SQL(cbio_con))
+        auth_sync.run()
+except sqlite3.IntegrityError as e:
+    print(time.time(), e)
 connection.close()
