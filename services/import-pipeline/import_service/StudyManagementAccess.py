@@ -1,148 +1,76 @@
-from Util import SQL
+from StudyManagementItemAccess import *
 from StudyManagementItems import *
+from Util import SQL, line_iter, print
+import re
+import os
 
 
-class FilesAccess(object):
+class AuthorizationManager(object):
+    def __init__(self, local_sql: SQL, cbio_sql: SQL):
+        self._local_sql = local_sql
+        self._cbio_sql = cbio_sql
+        self.StudyAccess = StudyAccess(local_sql)
+        self.StudyVersionAccess = StudyVersionAccess(local_sql)
+        self.FileAccess = FilesAccess(local_sql)
+        self.email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
 
-    def __init__(self, sql: SQL):
-        self.sql = sql
-        pass
+    def run(self):
+        self._run_auth_sync()
 
-    def get_file_by_content_hash(self, content_hash):
-        statement = 'SELECT id, content_hash, path FROM files WHERE content_hash = ?'
-        result = self.sql.exec_sql(statement, content_hash)
-        return File(*result[0], self.sql) if result else None
+    def _run_auth_sync(self):
+        statement = ('WITH q AS (SELECT s.id         study_id,'
+                     '                  sv.id        study_version_id,'
+                     '                  f.file_id    file_id,'
+                     '                  row_number() OVER (PARTITION BY s.id ORDER BY sv.id DESC, s.id DESC) AS _id '
+                     '           FROM study_versions sv'
+                     '                  INNER JOIN studies s ON sv.study_id = s.id'
+                     '                  INNER JOIN study_version_files f ON sv.id = f.study_version_id'
+                     "           WHERE f.file_path = 'access.txt')"
+                     'SELECT study_id, study_version_id, file_id '
+                     'FROM q '
+                     'WHERE _id = 1')
+        results = self._local_sql.exec_sql(statement)
+        for result in results:
+            study = self.StudyAccess.get_study_by_id(result[0])
+            study_version = self.StudyVersionAccess.get_study_version_by_id(result[1])
+            access_file = self.FileAccess.get_file_by_id(result[2])
+            is_valid = None
+            authorized_emails = set() | {email for email in os.environ['ADMIN_EMAILS'].split(',')}
+            for line in line_iter(access_file.get_contents()):
+                if re.match(self.email_regex, line.strip()) is None:
+                    is_valid = False
+                    break
+                else:
+                    authorized_emails.add(line.strip())
+            meta_study_file = self.FileAccess.get_file_from_study_version_file(
+                self.FileAccess.get_meta_study_file_from_study_version(study_version))
+            meta_dict = {k: v
+                         for k, v
+                         in [line.split(':')
+                             if ':' in line else (line, None)
+                             for line in line_iter(meta_study_file.get_contents())]}
+            cancer_study_name = meta_dict['cancer_study_identifier']
+            if is_valid is not None:
+                print("Current access.txt for study '{}' is not valid, please fix.".format(cancer_study_name))
+                break
+            self.unauthorize_all_for_study(cancer_study_name)
+            for email in authorized_emails:
+                if not self.user_exists(email):
+                    self.add_user(email)
 
-    def delete_files_by_content_hash(self, content_hash):
-        statement = 'DELETE FROM files WHERE content_hash = ?'
-        self.sql.exec_sql(statement, content_hash)
+    def user_exists(self, email):
+        statement = 'SELECT TRUE FROM users WHERE email = ?'
+        result = self._cbio_sql.exec_sql(statement, email)
+        return True if result else None
 
-    def insert_file_path_with_content_hash(self, content_hash, file_path):
-        statement = 'INSERT INTO files (content_hash, path) VALUES (?, ?)'
-        self.sql.exec_sql(statement, content_hash, file_path)
+    def add_user(self, email):
+        statement = 'INSERT INTO users (email, name, enabled) VALUES (?, ?, ?)'
+        self._cbio_sql.exec_sql(statement, email, email, True)
 
-    def get_files_by_content_hashes(self, content_hashes):
-        return [self.get_file_by_content_hash(content_hash) for content_hash in content_hashes]
+    def unauthorize_all_for_study(self, study_name):
+        statement = "DELETE FROM authorities WHERE authority LIKE 'cbioportal:?'"
+        self._cbio_sql.exec_sql(statement, study_name.upper())
 
-    def get_file_from_study_version_file(self, study_version_file: StudyVersionFile):
-        statement = ('SELECT f.content_hash '
-                     'FROM study_version_files svf '
-                     'INNER JOIN files f '
-                     'ON f.id = svf.file_id '
-                     'WHERE svf.study_version_id = ? '
-                     'AND svf.file_id = ?')
-        result = self.sql.exec_sql_to_single_val(statement, study_version_file.get_study_version_id(),
-                                                 study_version_file.get_file_id())
-        return self.get_file_by_content_hash(result[0]) if result is not None else result
-
-    def get_meta_study_file_from_study_version(self, study_version: StudyVersion):
-        study_version_files = study_version.get_study_version_files()
-        for study_version_file in study_version_files:
-            if study_version_file.get_file_path().startswith("meta_"):
-                file = self.get_file_from_study_version_file(study_version_file)
-                with open(file.get_path()) as rf:
-                    content = rf.read()
-                meta_dict = {k: v for k, v in [line.split(':') if ':' in line else (line, None)
-                                               for line in '\n'.join(content.split('\r')).split('\n')
-                                               if line]}
-                if 'cancer_study_identifier' in meta_dict and 'type_of_cancer' in meta_dict:
-                    return study_version_file
-        return None
-
-
-class TopLevelFoldersAccess(object):
-    def __init__(self, sql: SQL):
-        self.sql = sql
-
-    def list_all_orgs(self):
-        statement = 'SELECT id, org_name FROM orgs'
-        results = self.sql.exec_sql(statement)
-        return [TopLevelFolder(*result, self.sql) for result in results] if results else list()
-
-    def add_org(self, org_name):
-        statement = 'INSERT INTO orgs (org_name) VALUES (?)'
-        self.sql.exec_sql(statement, org_name)
-
-    def get_org_by_name(self, org_name):
-        statement = 'SELECT id, org_name FROM orgs WHERE org_name = ?'
-        result = self.sql.exec_sql(statement, org_name, fetchall=False)
-        return TopLevelFolder(*result, self.sql) if result else None
-
-
-class StudyAccess(object):
-    def __init__(self, sql: SQL):
-        self.sql = sql
-
-    def new_study(self, organization: TopLevelFolder, study_name, available):
-        statement = 'INSERT INTO studies (study_name, org_id, available) VALUES (?, ?, ?)'
-        self.sql.exec_sql(statement, study_name, organization.get_id(), available)
-        return organization.get_study_by_name(study_name)
-
-
-class StudyVersionFileAccess(object):
-    def __init__(self, sql: SQL):
-        self.sql = sql
-
-    def add_new_study_version_file(self, study_version: StudyVersion, file: File, path, modified_date):
-        statement = ('INSERT INTO study_version_files (study_version_id, file_id, file_path, file_modified_date)'
-                     'VALUES (?, ?, ?, ?)')
-        self.sql.exec_sql(statement, study_version.get_id(), file.get_id(), path, modified_date)
-
-
-class StudyVersionAccess(object):
-    def __init__(self, sql: SQL):
-        self.sql = sql
-
-    def get_study_version(self, study: Study, aggregate_hash):
-        statement = ('SELECT id, study_id, aggregate_hash, passes_validation, loads_successfully, currently_loaded '
-                     'FROM study_versions '
-                     'WHERE study_id = ? '
-                     'AND aggregate_hash = ?')
-        result = self.sql.exec_sql(statement, study.get_id(), aggregate_hash, fetchall=False)
-        return StudyVersion(*result, self.sql) if result else None
-
-    def study_version_exists(self, study: Study, aggregate_hash):
-        return True if self.get_study_version(study, aggregate_hash) is not None else False
-
-    def new_study_version(self, study: Study, aggregate_hash):
-        statement = ('INSERT INTO study_versions (study_id, aggregate_hash)'
-                     'VALUES (?, ?)')
-        self.sql.exec_sql(statement, study.get_id(), aggregate_hash)
-        return self.get_study_version(study, aggregate_hash)
-
-    def get_study_versions_needing_validation(self, study: Study = None):
-        statement = ('SELECT sv.id, sv.study_id, sv.aggregate_hash, '
-                     'sv.passes_validation, sv.loads_successfully, sv.currently_loaded '
-                     'FROM study_versions sv '
-                     'INNER JOIN studies s ON s.id = sv.study_id '
-                     'WHERE sv.passes_validation IS NULL ')
-        if study is not None:
-            statement += 'AND study_id = ?'
-            results = self.sql.exec_sql(statement, study.get_id())
-        else:
-            results = self.sql.exec_sql(statement)
-        return [StudyVersion(*result, self.sql) for result in results] if results is not None else list()
-
-    def get_study_versions_needing_import_test(self):
-        statement = (
-            'WITH  q AS (SELECT sv.id, '
-            '   row_number() OVER (PARTITION BY s.id ORDER BY sv.study_id DESC, s.id DESC) AS _id '
-            'FROM study_versions sv '
-            'INNER JOIN study_version_validation v ON sv.id = v.study_version_id '
-            'INNER JOIN studies s ON sv.study_id = s.id '
-            'WHERE sv.passes_validation '
-            '  AND s.available '
-            '  AND ((sv.loads_successfully IS NULL) '
-            '      OR (sv.loads_successfully))) '
-            'SELECT sv.* '
-            'FROM q '
-            'INNER JOIN study_versions sv ON sv.id = q.id '
-            'WHERE (currently_loaded IS NULL) '
-            '  OR (NOT currently_loaded)')
-        results = self.sql.exec_sql(statement)
-        return [StudyVersion(*result, self.sql) for result in results] if results is not None else list()
-
-
-class StudyVersionValidationAccess(object):
-    def __init__(self, sql: SQL):
-        self.sql = sql
+    def authorize_for_study(self, email, study_name):
+        statement = "INSERT INTO authorities (email, authority) VALUES (?, 'cbioportal:?')"
+        self._cbio_sql.exec_sql(statement, email, study_name.upper())

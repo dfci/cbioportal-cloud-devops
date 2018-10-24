@@ -14,6 +14,11 @@ class File(object):
     def get_path(self):
         return self._path
 
+    def get_contents(self):
+        with open(self._path) as rf:
+            contents = rf.read()
+        return contents
+
 
 class TopLevelFolder(object):
     def __init__(self, _id, org_name, sql):

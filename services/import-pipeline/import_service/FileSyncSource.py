@@ -14,15 +14,18 @@ class FileSyncSource(object):
     def do_download(self, local_path: str, remote_path: str) -> None:
         pass
 
+    def register_all_entries_registered(self) -> None:
+        pass
+
 
 class DropBoxSyncSource(FileSyncSource):
     def __init__(self, dbx_access_token, allowed_folders):
         super().__init__()
         self.dbx = dropbox.Dropbox(dbx_access_token)
         self.allowed_folders = allowed_folders
+        self.all_entries = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
 
     def run(self):
-        self.all_entries = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
         self.content_hash_to_remote_path = dict()
         self._run_dbx_files_init()
 
@@ -49,3 +52,6 @@ class DropBoxSyncSource(FileSyncSource):
 
     def do_download(self, local_path, remote_path):
         self.dbx.files_download_to_file(path=remote_path, download_path=local_path)
+
+    def register_all_entries_registered(self):
+        self.all_entries = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))

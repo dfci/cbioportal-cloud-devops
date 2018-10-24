@@ -32,3 +32,8 @@ class SQL(object):
     def exec_sql_to_column_set(self, statement, *args, col_no=0):
         results = self.exec_sql(statement, args)
         return {result[col_no] for result in results}
+
+
+def line_iter(content):
+    content = '\n'.join(content.split('\r')).split('\n')
+    return (line for line in content if line)

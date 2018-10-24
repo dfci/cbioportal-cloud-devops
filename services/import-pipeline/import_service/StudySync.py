@@ -29,7 +29,7 @@ class StudySync(object):
                                              'core/src/main/scripts/importer/metaImport.py')
         self._study_link_dir = study_link_dir
         self._download_dir = download_dir
-        self._sql = SQL(connection)
+        self._sql = connection
         self._sync = sync_class(**sync_class_args)
         self.StudyVersionValidationAccess = StudyVersionValidationAccess(self._sql)
         self.StudyVersionFileAccess = StudyVersionFileAccess(self._sql)
@@ -39,21 +39,25 @@ class StudySync(object):
         self.FileAccess = FilesAccess(self._sql)
 
     def run(self):
-        self._sync.run()
         self._run_local_db_init()
+        self._run_db_sync()
+        self._run_study_version_validation()
+        self._run_study_version_import()
+
+    def _run_db_sync(self):
+        self._sync.run()
         self._run_files_download()
         self._run_update_orgs()
         self._run_update_studies()
         self._run_update_study_versions()
-        self._run_study_version_validation()
-        self._run_study_version_import()
+        self._sync.register_all_entries_registered()
 
     def _run_local_db_init(self):
         print("Running schema setup...")
         with open(self._schema_sql_path) as schema_file:
             statements = schema_file.read().split(';')
-            for statement in statements:
-                self._sql.connection.execute(statement)
+        for statement in statements:
+            self._sql.connection.execute(statement)
 
     def _run_files_download(self):
         print("Running files download...")
