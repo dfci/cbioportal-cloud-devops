@@ -1,10 +1,10 @@
-from Util import SQL
+from Util import SQL_sqlite3, line_iter
 from StudyManagementItems import *
 
 
 class FilesAccess(object):
 
-    def __init__(self, sql: SQL):
+    def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
         pass
 
@@ -45,16 +45,16 @@ class FilesAccess(object):
         for study_version_file in study_version_files:
             if study_version_file.get_file_path().startswith("meta_"):
                 file = self.get_file_from_study_version_file(study_version_file)
-                meta_dict = {k: v for k, v in [line.split(':') if ':' in line else (line, None)
-                                               for line in '\n'.join(file.get_contents().split('\r')).split('\n')
-                                               if line]}
+                meta_dict = {k: v for k, v in
+                             [(line.split(':')[0], ''.join(line.split(':')[1::])) if ':' in line else (line, None)
+                              for line in line_iter(file.get_contents())]}
                 if 'cancer_study_identifier' in meta_dict and 'type_of_cancer' in meta_dict:
                     return study_version_file
         return None
 
 
 class TopLevelFoldersAccess(object):
-    def __init__(self, sql: SQL):
+    def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
 
     def list_all_orgs(self):
@@ -73,7 +73,7 @@ class TopLevelFoldersAccess(object):
 
 
 class StudyAccess(object):
-    def __init__(self, sql: SQL):
+    def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
 
     def new_study(self, organization: TopLevelFolder, study_name, available):
@@ -90,7 +90,7 @@ class StudyAccess(object):
 
 
 class StudyVersionFileAccess(object):
-    def __init__(self, sql: SQL):
+    def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
 
     def add_new_study_version_file(self, study_version: StudyVersion, file: File, path, modified_date):
@@ -100,7 +100,7 @@ class StudyVersionFileAccess(object):
 
 
 class StudyVersionAccess(object):
-    def __init__(self, sql: SQL):
+    def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
 
     def get_active_study_version(self, study: Study):
@@ -165,11 +165,11 @@ class StudyVersionAccess(object):
             'FROM q '
             'INNER JOIN study_versions sv ON sv.id = q.id '
             'WHERE ((currently_loaded IS NULL) '
-            '   OR (NOT currently_loaded)) ')
+            '   OR (NOT currently_loaded)) AND q._id = 1')
         results = self.sql.exec_sql(statement)
         return [StudyVersion(*result, self.sql) for result in results] if results is not None else list()
 
 
 class StudyVersionValidationAccess(object):
-    def __init__(self, sql: SQL):
+    def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
