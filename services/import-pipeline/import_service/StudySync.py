@@ -3,7 +3,7 @@ import hashlib
 import shutil
 import time
 import subprocess
-from Util import content_hasher, SQL, print
+from Util import content_hasher, SQL_sqlite3, print
 from FileSyncSource import *
 from StudyManagementAccess import *
 

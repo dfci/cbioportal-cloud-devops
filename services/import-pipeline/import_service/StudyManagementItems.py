@@ -1,8 +1,8 @@
-from Util import SQL
+from Util import SQL_sqlite3
 
 
 class File(object):
-    def __init__(self, _id, content_hash, path, sql: SQL):
+    def __init__(self, _id, content_hash, path, sql: SQL_sqlite3):
         self.sql = sql
         self._id = _id
         self._content_hash = content_hash
@@ -56,7 +56,7 @@ class TopLevelFolder(object):
 
 
 class Study(object):
-    def __init__(self, _id, org_id, study_name, available, sql: SQL):
+    def __init__(self, _id, org_id, study_name, available, sql: SQL_sqlite3):
         self.sql = sql
         self._id = _id
         self._org_id = org_id
@@ -86,7 +86,7 @@ class Study(object):
 
 class StudyVersion(object):
     def __init__(self, _id, study_id, aggregate_hash, passes_validation, loads_successfully, currently_loaded,
-                 sql: SQL):
+                 sql: SQL_sqlite3):
         self.sql = sql
         self._currently_loaded = currently_loaded
         self._passes_validation = passes_validation
@@ -112,6 +112,12 @@ class StudyVersion(object):
                      'SET currently_loaded = ? '
                      'WHERE id = ?')
         self.sql.exec_sql(statement, currently_loaded, self.get_id())
+        if currently_loaded:
+            statement2 = ('UPDATE study_versions '
+                          'SET currently_loaded = ? '
+                          'WHERE id != ? '
+                          'AND study_id = ?')
+            self.sql.exec_sql(statement2, False, self.get_id(), self.get_study().get_id())
 
     def get_id(self):
         return self._id
@@ -148,7 +154,7 @@ class StudyVersion(object):
 
 
 class StudyVersionFile(object):
-    def __init__(self, study_version_id, file_id, file_path, file_modified_date, sql: SQL):
+    def __init__(self, study_version_id, file_id, file_path, file_modified_date, sql: SQL_sqlite3):
         self.sql = sql
         self.study_version_id = study_version_id
         self.file_id = file_id
