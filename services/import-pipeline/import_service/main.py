@@ -61,7 +61,6 @@ def auth_sync(initialization: Initialization = Initialization()):
             auth_sync_obj.run()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
-    initialization.sqlite_connection.close()
 
 
 def study_validation(initialization: Initialization = Initialization()):
