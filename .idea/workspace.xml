@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="Better scheduling schedule">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,10 +91,10 @@
           <entry key="gitignore" value="2" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="40595" />
+          <entry key="py" value="40630" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="315" />
-          <entry key="txt" value="1352" />
+          <entry key="txt" value="1381" />
           <entry key="xml" value="447" />
           <entry key="yml" value="7766" />
         </counts>
@@ -105,9 +104,9 @@
           <entry key="Bash" value="6138" />
           <entry key="Dockerfile" value="12261" />
           <entry key="Markdown" value="5216" />
-          <entry key="PLAIN_TEXT" value="1910" />
+          <entry key="PLAIN_TEXT" value="1939" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="41195" />
+          <entry key="Python" value="41230" />
           <entry key="SQL" value="315" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="8635" />
@@ -216,12 +215,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="78" column="34" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="34" />
+            <state relative-caret-position="403">
+              <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1540575545548" expanded="true" signature="340:349" ph="..." />
-                <marker date="1540575545548" expanded="true" signature="1669:2217" ph="..." />
+                <marker date="1540576017537" expanded="true" signature="340:349" ph="..." />
+                <marker date="1540576017537" expanded="true" signature="1669:2217" ph="..." />
               </folding>
             </state>
           </provider>
@@ -518,13 +517,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00013" summary="enable live recaching of studies">
-      <created>1538164522874</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1538164522874</updated>
     </task>
     <task id="LOCAL-00014" summary="OncoKB keeps breaking, rolling version back">
       <created>1538165476301</created>
@@ -862,7 +854,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540570488599</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="fix sqlite3 threading issue">
+      <created>1540575564558</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1540575564558</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -938,7 +937,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Only run DB migrate script if env var DO_DB_MIGRATE is set" />
     <MESSAGE value="GCE Debian helper script" />
     <MESSAGE value="entrypoint.sh for cbioportal wait for mysql" />
     <MESSAGE value="fix gce script" />
@@ -963,7 +961,8 @@
     <MESSAGE value="rename portal.properties" />
     <MESSAGE value="fixing some nginx stuff" />
     <MESSAGE value="Better scheduling schedule" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better scheduling schedule" />
+    <MESSAGE value="fix sqlite3 threading issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix sqlite3 threading issue" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties">
@@ -1188,12 +1187,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="78" column="34" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="34" />
+        <state relative-caret-position="403">
+          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1540575545548" expanded="true" signature="340:349" ph="..." />
-            <marker date="1540575545548" expanded="true" signature="1669:2217" ph="..." />
+            <marker date="1540576017537" expanded="true" signature="340:349" ph="..." />
+            <marker date="1540576017537" expanded="true" signature="1669:2217" ph="..." />
           </folding>
         </state>
       </provider>

@@ -31,9 +31,6 @@ class Initialization:
         os.makedirs(self.DOWNLOAD_DIR, exist_ok=True)
         os.makedirs(self.STUDY_LINK_DIR, exist_ok=True)
 
-        self.sqlite_connection = sqlite3.connect(self.DB_LOCATION)
-        self.cbio_con = MySQLdb.connect(**self.CBIOPORTAL_DB_CONNECTION_INFO)
-
 
 def create_sync_obj(initialization: Initialization, connection: sqlite3.Connection):
     return StudySync(connection=SQL_sqlite3(connection),
