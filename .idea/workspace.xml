@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
+    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="Better scheduling schedule">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,19 +83,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="10690" />
+          <entry key="Dockerfile" value="10767" />
           <entry key="Python Console" value="600" />
           <entry key="cbioportal_Dockerfile" value="1494" />
           <entry key="cnf" value="2" />
-          <entry key="conf" value="1233" />
+          <entry key="conf" value="1258" />
           <entry key="dummy" value="165" />
           <entry key="gitignore" value="2" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="38604" />
+          <entry key="py" value="40595" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="315" />
-          <entry key="txt" value="1326" />
+          <entry key="txt" value="1352" />
           <entry key="xml" value="447" />
           <entry key="yml" value="7766" />
         </counts>
@@ -103,14 +103,14 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="6138" />
-          <entry key="Dockerfile" value="12184" />
+          <entry key="Dockerfile" value="12261" />
           <entry key="Markdown" value="5216" />
-          <entry key="PLAIN_TEXT" value="1884" />
+          <entry key="PLAIN_TEXT" value="1910" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="39204" />
+          <entry key="Python" value="41195" />
           <entry key="SQL" value="315" />
           <entry key="XML" value="447" />
-          <entry key="YAML" value="8610" />
+          <entry key="YAML" value="8635" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -136,7 +136,7 @@
         <entry file="file://$PROJECT_DIR$/services/nginx-wrapper/nginx.conf">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -158,8 +158,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+            <state relative-caret-position="150">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <marker date="1540501964115" expanded="true" signature="584:620" ph="..." />
@@ -168,11 +168,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="26" column="160" selection-start-line="26" selection-start-column="160" selection-end-line="26" selection-end-column="160" />
+              <caret line="26" column="213" selection-start-line="26" selection-start-column="213" selection-end-line="26" selection-end-column="213" />
             </state>
           </provider>
         </entry>
@@ -180,12 +180,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2820">
-              <caret line="195" column="55" selection-start-line="195" selection-start-column="55" selection-end-line="195" selection-end-column="55" />
+            <state relative-caret-position="648">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1540498843501" expanded="true" signature="1683:1692" ph="..." />
-                <marker date="1540498843501" expanded="true" signature="1860:2088" ph="..." />
+                <marker date="1540569741983" expanded="true" signature="1880:1927" ph="..." />
+                <marker date="1540569741983" expanded="true" signature="1950:2178" ph="..." />
               </folding>
             </state>
           </provider>
@@ -213,14 +213,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+            <state relative-caret-position="326">
+              <caret line="78" column="34" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="34" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1540502233614" expanded="true" signature="344:353" ph="..." />
+                <marker date="1540575545548" expanded="true" signature="340:349" ph="..." />
+                <marker date="1540575545548" expanded="true" signature="1669:2217" ph="..." />
               </folding>
             </state>
           </provider>
@@ -301,15 +302,15 @@
         <option value="$PROJECT_DIR$/mountpoints/importer/notebooks/.ipynb_checkpoints/classes-checkpoint.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/schema.sql" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource.py" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementItems.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementItemAccess.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/Util.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
-        <option value="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" />
         <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
+        <option value="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" />
       </list>
     </option>
   </component>
@@ -517,20 +518,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00011" summary="cbioportal-mysql...">
-      <created>1538159573287</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1538159573287</updated>
-    </task>
-    <task id="LOCAL-00012" summary="cbioportal entrypoint">
-      <created>1538162799841</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1538162799841</updated>
     </task>
     <task id="LOCAL-00013" summary="enable live recaching of studies">
       <created>1538164522874</created>
@@ -861,7 +848,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540567869006</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="fixing some nginx stuff">
+      <created>1540568346351</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1540568346351</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Better scheduling schedule">
+      <created>1540570488598</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1540570488599</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -937,7 +938,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="more restructuring" />
     <MESSAGE value="Only run DB migrate script if env var DO_DB_MIGRATE is set" />
     <MESSAGE value="GCE Debian helper script" />
     <MESSAGE value="entrypoint.sh for cbioportal wait for mysql" />
@@ -962,7 +962,8 @@
     <MESSAGE value="expose notebook in nginx.conf" />
     <MESSAGE value="rename portal.properties" />
     <MESSAGE value="fixing some nginx stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing some nginx stuff" />
+    <MESSAGE value="Better scheduling schedule" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better scheduling schedule" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties">
@@ -1113,29 +1114,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1540501964115" expanded="true" signature="584:620" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2820">
-          <caret line="195" column="55" selection-start-line="195" selection-start-column="55" selection-end-line="195" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1540498843501" expanded="true" signature="1683:1692" ph="..." />
-            <marker date="1540498843501" expanded="true" signature="1860:2088" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/Util.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
@@ -1164,17 +1142,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1540502233614" expanded="true" signature="344:353" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="470">
@@ -1185,14 +1152,49 @@
     <entry file="file://$PROJECT_DIR$/services/nginx-wrapper/nginx.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="26" column="160" selection-start-line="26" selection-start-column="160" selection-end-line="26" selection-end-column="160" />
+          <caret line="26" column="213" selection-start-line="26" selection-start-column="213" selection-end-line="26" selection-end-column="213" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1540569741983" expanded="true" signature="1880:1927" ph="..." />
+            <marker date="1540569741983" expanded="true" signature="1950:2178" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1540501964115" expanded="true" signature="584:620" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="78" column="34" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1540575545548" expanded="true" signature="340:349" ph="..." />
+            <marker date="1540575545548" expanded="true" signature="1669:2217" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

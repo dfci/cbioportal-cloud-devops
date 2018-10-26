@@ -35,8 +35,8 @@ class Initialization:
         self.cbio_con = MySQLdb.connect(**self.CBIOPORTAL_DB_CONNECTION_INFO)
 
 
-def create_sync_obj(initialization: Initialization):
-    return StudySync(connection=SQL_sqlite3(initialization.sqlite_connection),
+def create_sync_obj(initialization: Initialization, connection: sqlite3.Connection):
+    return StudySync(connection=SQL_sqlite3(connection),
                      sync_class=DropBoxSyncSource,
                      sync_class_args={'dbx_access_token': initialization.ACCESS_TOKEN,
                                       'allowed_folders': initialization.ALLOWED_FOLDERS},
@@ -49,14 +49,15 @@ def create_sync_obj(initialization: Initialization):
 def auth_sync(initialization: Initialization = Initialization()):
     print("Running auth_sync")
     try:
-        with initialization.sqlite_connection:
-            sync_obj = create_sync_obj(initialization)
+        with sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
+            sync_obj = create_sync_obj(initialization, sqlite_connection)
             sync_obj.perform_db_sync()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
     try:
-        with SQL_mysql(initialization.cbio_con) as cbioportal_sql, initialization.sqlite_connection:
-            auth_sync_obj = AuthorizationManager(SQL_sqlite3(initialization.sqlite_connection), cbioportal_sql)
+        cbio_con = MySQLdb.connect(**initialization.CBIOPORTAL_DB_CONNECTION_INFO)
+        with SQL_mysql(cbio_con) as cbioportal_sql, sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
+            auth_sync_obj = AuthorizationManager(SQL_sqlite3(sqlite_connection), cbioportal_sql)
             auth_sync_obj.run()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
@@ -67,8 +68,8 @@ def study_validation(initialization: Initialization = Initialization()):
     auth_sync(initialization)
     print("Running study_validation")
     try:
-        with initialization.sqlite_connection:
-            sync_obj = create_sync_obj(initialization)
+        with sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
+            sync_obj = create_sync_obj(initialization, sqlite_connection)
             sync_obj.perform_study_import()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
@@ -78,8 +79,8 @@ def study_import(initialization: Initialization = Initialization()):
     study_validation(initialization)
     print("Running study_import")
     try:
-        with initialization.sqlite_connection:
-            sync_obj = create_sync_obj(initialization)
+        with sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
+            sync_obj = create_sync_obj(initialization, sqlite_connection)
             sync_obj.perform_study_import()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
