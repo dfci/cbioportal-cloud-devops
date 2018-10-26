@@ -219,8 +219,6 @@ services:
     links:
     - cbioportal
     - cbioportal-mysql
-    ports:
-    - "8181:8000"
 
 networks:
   cbio-bridge:
