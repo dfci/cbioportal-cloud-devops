@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,11 +83,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="10670" />
+          <entry key="Dockerfile" value="10690" />
           <entry key="Python Console" value="600" />
           <entry key="cbioportal_Dockerfile" value="1494" />
           <entry key="cnf" value="2" />
-          <entry key="conf" value="1107" />
+          <entry key="conf" value="1233" />
           <entry key="dummy" value="165" />
           <entry key="gitignore" value="2" />
           <entry key="md" value="5216" />
@@ -103,14 +103,14 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="6138" />
-          <entry key="Dockerfile" value="12164" />
+          <entry key="Dockerfile" value="12184" />
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="1884" />
           <entry key="Properties" value="581" />
           <entry key="Python" value="39204" />
           <entry key="SQL" value="315" />
           <entry key="XML" value="447" />
-          <entry key="YAML" value="8484" />
+          <entry key="YAML" value="8610" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -132,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/nginx-wrapper/nginx.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+            <state relative-caret-position="405">
+              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -168,11 +168,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+              <caret line="26" column="160" selection-start-line="26" selection-start-column="160" selection-end-line="26" selection-end-column="160" />
             </state>
           </provider>
         </entry>
@@ -305,11 +305,11 @@
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementItems.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementItemAccess.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/Util.py" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
       </list>
     </option>
   </component>
@@ -517,27 +517,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00008" summary="fix cbioportal Dockerfile">
-      <created>1538158536784</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1538158536784</updated>
-    </task>
-    <task id="LOCAL-00009" summary="...">
-      <created>1538158738240</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1538158738240</updated>
-    </task>
-    <task id="LOCAL-00010" summary="!!!">
-      <created>1538159124491</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1538159124491</updated>
     </task>
     <task id="LOCAL-00011" summary="cbioportal-mysql...">
       <created>1538159573287</created>
@@ -861,14 +840,35 @@
       <option name="project" value="LOCAL" />
       <updated>1540567129840</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="fixing some nginx stuff">
+      <created>1540567363847</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1540567363848</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fixing some nginx stuff">
+      <created>1540567519101</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1540567519101</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fixing some nginx stuff">
+      <created>1540567869006</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1540567869006</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22649573" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22649573" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -883,7 +883,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32728648" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50061053" side_tool="true" weight="0.15204678" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4993895" visible="true" weight="0.2140351" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4993895" visible="true" weight="0.2140351" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.4993895" weight="0.15204678" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1175,13 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="470">
@@ -1191,8 +1184,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/nginx-wrapper/nginx.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+        <state relative-caret-position="405">
+          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="160" selection-start-line="26" selection-start-column="160" selection-end-line="26" selection-end-column="160" />
         </state>
       </provider>
     </entry>
