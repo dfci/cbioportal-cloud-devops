@@ -6,7 +6,7 @@ from FileSyncSource import DropBoxSyncSource
 from StudyManagementAccess import AuthorizationManager
 from StudySync import StudySync
 from Util import SQL_sqlite3, SQL_mysql, print
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 
 class Initialization:
@@ -35,40 +35,59 @@ class Initialization:
         self.cbio_con = MySQLdb.connect(**self.CBIOPORTAL_DB_CONNECTION_INFO)
 
 
-def study_sync():
-    print("Running study_sync")
-    initialization = Initialization()
+def create_sync_obj(initialization: Initialization):
+    return StudySync(connection=SQL_sqlite3(initialization.sqlite_connection),
+                     sync_class=DropBoxSyncSource,
+                     sync_class_args={'dbx_access_token': initialization.ACCESS_TOKEN,
+                                      'allowed_folders': initialization.ALLOWED_FOLDERS},
+                     download_dir=initialization.DOWNLOAD_DIR,
+                     portal_home=initialization.PORTAL_HOME,
+                     study_link_dir=initialization.STUDY_LINK_DIR,
+                     schema_sql_path=initialization.SCHEMA_SQL_PATH)
+
+
+def auth_sync(initialization: Initialization = Initialization()):
+    print("Running auth_sync")
     try:
         with initialization.sqlite_connection:
-            sync = StudySync(connection=SQL_sqlite3(initialization.sqlite_connection),
-                             sync_class=DropBoxSyncSource,
-                             sync_class_args={'dbx_access_token': initialization.ACCESS_TOKEN,
-                                              'allowed_folders': initialization.ALLOWED_FOLDERS},
-                             download_dir=initialization.DOWNLOAD_DIR,
-                             portal_home=initialization.PORTAL_HOME,
-                             study_link_dir=initialization.STUDY_LINK_DIR,
-                             schema_sql_path=initialization.SCHEMA_SQL_PATH)
-            sync.run()
+            sync_obj = create_sync_obj(initialization)
+            sync_obj.perform_db_sync()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
-
-
-def auth_sync():
-    print("Running auth_sync")
-    initialization = Initialization()
     try:
         with SQL_mysql(initialization.cbio_con) as cbioportal_sql, initialization.sqlite_connection:
-            auth_sync = AuthorizationManager(SQL_sqlite3(initialization.sqlite_connection), cbioportal_sql)
-            auth_sync.run()
+            auth_sync_obj = AuthorizationManager(SQL_sqlite3(initialization.sqlite_connection), cbioportal_sql)
+            auth_sync_obj.run()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
     initialization.sqlite_connection.close()
 
 
+def study_validation(initialization: Initialization = Initialization()):
+    auth_sync(initialization)
+    print("Running study_validation")
+    try:
+        with initialization.sqlite_connection:
+            sync_obj = create_sync_obj(initialization)
+            sync_obj.perform_study_import()
+    except sqlite3.IntegrityError as e:
+        print(time.time(), e)
+
+
+def study_import(initialization: Initialization = Initialization()):
+    study_validation(initialization)
+    print("Running study_import")
+    try:
+        with initialization.sqlite_connection:
+            sync_obj = create_sync_obj(initialization)
+            sync_obj.perform_study_import()
+    except sqlite3.IntegrityError as e:
+        print(time.time(), e)
+
+
 if __name__ == '__main__':
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(auth_sync, trigger='cron', hour='*', minute='0', second='0')
-    scheduler.add_job(study_sync, trigger='cron', hour='23', minute='30')
+    scheduler = BlockingScheduler()
+    scheduler.add_job(auth_sync, trigger='cron', hour='*', minute='0,15,30,45', second='0')
+    scheduler.add_job(study_validation, trigger='cron', hour='*', minute='5')
+    scheduler.add_job(study_import, trigger='cron', hour='23', minute='10')
     scheduler.start()
-    while True:
-        time.sleep(10)

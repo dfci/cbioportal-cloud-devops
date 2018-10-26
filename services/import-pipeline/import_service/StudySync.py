@@ -38,10 +38,14 @@ class StudySync(object):
         self.OrganizationsAccess = TopLevelFoldersAccess(self._sql)
         self.FileAccess = FilesAccess(self._sql)
 
-    def run(self):
+    def perform_db_sync(self):
         self._run_local_db_init()
         self._run_db_sync()
+
+    def perform_study_validation(self):
         self._run_study_version_validation()
+
+    def perform_study_import(self):
         self._run_study_version_import()
 
     def _run_db_sync(self):
