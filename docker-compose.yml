@@ -210,6 +210,11 @@ services:
       DB_NAME: *mysql_database
       DB_USER: root
       DB_PASSWORD: *mysql_root_password
+      GCLOUD_CREDS: ${GCLOUD_CREDS}
+      AUTH_SHEET_KEY: ${AUTH_SHEET_KEY}
+      AUTH_SHEET_WORKSHEET_NAME: ${AUTH_SHEET_WORKSHEET_NAME}
+      AUTH_SHEET_KEYMAP: ${AUTH_SHEET_KEYMAP}
+      AUTH_SHEET_TRUEVAL: ${AUTH_SHEET_TRUEVAL}
     volumes:
     - type: bind
       source: ./mountpoints/host
