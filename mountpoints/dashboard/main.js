@@ -82,13 +82,13 @@ $(document).ready(function () {
     };
 
     function handle_bool(td, value, property) {
-        value = (value === null) ? false : (value !== 0);
+        value = (value === null) ? null : (value !== 0);
         const emotion = bool_key_emotion_if_true[property];
         if (emotion) {
             td.addClass(value ? emotion : (emotion === "positive") ? "negative" : "positive")
         }
         td.addClass(bool_key_emotion_if_true[property]);
-        td.append($("<i>").addClass("icon").addClass(value ? "checkmark" : "close"))
+        td.append($("<i>").addClass("icon").addClass(value ? "checkmark" : (value === null) ? '' : "close"))
     }
 
     function render_toplevel() {
