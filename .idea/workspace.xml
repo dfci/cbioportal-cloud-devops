@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="" />
+    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +103,7 @@
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="44454" />
+          <entry key="py" value="44787" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="419" />
           <entry key="txt" value="1422" />
@@ -120,7 +122,7 @@
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="2049" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="45054" />
+          <entry key="Python" value="45387" />
           <entry key="SQL" value="419" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="9792" />
@@ -166,15 +168,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+            <state relative-caret-position="373">
+              <caret line="119" column="23" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1541014185941" expanded="true" signature="258:1524" ph="..." />
-                <marker date="1541014185941" expanded="true" signature="650:849" ph="..." />
-                <marker date="1541014185941" expanded="true" signature="1194:1344" ph="..." />
-                <marker date="1541014185941" expanded="true" signature="1964:2030" ph="..." />
-                <marker date="1541014185941" expanded="true" signature="6311:6491" ph="..." />
+                <marker date="1541014684833" expanded="true" signature="258:1560" ph="..." />
+                <marker date="1541014684833" expanded="true" signature="650:849" ph="..." />
+                <marker date="1541014684833" expanded="true" signature="1215:1380" ph="..." />
+                <marker date="1541014684833" expanded="true" signature="2000:2066" ph="..." />
+                <marker date="1541014684833" expanded="true" signature="6373:6881" ph="..." />
               </folding>
             </state>
           </provider>
@@ -507,20 +509,6 @@
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
     </task>
-    <task id="LOCAL-00023" summary="GCE Debian helper script">
-      <created>1538413703272</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1538413703272</updated>
-    </task>
-    <task id="LOCAL-00024" summary="entrypoint.sh for cbioportal wait for mysql">
-      <created>1538417206697</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1538417206697</updated>
-    </task>
     <task id="LOCAL-00025" summary="fix gce script">
       <created>1538417499866</created>
       <option name="number" value="00025" />
@@ -850,7 +838,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541013720310</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="user sync gspreadsheets">
+      <created>1541014227106</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1541014227106</updated>
+    </task>
+    <task id="LOCAL-00073" summary="user sync gspreadsheets">
+      <created>1541014316623</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1541014316623</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1173,15 +1175,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+        <state relative-caret-position="373">
+          <caret line="119" column="23" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1541014185941" expanded="true" signature="258:1524" ph="..." />
-            <marker date="1541014185941" expanded="true" signature="650:849" ph="..." />
-            <marker date="1541014185941" expanded="true" signature="1194:1344" ph="..." />
-            <marker date="1541014185941" expanded="true" signature="1964:2030" ph="..." />
-            <marker date="1541014185941" expanded="true" signature="6311:6491" ph="..." />
+            <marker date="1541014684833" expanded="true" signature="258:1560" ph="..." />
+            <marker date="1541014684833" expanded="true" signature="650:849" ph="..." />
+            <marker date="1541014684833" expanded="true" signature="1215:1380" ph="..." />
+            <marker date="1541014684833" expanded="true" signature="2000:2066" ph="..." />
+            <marker date="1541014684833" expanded="true" signature="6373:6881" ph="..." />
           </folding>
         </state>
       </provider>
