@@ -100,6 +100,7 @@ services:
       source: ./mountpoints/cbioportal-mysql-data
       target: /var/lib/mysql
       read_only: false
+    command: --ssl=0
     networks:
       cbio-bridge:
         ipv4_address: 172.28.10.12
