@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mountpoints/dashboard/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mountpoints/dashboard/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mountpoints/dashboard/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mountpoints/dashboard/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cbio_dockerfiles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cbio_dockerfiles.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties.EXAMPLE" beforeDir="false" afterPath="$PROJECT_DIR$/mountpoints/host/cbioportal/src/main/resources/portal.properties.EXAMPLE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/Util.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/Util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mountpoints/dashboard/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/mountpoints/dashboard/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,14 +99,14 @@
           <entry key="dummy" value="165" />
           <entry key="gitignore" value="71" />
           <entry key="html" value="2" />
-          <entry key="js" value="1925" />
+          <entry key="js" value="1997" />
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="42040" />
+          <entry key="py" value="42042" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="320" />
-          <entry key="txt" value="1381" />
+          <entry key="txt" value="1399" />
           <entry key="xml" value="447" />
           <entry key="yml" value="8339" />
         </counts>
@@ -131,11 +118,11 @@
           <entry key="Dockerfile" value="12468" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="1925" />
+          <entry key="JavaScript" value="1997" />
           <entry key="Markdown" value="5216" />
-          <entry key="PLAIN_TEXT" value="2008" />
+          <entry key="PLAIN_TEXT" value="2026" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="42640" />
+          <entry key="Python" value="42642" />
           <entry key="SQL" value="320" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="9585" />
@@ -223,8 +210,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="256" column="52" selection-start-line="256" selection-start-column="52" selection-end-line="256" selection-end-column="52" />
+            <state relative-caret-position="281">
+              <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -240,8 +227,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-275">
-              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+            <state relative-caret-position="230">
+              <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
@@ -496,13 +483,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Fix 403 error">
-      <created>1538168393667</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1538168393667</updated>
     </task>
     <task id="LOCAL-00017" summary="fix missing semicolon">
       <created>1538168741844</created>
@@ -840,14 +820,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540576102078</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="add dashboard">
+      <created>1541002174542</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1541002174543</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22649573" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22649573" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -862,7 +849,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32728648" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50061053" side_tool="true" weight="0.15204678" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4993895" visible="true" weight="0.2140351" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.4993895" visible="true" weight="0.2140351" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.4993895" weight="0.15204678" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -916,7 +903,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="GCE Debian helper script" />
     <MESSAGE value="entrypoint.sh for cbioportal wait for mysql" />
     <MESSAGE value="fix gce script" />
     <MESSAGE value="Moving maven stuff outside the build" />
@@ -941,7 +927,8 @@
     <MESSAGE value="fixing some nginx stuff" />
     <MESSAGE value="Better scheduling schedule" />
     <MESSAGE value="fix sqlite3 threading issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix sqlite3 threading issue" />
+    <MESSAGE value="add dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="add dashboard" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mountpoints/importer/notebooks/main.ipynb">
@@ -1092,18 +1079,6 @@
     <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/data/study_version_import.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
-            <marker date="1540996976044" expanded="true" signature="1523:2071" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
@@ -1162,10 +1137,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
+            <marker date="1540996976044" expanded="true" signature="1523:2071" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="256" column="52" selection-start-line="256" selection-start-column="52" selection-end-line="256" selection-end-column="52" />
+        <state relative-caret-position="281">
+          <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
