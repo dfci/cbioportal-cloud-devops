@@ -117,11 +117,11 @@ class AuthorizationManager(object):
         user_records = worksheet.get_all_records()
         distinct_emails = set()
         for record in user_records:
-            print(record)
             name = ' '.join(
                 [record[key] for key in (key_map['name'] if isinstance(key_map['name'], list) else [key_map['name']])])
             email = record[key_map['email']]
             enabled = True if record[key_map['enabled']] == true_val else False
+            distinct_emails.add(email)
             self.user_handler(email, name, enabled)
         admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
         for email in admin_emails - distinct_emails:
