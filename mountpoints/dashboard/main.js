@@ -29,6 +29,19 @@ const display_names = {
     "path": "Path",
     "message": "Log Message"
 };
+
+function timeConverter(UNIX_timestamp) {
+    const a = new Date(UNIX_timestamp * 1000);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const year = a.getFullYear();
+    const month = months[a.getMonth()];
+    const date = a.getDate();
+    const hour = a.getHours();
+    const min = a.getMinutes();
+    const sec = a.getSeconds();
+    return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
+}
+
 $(document).ready(function () {
     const main = $('#main');
     const breadcrumbs = $('#breadcrumbs');
@@ -55,10 +68,10 @@ $(document).ready(function () {
         "currently_loaded": "bool",
         "validation_success": "bool",
         "validation_status_code": "text",
-        "validation_time_added": "text",
+        "validation_time_added": "timestamp",
         "import_success": "bool",
         "import_status_code": "text",
-        "import_time_added": "text"
+        "import_time_added": "timestamp"
     };
 
     const top_level_headers = {
@@ -162,14 +175,14 @@ $(document).ready(function () {
                 } else if (property === "validation_time_added") {
                     link = $('<a>');
                     link.addClass('validation-link');
-                    link.text(value);
+                    link.text(timeConverter(value));
                     link.attr('href', '#');
                     link.data('study-version-id', row['study_version_id']);
                     td.append(link)
                 } else if (property === "import_time_added") {
                     link = $('<a>');
                     link.addClass('import-link');
-                    link.text(value);
+                    link.text(timeConverter(value));
                     link.attr('href', '#');
                     link.data('study-version-id', row['study_version_id']);
                     td.append(link)
