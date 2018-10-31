@@ -21,6 +21,5 @@ RUN apt-get install -y curl grep sed dpkg && \
     dpkg -i tini.deb && \
     rm tini.deb && \
     apt-get clean
-RUN /bin/bash -c 'conda install -y dropbox requests mysqlclient ipython && conda update -y sqlite && pip install apscheduler'
-RUN /bin/bash -c 'pip install gspread oauth2client'
+RUN /bin/bash -c 'conda install -y dropbox requests mysqlclient ipython && conda update -y sqlite && pip install apscheduler && pip install gspread oauth2client'
 ENTRYPOINT /bin/bash -c "python /importer/import_service/main.py"
