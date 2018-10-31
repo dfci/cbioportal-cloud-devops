@@ -20,6 +20,10 @@ services:
       source: ./mountpoints/nginx-wrapper/cert.key
       target: /etc/nginx/cert.key
       read_only: true
+    - type: bind
+      source: ./mountpoints/dashboard/
+      target: /etc/nginx/html/dashboard
+      read_only: true
     depends_on:
     - cbioportal
     links:
@@ -207,10 +211,26 @@ services:
       DB_USER: root
       DB_PASSWORD: *mysql_root_password
     volumes:
-    - ./mountpoints/importer:/importer
-    - ./mountpoints/host:/host
-    - ./services/import-pipeline/schema.sql:/schema.sql
-    - ./services/import-pipeline/import_service:/importer/import_service
+    - type: bind
+      source: ./mountpoints/host
+      target: /host
+      read_only: false
+    - type: bind
+      source: ./mountpoints/importer
+      target: /importer
+      read_only: false
+    - type: bind
+      source: ./mountpoints/dashboard
+      target: /dashboard
+      read_only: false
+    - type: bind
+      source: ./services/import-pipeline/schema.sql
+      target: /schema.sql
+      read_only: true
+    - type: bind
+      source: ./services/import-pipeline/import_service
+      target: /importer/import_service
+      read_only: true
     networks:
     - cbio-bridge
     depends_on:

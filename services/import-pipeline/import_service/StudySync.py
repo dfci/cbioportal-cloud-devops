@@ -1,4 +1,5 @@
 import os
+import json
 import hashlib
 import shutil
 import time
@@ -55,6 +56,20 @@ class StudySync(object):
         self._run_update_studies()
         self._run_update_study_versions()
         self._sync.register_all_entries_registered()
+        self._run_update_dashboard_json()
+
+    def _run_update_dashboard_json(self):
+        print("Running update dashboard json...")
+        tables_and_files = {
+            "top_level_dashboard": "top_level.json",
+            "second_level_dashboard": "second_level.json",
+            "study_version_validation": "study_version_validation.json",
+            "study_version_import": "study_version_import.json"
+        }
+        os.makedirs('/dashboard/data', exist_ok=True)
+        for k, v in tables_and_files.items():
+            with open(os.path.join('/dashboard/data', v), 'w') as f:
+                json.dump(self._sql.exec_sql_to_dict('SELECT * FROM {}'.format(k)), f)
 
     def _run_local_db_init(self):
         print("Running schema setup...")

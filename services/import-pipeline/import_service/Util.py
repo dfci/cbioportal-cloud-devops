@@ -21,6 +21,7 @@ def content_hasher(file_name):
 class SQL_sqlite3(object):
     def __init__(self, connection: sqlite3.Connection):
         self.connection = connection
+        self.connection.row_factory = sqlite3.Row
 
     def exec_sql(self, statement, *args, fetchall=True):
         result = self.connection.execute(statement, args)
@@ -33,6 +34,16 @@ class SQL_sqlite3(object):
     def exec_sql_to_column_set(self, statement, *args, col_no=0):
         results = self.exec_sql(statement, args)
         return {result[col_no] for result in results}
+
+    def exec_sql_to_dict(self, statement, *args, fetchall=True):
+        results = self.exec_sql(statement, *args, fetchall=fetchall)
+        if not isinstance(results, list):
+            results = [results]
+        ret = [{k: result[k] for k in result.keys()} for result in results]
+        if fetchall:
+            return ret
+        else:
+            return ret[0] if ret else list()
 
 
 class SQL_mysql(object):
@@ -67,3 +78,10 @@ class SQL_mysql(object):
 def line_iter(content):
     content = '\n'.join(content.split('\r')).split('\n')
     return (line for line in content if line)
+
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
