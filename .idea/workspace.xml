@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" afterDir="false" />
-    </list>
+    <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,10 +101,10 @@
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="44413" />
+          <entry key="py" value="44454" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="419" />
-          <entry key="txt" value="1399" />
+          <entry key="txt" value="1422" />
           <entry key="xml" value="447" />
           <entry key="yml" value="8546" />
         </counts>
@@ -123,9 +118,9 @@
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="2655" />
           <entry key="Markdown" value="5216" />
-          <entry key="PLAIN_TEXT" value="2026" />
+          <entry key="PLAIN_TEXT" value="2049" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="45013" />
+          <entry key="Python" value="45054" />
           <entry key="SQL" value="419" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="9792" />
@@ -171,15 +166,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+            <state relative-caret-position="243">
+              <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1541013602888" expanded="true" signature="258:1524" ph="..." />
-                <marker date="1541013602888" expanded="true" signature="650:849" ph="..." />
-                <marker date="1541013602888" expanded="true" signature="1194:1344" ph="..." />
-                <marker date="1541013602888" expanded="true" signature="1964:2030" ph="..." />
-                <marker date="1541013602888" expanded="true" signature="6311:6491" ph="..." />
+                <marker date="1541014185941" expanded="true" signature="258:1524" ph="..." />
+                <marker date="1541014185941" expanded="true" signature="650:849" ph="..." />
+                <marker date="1541014185941" expanded="true" signature="1194:1344" ph="..." />
+                <marker date="1541014185941" expanded="true" signature="1964:2030" ph="..." />
+                <marker date="1541014185941" expanded="true" signature="6311:6491" ph="..." />
               </folding>
             </state>
           </provider>
@@ -242,7 +237,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
+            <state relative-caret-position="599">
               <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -511,13 +506,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Only run DB migrate script if env var DO_DB_MIGRATE is set">
-      <created>1538407708613</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1538407708613</updated>
     </task>
     <task id="LOCAL-00023" summary="GCE Debian helper script">
       <created>1538413703272</created>
@@ -855,7 +843,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541008263079</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="user sync gspreadsheets">
+      <created>1541013720309</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1541013720310</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -931,7 +926,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="entrypoint.sh for cbioportal wait for mysql" />
     <MESSAGE value="fix gce script" />
     <MESSAGE value="Moving maven stuff outside the build" />
     <MESSAGE value="rm blank script" />
@@ -956,7 +950,8 @@
     <MESSAGE value="Better scheduling schedule" />
     <MESSAGE value="fix sqlite3 threading issue" />
     <MESSAGE value="add dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dashboard" />
+    <MESSAGE value="user sync gspreadsheets" />
+    <option name="LAST_COMMIT_MESSAGE" value="user sync gspreadsheets" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mountpoints/importer/notebooks/main.ipynb">
@@ -1140,18 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
-            <marker date="1540996976044" expanded="true" signature="1523:2071" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1176,17 +1159,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
+            <marker date="1540996976044" expanded="true" signature="1523:2071" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+        <state relative-caret-position="243">
+          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1541013602888" expanded="true" signature="258:1524" ph="..." />
-            <marker date="1541013602888" expanded="true" signature="650:849" ph="..." />
-            <marker date="1541013602888" expanded="true" signature="1194:1344" ph="..." />
-            <marker date="1541013602888" expanded="true" signature="1964:2030" ph="..." />
-            <marker date="1541013602888" expanded="true" signature="6311:6491" ph="..." />
+            <marker date="1541014185941" expanded="true" signature="258:1524" ph="..." />
+            <marker date="1541014185941" expanded="true" signature="650:849" ph="..." />
+            <marker date="1541014185941" expanded="true" signature="1194:1344" ph="..." />
+            <marker date="1541014185941" expanded="true" signature="1964:2030" ph="..." />
+            <marker date="1541014185941" expanded="true" signature="6311:6491" ph="..." />
           </folding>
         </state>
       </provider>

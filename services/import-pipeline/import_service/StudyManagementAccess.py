@@ -27,7 +27,7 @@ class _User(object):
             return (self.email == other.email) and (self.name == other.name) and (self.enabled == other.enabled)
 
     def _needs_updating(self):
-        statement = 'SELECT FROM users WHERE email = %s'
+        statement = 'SELECT email, name, enabled FROM users WHERE email = %s'
         result = self.cbio_sql.exec_sql(statement, self.email, fetchall=False)
         user = _User(*result, self.cbio_sql) if result else None
         if self._equals(user):
