@@ -66,7 +66,7 @@ def study_validation(initialization: Initialization = Initialization()):
     try:
         with sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
             sync_obj = create_sync_obj(initialization, sqlite_connection)
-            sync_obj.perform_study_import()
+            sync_obj.perform_study_validation()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
 
