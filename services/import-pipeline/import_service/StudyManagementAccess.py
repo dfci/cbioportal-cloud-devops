@@ -3,6 +3,45 @@ from StudyManagementItems import *
 from Util import SQL_sqlite3, line_iter, print
 import re
 import os
+import json
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+
+class _User(object):
+    def __init__(self, email, name, enabled, cbio_sql):
+        self.email = email
+        self.name = name
+        self.enabled = enabled
+        self.cbio_sql = cbio_sql
+
+    def _exists(self):
+        statement = 'SELECT TRUE FROM users WHERE email = %s'
+        result = self.cbio_sql.exec_sql(statement, self.email)
+        return True if result else None
+
+    def _equals(self, other):
+        if not isinstance(other, _User):
+            return False
+        else:
+            return (self.email == other.email) and (self.name == other.name) and (self.enabled == other.enabled)
+
+    def _needs_updating(self):
+        statement = 'SELECT FROM users WHERE email = %s'
+        result = self.cbio_sql.exec_sql(statement, self.email, fetchall=False)
+        user = _User(*result, self.cbio_sql) if result else None
+        if self._equals(user):
+            return False
+        else:
+            return True
+
+    def _update(self):
+        statement = "UPDATE users SET name = ?, enabled = ? WHERE email = ?"
+        self.cbio_sql.exec_sql(statement, self.name, self.enabled)
+
+    def _add(self):
+        statement = 'INSERT INTO users (email, name, enabled) VALUES (%s, %s, %s)'
+        self.cbio_sql.exec_sql(statement, self.email, self.name, self.enabled)
 
 
 class AuthorizationManager(object):
@@ -16,6 +55,7 @@ class AuthorizationManager(object):
 
     def run(self):
         self._run_auth_sync()
+        self._run_user_sync()
 
     def _run_auth_sync(self):
         statement = ('WITH q AS (SELECT s.id         study_id,'
@@ -59,22 +99,39 @@ class AuthorizationManager(object):
             print("Removing all authorizations...")
             self.unauthorize_all_for_study(cancer_study_name)
             for email in authorized_emails:
-                if not self.user_exists(email):
-                    print("User '{}' does not exist, adding...".format(email))
-                    self.add_user(email)
-                print("Authorizing user '{}' for study '{}' with cancer_study_identifier '{}".format(email,
-                                                                                                     study.get_study_name(),
-                                                                                                     cancer_study_name))
+                print("Authorizing email '{}' for study '{}' with cancer_study_identifier '{}".format(email,
+                                                                                                      study.get_study_name(),
+                                                                                                      cancer_study_name))
                 self.authorize_for_study(email, cancer_study_name)
 
-    def user_exists(self, email):
-        statement = 'SELECT TRUE FROM users WHERE email = %s'
-        result = self._cbio_sql.exec_sql(statement, email)
-        return True if result else None
+    def _run_user_sync(self):
+        scope = ['https://spreadsheets.google.com/feeds',
+                 'https://www.googleapis.com/auth/drive']
+        gcloud_creds = json.loads(os.environ['GCLOUD_CREDS'])
+        service_account_creds = ServiceAccountCredentials.from_json_keyfile_dict(gcloud_creds, scope)
+        gc = gspread.authorize(service_account_creds)
+        spreadsheet = gc.open_by_key(os.environ['AUTH_SHEET_KEY'])
+        worksheet = spreadsheet.worksheet(os.environ['AUTH_SHEET_WORKSHEET_NAME'])
+        key_map = json.loads(os.environ['AUTH_SHEET_KEYMAP'])
+        true_val = os.environ['AUTH_SHEET_TRUEVAL']
+        user_records = worksheet.get_all_records()
+        distinct_emails = set()
+        for record in user_records:
+            name = ' '.join(
+                [record[key] for key in (key_map['name'] if isinstance(key_map['name'], list) else [key_map['name']])])
+            email = record[key_map['email']]
+            enabled = True if record[key_map['enabled']] == true_val else False
+            self.user_handler(email, name, enabled)
+        admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
+        for email in admin_emails - distinct_emails:
+            self.user_handler(email, email, True)
 
-    def add_user(self, email):
-        statement = 'INSERT INTO users (email, name, enabled) VALUES (%s, %s, %s)'
-        self._cbio_sql.exec_sql(statement, email, email, True)
+    def user_handler(self, email, name, enabled):
+        user = _User(email, name, enabled, self._cbio_sql)
+        if not user._exists():
+            user._add()
+        elif user._needs_updating():
+            user._update()
 
     def unauthorize_all_for_study(self, study_name):
         statement = "DELETE FROM authorities WHERE authority LIKE 'cbioportal:{}'".format(study_name.upper())
