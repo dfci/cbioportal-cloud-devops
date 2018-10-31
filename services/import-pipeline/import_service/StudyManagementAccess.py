@@ -117,6 +117,7 @@ class AuthorizationManager(object):
         user_records = worksheet.get_all_records()
         distinct_emails = set()
         for record in user_records:
+            print(record)
             name = ' '.join(
                 [record[key] for key in (key_map['name'] if isinstance(key_map['name'], list) else [key_map['name']])])
             email = record[key_map['email']]
@@ -128,9 +129,13 @@ class AuthorizationManager(object):
 
     def user_handler(self, email, name, enabled):
         user = _User(email, name, enabled, self._cbio_sql)
+        print("Checking for user {}, {}".format(name, email))
         if not user._exists():
+            print("User {}, {} does not exist.  Creating with enabled = {}".format(name, email, enabled))
             user._add()
         elif user._needs_updating():
+            print("User with email {} does exist, but needs updating.  Updating with name = {} and enabled = {}".format(
+                email, name, enabled))
             user._update()
 
     def unauthorize_all_for_study(self, study_name):
