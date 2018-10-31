@@ -85,7 +85,7 @@ $(document).ready(function () {
         value = (value === null) ? null : (value !== 0);
         const emotion = bool_key_emotion_if_true[property];
         if (emotion) {
-            td.addClass(value ? emotion : (emotion === "positive") ? "negative" : "positive")
+            td.addClass((value === null) ? '' : value ? emotion : (emotion === "positive") ? "negative" : "positive")
         }
         td.addClass(bool_key_emotion_if_true[property]);
         td.append($("<i>").addClass("icon").addClass(value ? "checkmark" : (value === null) ? '' : "close"))
