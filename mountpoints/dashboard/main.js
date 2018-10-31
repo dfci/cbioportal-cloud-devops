@@ -84,11 +84,13 @@ $(document).ready(function () {
     function handle_bool(td, value, property) {
         value = (value === null) ? null : (value !== 0);
         const emotion = bool_key_emotion_if_true[property];
-        if (emotion) {
-            td.addClass((value === null) ? '' : value ? emotion : (emotion === "positive") ? "negative" : "positive")
+        if (value != null) {
+            if (emotion != null) {
+                if (value) td.addClass(emotion === 'positive' ? 'positive' : 'negative');
+                else td.addClass(emotion === 'positive' ? 'negative' : 'positive');
+            }
+            td.append($("<i>").addClass("icon").addClass(value ? "checkmark" : "close"))
         }
-        td.addClass(bool_key_emotion_if_true[property]);
-        td.append($("<i>").addClass("icon").addClass(value ? "checkmark" : (value === null) ? '' : "close"))
     }
 
     function render_toplevel() {
