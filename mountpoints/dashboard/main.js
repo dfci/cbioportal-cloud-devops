@@ -82,7 +82,7 @@ $(document).ready(function () {
     };
 
     function handle_bool(td, value, property) {
-        value = (value !== 0);
+        value = (value === null) ? false : (value !== 0);
         const emotion = bool_key_emotion_if_true[property];
         if (emotion) {
             td.addClass(value ? emotion : (emotion === "positive") ? "negative" : "positive")
