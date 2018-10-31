@@ -36,8 +36,8 @@ class _User(object):
             return True
 
     def _update(self):
-        statement = "UPDATE users SET name = ?, enabled = ? WHERE email = ?"
-        self.cbio_sql.exec_sql(statement, self.name, self.enabled)
+        statement = "UPDATE users SET name = %s, enabled = %s WHERE email = %s"
+        self.cbio_sql.exec_sql(statement, self.name, self.enabled, self.email)
 
     def _add(self):
         statement = 'INSERT INTO users (email, name, enabled) VALUES (%s, %s, %s)'
