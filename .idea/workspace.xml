@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +90,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="11036" />
+          <entry key="Dockerfile" value="11075" />
           <entry key="Python Console" value="600" />
           <entry key="cbioportal_Dockerfile" value="1494" />
           <entry key="cnf" value="2" />
@@ -103,7 +103,7 @@
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="44787" />
+          <entry key="py" value="44822" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="419" />
           <entry key="txt" value="1422" />
@@ -115,14 +115,14 @@
         <counts>
           <entry key="Bash" value="6138" />
           <entry key="CSS" value="11" />
-          <entry key="Dockerfile" value="12530" />
+          <entry key="Dockerfile" value="12569" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="2655" />
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="2049" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="45387" />
+          <entry key="Python" value="45422" />
           <entry key="SQL" value="419" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="9792" />
@@ -138,10 +138,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
+            <state relative-caret-position="498">
               <caret line="216" column="46" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
             </state>
           </provider>
@@ -165,18 +165,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="119" column="23" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
+            <state relative-caret-position="-17">
+              <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1541014684833" expanded="true" signature="258:1560" ph="..." />
-                <marker date="1541014684833" expanded="true" signature="650:849" ph="..." />
-                <marker date="1541014684833" expanded="true" signature="1215:1380" ph="..." />
-                <marker date="1541014684833" expanded="true" signature="2000:2066" ph="..." />
-                <marker date="1541014684833" expanded="true" signature="6373:6881" ph="..." />
+                <marker date="1541014783346" expanded="true" signature="258:1560" ph="..." />
+                <marker date="1541014783346" expanded="true" signature="650:849" ph="..." />
+                <marker date="1541014783346" expanded="true" signature="1215:1380" ph="..." />
+                <marker date="1541014783346" expanded="true" signature="2000:2066" ph="..." />
+                <marker date="1541014783346" expanded="true" signature="6386:6894" ph="..." />
               </folding>
             </state>
           </provider>
@@ -185,8 +185,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            <state relative-caret-position="345">
+              <caret line="23" column="127" selection-start-line="23" selection-start-column="127" selection-end-line="23" selection-end-column="127" />
             </state>
           </provider>
         </entry>
@@ -239,8 +239,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+            <state relative-caret-position="825">
+              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
@@ -330,8 +330,8 @@
         <option value="$PROJECT_DIR$/services/import-pipeline/schema.sql" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/main.js" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
       </list>
     </option>
   </component>
@@ -508,27 +508,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00025" summary="fix gce script">
-      <created>1538417499866</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1538417499866</updated>
-    </task>
-    <task id="LOCAL-00026" summary="fix gce script">
-      <created>1538417657068</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1538417657068</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Moving maven stuff outside the build">
-      <created>1538427703100</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1538427703100</updated>
     </task>
     <task id="LOCAL-00028" summary="Moving maven stuff outside the build">
       <created>1538498046601</created>
@@ -852,7 +831,28 @@
       <option name="project" value="LOCAL" />
       <updated>1541014316623</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="user sync gspreadsheets">
+      <created>1541014690493</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1541014690493</updated>
+    </task>
+    <task id="LOCAL-00075" summary="user sync gspreadsheets">
+      <created>1541014792750</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1541014792750</updated>
+    </task>
+    <task id="LOCAL-00076" summary="user sync gspreadsheets">
+      <created>1541015446914</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1541015446914</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1147,24 +1147,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="216" column="46" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
+        <state relative-caret-position="345">
+          <caret line="23" column="127" selection-start-line="23" selection-start-column="127" selection-end-line="23" selection-end-column="127" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/Dockerfile">
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="-17">
+          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1541014783346" expanded="true" signature="258:1560" ph="..." />
+            <marker date="1541014783346" expanded="true" signature="650:849" ph="..." />
+            <marker date="1541014783346" expanded="true" signature="1215:1380" ph="..." />
+            <marker date="1541014783346" expanded="true" signature="2000:2066" ph="..." />
+            <marker date="1541014783346" expanded="true" signature="6386:6894" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+        <state relative-caret-position="825">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1540996976044" expanded="true" signature="340:349" ph="..." />
@@ -1173,18 +1181,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="119" column="23" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1541014684833" expanded="true" signature="258:1560" ph="..." />
-            <marker date="1541014684833" expanded="true" signature="650:849" ph="..." />
-            <marker date="1541014684833" expanded="true" signature="1215:1380" ph="..." />
-            <marker date="1541014684833" expanded="true" signature="2000:2066" ph="..." />
-            <marker date="1541014684833" expanded="true" signature="6373:6881" ph="..." />
-          </folding>
+        <state relative-caret-position="498">
+          <caret line="216" column="46" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
         </state>
       </provider>
     </entry>
