@@ -2,10 +2,6 @@
 
 let top_level_data = [];
 
-let study_version_validation = [];
-
-let study_version_import = [];
-
 let second_level_data = [];
 
 const display_names = {
@@ -19,15 +15,17 @@ const display_names = {
     "loads_successfully": "Loads Successfully",
     "currently_loaded": "Currently Loaded",
     "validation_success": "Validation Success",
-    "validation_status_code": "Validation Exit Code",
+    "validation_status_code": "Validation Result",
     "validation_time_added": "Validation Time Added",
     "import_success": "Import Success",
-    "import_status_code": "Import Exit Code",
+    "import_status_code": "Import Result",
     "import_time_added": "Import Time Added",
     "output": "Output",
     "level": "Log Level",
     "path": "Path",
-    "message": "Log Message"
+    "message": "Log Message",
+    "Validation Results": "Validation Results",
+    "Import Results": "Import Results"
 };
 
 function timeConverter(UNIX_timestamp) {
@@ -73,19 +71,19 @@ $(document).ready(function () {
 
     top_level_data = AjaxGet("/dashboard/data/top_level.json");
     second_level_data = AjaxGet("/dashboard/data/second_level.json");
-    study_version_validation = AjaxGet("/dashboard/data/study_version_validation.json");
-    study_version_import = AjaxGet("/dashboard/data/study_version_import.json");
 
     const second_level_headers = {
         "passes_validation": "bool",
         "loads_successfully": "bool",
         "currently_loaded": "bool",
         "validation_success": "bool",
-        "validation_status_code": "text",
+        "validation_status_code": "exit_code",
         "validation_time_added": "timestamp",
         "import_success": "bool",
-        "import_status_code": "text",
-        "import_time_added": "timestamp"
+        "import_status_code": "exit_code",
+        "import_time_added": "timestamp",
+        "Validation Results": "text",
+        "Import Results": "text"
     };
 
     const top_level_headers = {
@@ -163,6 +161,11 @@ $(document).ready(function () {
         $('#main-breadcrumb').nextAll().remove()
     }
 
+    const link_info_lookup = {
+        'Import Results': 'import-link',
+        'Validation Results': 'validation-link'
+    };
+
     function render_secondlevel(study_id, study_name) {
         const table = $('<table>').addClass('ui celled table unstackable');
         const thead = $('<thead>');
@@ -180,30 +183,33 @@ $(document).ready(function () {
             const tr = $('<tr>');
             for (let property in second_level_headers) {
                 let link;
+                if (["Import Results", "Validation Results"].includes(property)) {
+                    const click_here = $('<td>').data('label', property);
+                    link = $('<a>');
+                    link.addClass(link_info_lookup[property]);
+                    link.attr('href', '#');
+                    link.data('study-version-id', row['study_version_id']);
+                    link.text("Click Here");
+                    click_here.append(link);
+                    tr.append(click_here);
+                    continue
+                }
                 const value_type = second_level_headers[property];
                 const value = row[property];
                 const td = $('<td>').data('label', property);
                 if (value_type === "bool") {
                     handle_bool(td, value, property)
                 } else if (property === "validation_time_added") {
-                    link = $('<a>');
-                    link.addClass('validation-link');
-                    link.text(timeConverter(value));
-                    link.attr('href', '#');
-                    link.data('study-version-id', row['study_version_id']);
-                    td.append(link)
+                    td.text(timeConverter(value));
+                } else if (value_type === "exit_code") {
+                    if ([0, 1, 2, 3].includes(value))
+                        td.text(value === 0 ? "SUCCESS" : (value === 3 ? "WARNING" : "ERROR"));
                 } else if (property === "import_time_added") {
-                    link = $('<a>');
-                    link.addClass('import-link');
-                    link.text(timeConverter(value));
-                    link.attr('href', '#');
-                    link.data('study-version-id', row['study_version_id']);
-                    td.append(link)
+                    td.text(timeConverter(value));
                 }
                 else {
                     td.text(value)
                 }
-                tr.append(td)
             }
             tbody.append(tr)
         });
@@ -225,12 +231,6 @@ $(document).ready(function () {
         });
         secondlevel_breadcrumb.nextAll().remove()
     }
-
-    const validation_headers = {
-        "level": "text",
-        "path": "text",
-        "message": "text"
-    };
 
     function render_validation(study_version_id) {
         const iframe = $('<iframe>')

@@ -62,9 +62,7 @@ class StudySync(object):
         print("Running update dashboard json...")
         tables_and_files = {
             "top_level_dashboard": "top_level.json",
-            "second_level_dashboard": "second_level.json",
-            "study_version_validation": "study_version_validation.json",
-            "study_version_import": "study_version_import.json"
+            "second_level_dashboard": "second_level.json"
         }
         os.makedirs('/dashboard/data', exist_ok=True)
         for k, v in tables_and_files.items():
