@@ -57,6 +57,19 @@ $(document).ready(function () {
         });
         return eval(result.responseText)
     };
+    let ElemAjaxGetText = function (elem, url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            param: '{}',
+            contentType: "text/plain; charset=utf-8",
+            dataType: "text",
+            async: true,
+            success: function (data) {
+                elem.text(data)
+            }
+        });
+    };
 
     top_level_data = AjaxGet("/dashboard/data/top_level.json");
     second_level_data = AjaxGet("/dashboard/data/second_level.json");
@@ -76,10 +89,9 @@ $(document).ready(function () {
     };
 
     const top_level_headers = {
-        "org_name": "text",
         "study_name": "text",
-        "current_version_passes_validation": "bool",
-        "current_version_loads_successfully": "bool",
+        //"current_version_passes_validation": "bool",
+        //"current_version_loads_successfully": "bool",
         "current_version_loaded": "bool",
         "previous_version_loaded": "bool"
     };
@@ -221,74 +233,37 @@ $(document).ready(function () {
     };
 
     function render_validation(study_version_id) {
-        const rx = /^((([A-Z]+):\W([a-zA-Z0-9\/\s_\\.\-():]+?):\s*(.*))|(.*\w.*))$/gm;
-        let m;
-        const table = $('<table>').addClass('ui celled table unstackable');
-        const thead = $('<thead>');
-        const tr = $('<tr>');
-        for (let i in validation_headers) {
-            tr.append($('<th>').text(display_names[i]))
-        }
-        thead.append(tr);
-        table.append(thead);
-        const tbody = $('<tbody>');
-        study_version_validation.forEach(function (row) {
-            if (!(row.study_version_id === study_version_id)) {
-                return
-            }
-            while ((m = rx.exec(row['output'])) !== null) {
-                // This is necessary to avoid infinite loops with zero-width matches
-                if (m.index === rx.lastIndex) {
-                    rx.lastIndex++;
-                }
-
-                // The result can be accessed through the `m`-variable.
-                const level = m[3];
-                const path = m[4];
-                const message = m[5];
-                const tr = $('<tr>').addClass((level === "WARNING") ? "warning" : (level === "INFO") ? "positive" : (level === "ERROR") ? "negative" : "");
-                const level_td = $('<td>').data('label', 'level').text(level);
-                const level_path = $('<td>').data('label', 'path').text(path);
-                const level_message = $('<td>').data('label', 'message').text(message);
-                tr.append(level_td).append(level_path).append(level_message);
-                tbody.append(tr)
-
-            }
-        });
-        table.append(tbody);
+        const iframe = $('<iframe>')
+            .attr("height", "100%")
+            .attr("width", "100%")
+            .attr("src", "/dashboard/validation/" + study_version_id + ".html")
+            .attr("frameborder", 0);
         main.empty();
-        main.append(table);
+        main.append(iframe);
         breadcrumbs.append($('<i>').addClass('right angle icon divider'));
         breadcrumbs.append($('<a>').addClass('section').attr('id', '#validation-breadcrumb').text("study version " + study_version_id + " validation"));
         $('#validation-breadcrumb').nextAll().remove()
     }
 
-    const import_headers = {"output": "text"};
 
     function render_import(study_version_id) {
         const table = $('<table>').addClass('ui celled table unstackable');
         const thead = $('<thead>');
         const tr = $('<tr>');
-        for (let i in import_headers) {
-            tr.append($('<th>').text(display_names[i]))
-        }
+        tr.append($('<th>').text(display_names["output"]))
         thead.append(tr);
         table.append(thead);
         const tbody = $('<tbody>');
-        study_version_import.forEach(function (row) {
-            if (!(row.study_version_id === study_version_id)) {
-                return
-            }
-            const tr = $('<tr>');
-            const pre = $('<pre>').text(row['output']);
-            const td = $('<td>').data('label', 'level');
-            td.append(pre);
-            tr.append(td);
-            tbody.append(tr)
-        });
+        const tr_inner = $('<tr>');
+        const pre = $('<pre>').addClass('pretag-import')
+        const td = $('<td>').data('label', 'level');
+        td.append(pre);
+        tr.append(td);
+        tbody.append(tr_inner);
         table.append(tbody);
         main.empty();
         main.append(table);
+        ElemAjaxGetText($('.pretag-import'), '/dashboard/import/' + study_version_id + '.html');
         breadcrumbs.append($('<i>').addClass('right angle icon divider'));
         breadcrumbs.append($('<a>').addClass('section').attr('id', '#import-breadcrumb').text("study import " + study_version_id + " output"));
         $('#import-breadcrumb').nextAll().remove()

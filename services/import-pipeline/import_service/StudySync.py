@@ -140,6 +140,7 @@ class StudySync(object):
 
     def _run_study_version_validation(self):
         print("Running study version validation...")
+        os.makedirs("/dashboard/validation", exist_ok=True)
         study_versions_needing_validation = self.StudyVersionAccess.get_study_versions_needing_validation()
         for study_version in study_versions_needing_validation:
             print("Validating study '{}' @ study_version_id '{}'".format(study_version.get_study().get_study_name(),
@@ -155,7 +156,10 @@ class StudySync(object):
                 os.makedirs(os.path.dirname(full_link_path), exist_ok=True)
                 os.symlink(file_path, full_link_path)
             try:
-                cmd = "python {} -s {} -n".format(self._validator_path, study_version_tmp_path)
+                cmd = "python {} -s {} -n -html {}.html".format(self._validator_path,
+                                                                study_version_tmp_path,
+                                                                os.path.join("/dashboard/validation",
+                                                                             str(study_version.get_id())))
                 print("Running command '{}'".format(cmd))
                 p = subprocess.check_output(cmd,
                                             shell=True,
@@ -175,6 +179,7 @@ class StudySync(object):
 
     def _run_study_version_import(self):
         print("Running study version import...")
+        os.makedirs("/dashboard/import", exist_ok=True)
         study_versions_needing_import_test = self.StudyVersionAccess.get_study_versions_needing_import_test()
         while study_versions_needing_import_test:
             for study_version in study_versions_needing_import_test:
@@ -190,9 +195,9 @@ class StudySync(object):
                     print("{} -> {}".format(file_path, full_link_path))
                     os.makedirs(os.path.dirname(full_link_path), exist_ok=True)
                     os.symlink(file_path, full_link_path)
+                cmd = "python {} -s {} -n -o".format(self._metaimport_path, study_version_tmp_path)
                 try:
                     study_version.set_currently_loaded(False)
-                    cmd = "python {} -s {} -n -o".format(self._metaimport_path, study_version_tmp_path)
                     print("Running command '{}'".format(cmd))
                     p = subprocess.check_output(cmd,
                                                 shell=True,
@@ -209,9 +214,16 @@ class StudySync(object):
                     success = False
                 print("Command exited with code '{}', marking as a {}.".format(status_code,
                                                                                'success' if success else 'failure'))
+                with open(os.path.join("/dashboard/import", "{}.txt".format(study_version.get_id())), 'a') as wf:
+                    wf.write("===================================\n")
+                    wf.write(str(time.time()) + "\n")
+                    wf.write(cmd + "\n")
+                    wf.write(output)
+                    wf.write("\n===================================\n")
+
                 if not success:
                     try:
-                        print("Removing study version as, import failed")
+                        print("Removing study version as import failed")
                         meta_file = self.FileAccess.get_meta_study_file_from_study_version(study_version)
                         if meta_file:
                             print("Found meta study file '{}'".format(meta_file))
