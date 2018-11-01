@@ -208,6 +208,7 @@ $(document).ready(function () {
                     else {
                         td.text(value)
                     }
+                    tr.append(td)
                 }
                 tbody.append(tr)
             }
