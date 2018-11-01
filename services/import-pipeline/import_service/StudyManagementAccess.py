@@ -1,6 +1,6 @@
 from StudyManagementItemAccess import *
 from StudyManagementItems import *
-from Util import SQL_sqlite3, line_iter, print
+from Util import SQL_sqlite3, SQL_mysql, line_iter, print
 import re
 import os
 import json
@@ -14,6 +14,12 @@ class _User(object):
         self.name = name
         self.enabled = enabled
         self.cbio_sql = cbio_sql
+
+    def _is_enabled(self):
+        if str(self.enabled) == 1:
+            return True
+        else:
+            return False
 
     def _exists(self):
         statement = 'SELECT TRUE FROM users WHERE email = %s'
@@ -45,7 +51,7 @@ class _User(object):
 
 
 class AuthorizationManager(object):
-    def __init__(self, local_sql: SQL_sqlite3, cbio_sql: SQL_sqlite3):
+    def __init__(self, local_sql: SQL_sqlite3, cbio_sql: SQL_mysql):
         self._local_sql = local_sql
         self._cbio_sql = cbio_sql
         self.StudyAccess = StudyAccess(local_sql)
@@ -116,6 +122,7 @@ class AuthorizationManager(object):
         true_val = os.environ['AUTH_SHEET_TRUEVAL']
         user_records = worksheet.get_all_records()
         distinct_emails = set()
+        public_studes = self.get_public_studies()
         for record in user_records:
             name = ' '.join(
                 [record[key] for key in (key_map['name'] if isinstance(key_map['name'], list) else [key_map['name']])])
@@ -125,9 +132,9 @@ class AuthorizationManager(object):
             self.user_handler(email, name, enabled)
         admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
         for email in admin_emails - distinct_emails:
-            self.user_handler(email, email, True)
+            self.user_handler(email, email, True, public_studes)
 
-    def user_handler(self, email, name, enabled):
+    def user_handler(self, email, name, enabled, public_studies):
         user = _User(email, name, enabled, self._cbio_sql)
         print("Checking for user {}, {}".format(name, email))
         if not user._exists():
@@ -137,6 +144,18 @@ class AuthorizationManager(object):
             print("User with email {} does exist, but needs updating.  Updating with name = {} and enabled = {}".format(
                 email, name, enabled))
             user._update()
+        if user._is_enabled():
+            for study_name in public_studies:
+                self.authorize_for_study(user.email, study_name)
+
+    def get_public_studies(self):
+        statement = ("SELECT cancer_study_identifier "
+                     "FROM cancer_study "
+                     "WHERE GROUPS LIKE '%,PUBLIC' "
+                     "OR GROUPS LIKE 'PUBLIC,%' "
+                     "OR GROUPS LIKE '%,PUBLIC,%' "
+                     "OR GROUPS = 'PUBLIC' ")
+        return {study for study in self._cbio_sql.exec_sql_to_column_set(statement)}
 
     def unauthorize_all_for_study(self, study_name):
         statement = "DELETE FROM authorities WHERE authority LIKE 'cbioportal:{}'".format(study_name.upper())
