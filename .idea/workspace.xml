@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mountpoints/dashboard/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/mountpoints/dashboard/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,7 +101,7 @@
           <entry key="dummy" value="165" />
           <entry key="gitignore" value="143" />
           <entry key="html" value="2" />
-          <entry key="js" value="5414" />
+          <entry key="js" value="5541" />
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
@@ -119,7 +120,7 @@
           <entry key="Dockerfile" value="12578" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="5414" />
+          <entry key="JavaScript" value="5541" />
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="2304" />
           <entry key="Properties" value="581" />
@@ -238,8 +239,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="210" column="16" selection-start-line="210" selection-start-column="16" selection-end-line="210" selection-end-column="16" />
+            <state relative-caret-position="178">
+              <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -543,34 +544,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00033" summary="letsencrypt helper script">
-      <created>1538501175432</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1538501175432</updated>
-    </task>
-    <task id="LOCAL-00034" summary="letsencrypt helper script">
-      <created>1538501219186</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1538501219186</updated>
-    </task>
-    <task id="LOCAL-00035" summary="letsencrypt helper script">
-      <created>1538501880670</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1538501880670</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fix build">
-      <created>1538503802002</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1538503802002</updated>
     </task>
     <task id="LOCAL-00037" summary="pdate documentation, some nginx settings">
       <created>1538579441735</created>
@@ -887,7 +860,35 @@
       <option name="project" value="LOCAL" />
       <updated>1541105788586</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="dashboard improvements">
+      <created>1541106020412</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1541106020412</updated>
+    </task>
+    <task id="LOCAL-00083" summary="dashboard improvements">
+      <created>1541106067929</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1541106067930</updated>
+    </task>
+    <task id="LOCAL-00084" summary="dashboard improvements">
+      <created>1541106122155</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1541106122155</updated>
+    </task>
+    <task id="LOCAL-00085" summary="dashboard improvements">
+      <created>1541106289793</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1541106289794</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1213,8 +1214,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="210" column="16" selection-start-line="210" selection-start-column="16" selection-end-line="210" selection-end-column="16" />
+        <state relative-caret-position="178">
+          <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

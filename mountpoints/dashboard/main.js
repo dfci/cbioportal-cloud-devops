@@ -73,14 +73,14 @@ $(document).ready(function () {
     second_level_data = AjaxGet("/dashboard/data/second_level.json");
 
     const second_level_headers = {
-        "passes_validation": "bool",
-        "loads_successfully": "bool",
-        "currently_loaded": "bool",
-        "validation_success": "bool",
-        "validation_status_code": "exit_code",
-        "validation_time_added": "timestamp",
-        "import_success": "bool",
-        "import_status_code": "exit_code",
+        //"passes_validation": "bool",
+        //"loads_successfully": "bool",
+        //"currently_loaded": "bool",
+        //"validation_success": "bool",
+        //"validation_status_code": "exit_code",
+        //"validation_time_added": "timestamp",
+        //"import_success": "bool",
+        //"import_status_code": "exit_code",
         "import_time_added": "timestamp",
         "Validation Results": "text",
         "Import Results": "text"
@@ -165,6 +165,10 @@ $(document).ready(function () {
         'Import Results': 'import-link',
         'Validation Results': 'validation-link'
     };
+    const othermap = {
+        'Import Results': 'import_status_code',
+        'Validation Results': 'validation_status_code'
+    };
 
     function render_secondlevel(study_id, study_name) {
         const table = $('<table>').addClass('ui celled table unstackable');
@@ -201,7 +205,7 @@ $(document).ready(function () {
                         link.addClass(link_info_lookup[property]);
                         link.attr('href', '#');
                         link.data('study-version-id', row['study_version_id']);
-                        link.text("Click Here");
+                        link.text(row[othermap[value]] === 0 ? "SUCCESS" : (row[othermap[value]] === 3 ? "WARNING" : "ERROR"));
                         click_here.append(link);
                         td.append(click_here);
                     }
