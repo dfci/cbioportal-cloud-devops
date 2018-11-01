@@ -203,7 +203,7 @@ $(document).ready(function () {
                         link.data('study-version-id', row['study_version_id']);
                         link.text("Click Here");
                         click_here.append(link);
-                        tr.append(click_here);
+                        td.append(click_here);
                     }
                     else {
                         td.text(value)
