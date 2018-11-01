@@ -263,7 +263,7 @@ $(document).ready(function () {
         table.append(tbody);
         main.empty();
         main.append(table);
-        ElemAjaxGetText($('.pretag-import'), '/dashboard/import/' + study_version_id + '.html');
+        ElemAjaxGetText($('.pretag-import'), '/dashboard/import/' + study_version_id + '.txt');
         breadcrumbs.append($('<i>').addClass('right angle icon divider'));
         breadcrumbs.append($('<a>').addClass('section').attr('id', '#import-breadcrumb').text("study import " + study_version_id + " output"));
         $('#import-breadcrumb').nextAll().remove()
