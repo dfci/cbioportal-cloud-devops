@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mountpoints/dashboard/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/mountpoints/dashboard/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,11 +100,11 @@
           <entry key="dummy" value="165" />
           <entry key="gitignore" value="143" />
           <entry key="html" value="2" />
-          <entry key="js" value="5541" />
+          <entry key="js" value="5736" />
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="46317" />
+          <entry key="py" value="46377" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="419" />
           <entry key="txt" value="1605" />
@@ -120,11 +119,11 @@
           <entry key="Dockerfile" value="12578" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="5541" />
+          <entry key="JavaScript" value="5736" />
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="2304" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="46948" />
+          <entry key="Python" value="47008" />
           <entry key="SQL" value="419" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="9805" />
@@ -172,19 +171,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="903">
-              <caret line="134" column="62" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="62" />
+            <state relative-caret-position="523">
+              <caret line="154" column="42" selection-start-line="154" selection-start-column="42" selection-end-line="154" selection-end-column="42" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1541103520349" expanded="true" signature="269:1697" ph="..." />
-                <marker date="1541103520349" expanded="true" signature="470:573" ph="..." />
-                <marker date="1541103520349" expanded="true" signature="787:986" ph="..." />
-                <marker date="1541103520349" expanded="true" signature="1352:1517" ph="..." />
-                <marker date="1541103520349" expanded="true" signature="2135:2201" ph="..." />
-                <marker date="1541103520349" expanded="true" signature="6602:7670" ph="..." />
+                <marker date="1541107264766" expanded="true" signature="269:1697" ph="..." />
+                <marker date="1541107264766" expanded="true" signature="470:573" ph="..." />
+                <marker date="1541107264766" expanded="true" signature="787:986" ph="..." />
+                <marker date="1541107264766" expanded="true" signature="1352:1517" ph="..." />
+                <marker date="1541107264766" expanded="true" signature="2135:2201" ph="..." />
+                <marker date="1541107264766" expanded="true" signature="6668:7736" ph="..." />
               </folding>
             </state>
           </provider>
@@ -236,11 +235,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
+            <state relative-caret-position="473">
+              <caret line="207" column="99" selection-start-line="207" selection-start-column="99" selection-end-line="207" selection-end-column="99" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -340,10 +339,10 @@
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementItemAccess.py" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/.gitignore" />
         <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/main.css" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/main.js" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" />
       </list>
     </option>
   </component>
@@ -544,34 +543,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00037" summary="pdate documentation, some nginx settings">
-      <created>1538579441735</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1538579441735</updated>
-    </task>
-    <task id="LOCAL-00038" summary="updating documentation">
-      <created>1538588913324</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1538588913324</updated>
-    </task>
-    <task id="LOCAL-00039" summary="updating documentation">
-      <created>1538589666440</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1538589666440</updated>
-    </task>
-    <task id="LOCAL-00040" summary="- add server.xml for reserverQueryChars attr&#10;- fix type in docker-compose">
-      <created>1538751029887</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1538751029887</updated>
     </task>
     <task id="LOCAL-00041" summary="in process of finishing importer">
       <created>1539210175792</created>
@@ -888,7 +859,35 @@
       <option name="project" value="LOCAL" />
       <updated>1541106289794</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="dashboard improvements">
+      <created>1541106980065</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1541106980065</updated>
+    </task>
+    <task id="LOCAL-00087" summary="dashboard improvements">
+      <created>1541107056754</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1541107056754</updated>
+    </task>
+    <task id="LOCAL-00088" summary="dashboard improvements">
+      <created>1541107254617</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1541107254617</updated>
+    </task>
+    <task id="LOCAL-00089" summary="dashboard improvements">
+      <created>1541107271056</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1541107271056</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1183,22 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="134" column="62" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1541103520349" expanded="true" signature="269:1697" ph="..." />
-            <marker date="1541103520349" expanded="true" signature="470:573" ph="..." />
-            <marker date="1541103520349" expanded="true" signature="787:986" ph="..." />
-            <marker date="1541103520349" expanded="true" signature="1352:1517" ph="..." />
-            <marker date="1541103520349" expanded="true" signature="2135:2201" ph="..." />
-            <marker date="1541103520349" expanded="true" signature="6602:7670" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1214,10 +1197,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="168" column="8" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="8" />
+        <state relative-caret-position="473">
+          <caret line="207" column="99" selection-start-line="207" selection-start-column="99" selection-end-line="207" selection-end-column="99" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="154" column="42" selection-start-line="154" selection-start-column="42" selection-end-line="154" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1541107264766" expanded="true" signature="269:1697" ph="..." />
+            <marker date="1541107264766" expanded="true" signature="470:573" ph="..." />
+            <marker date="1541107264766" expanded="true" signature="787:986" ph="..." />
+            <marker date="1541107264766" expanded="true" signature="1352:1517" ph="..." />
+            <marker date="1541107264766" expanded="true" signature="2135:2201" ph="..." />
+            <marker date="1541107264766" expanded="true" signature="6668:7736" ph="..." />
           </folding>
         </state>
       </provider>
