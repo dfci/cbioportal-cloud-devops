@@ -133,7 +133,7 @@ class AuthorizationManager(object):
             self.user_handler(email, name, enabled)
         admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
         for email in admin_emails - distinct_emails:
-            self.user_handler(email, email, True, public_studes)
+            self.user_handler(email, email, True, public_studies)
 
     def user_handler(self, email, name, enabled, public_studies):
         user = _User(email, name, enabled, self._cbio_sql)
