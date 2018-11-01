@@ -205,7 +205,7 @@ $(document).ready(function () {
                         link.addClass(link_info_lookup[property]);
                         link.attr('href', '#');
                         link.data('study-version-id', row['study_version_id']);
-                        link.text(row[othermap[value]] === 0 ? "SUCCESS" : (row[othermap[value]] === 3 ? "WARNING" : "ERROR"));
+                        link.text(row[othermap[property]] === 0 ? "SUCCESS" : (row[othermap[property]] === 3 ? "WARNING" : "ERROR"));
                         click_here.append(link);
                         td.append(click_here);
                     }
