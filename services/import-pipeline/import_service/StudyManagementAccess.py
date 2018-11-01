@@ -150,12 +150,12 @@ class AuthorizationManager(object):
                 self.authorize_for_study(user.email, study_name)
 
     def get_public_studies(self):
-        statement = ("SELECT cancer_study_identifier "
-                     "FROM cancer_study "
-                     "WHERE GROUPS LIKE '%,PUBLIC' "
-                     "OR GROUPS LIKE 'PUBLIC,%' "
-                     "OR GROUPS LIKE '%,PUBLIC,%' "
-                     "OR GROUPS = 'PUBLIC' ")
+        statement = """SELECT cancer_study_identifier 
+                     FROM cancer_study 
+                     WHERE GROUPS LIKE '%,PUBLIC' 
+                     OR GROUPS LIKE 'PUBLIC,%' 
+                     OR GROUPS LIKE '%,PUBLIC,%' 
+                     OR GROUPS = 'PUBLIC' """
         return {study for study in self._cbio_sql.exec_sql_to_column_set(statement)}
 
     def unauthorize_all_for_study(self, study_name):
