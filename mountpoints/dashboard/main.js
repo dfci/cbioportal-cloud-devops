@@ -177,42 +177,41 @@ $(document).ready(function () {
         table.append(thead);
         const tbody = $('<tbody>');
         second_level_data.forEach(function (row) {
-            if (!(row.study_id === study_id)) {
-                return
+                if (!(row.study_id === study_id)) {
+                    return
+                }
+                const tr = $('<tr>');
+                for (let property in second_level_headers) {
+
+                    const value_type = second_level_headers[property];
+                    const value = row[property];
+                    const td = $('<td>').data('label', property);
+                    if (value_type === "bool") {
+                        handle_bool(td, value, property)
+                    } else if (property === "validation_time_added") {
+                        td.text(timeConverter(value));
+                    } else if (value_type === "exit_code") {
+                        if ([0, 1, 2, 3].includes(value))
+                            td.text(value === 0 ? "SUCCESS" : (value === 3 ? "WARNING" : "ERROR"));
+                    } else if (property === "import_time_added") {
+                        td.text(timeConverter(value));
+                    } else if (["Import Results", "Validation Results"].includes(property)) {
+                        const click_here = $('<td>').data('label', property);
+                        let link = $('<a>');
+                        link.addClass(link_info_lookup[property]);
+                        link.attr('href', '#');
+                        link.data('study-version-id', row['study_version_id']);
+                        link.text("Click Here");
+                        click_here.append(link);
+                        tr.append(click_here);
+                    }
+                    else {
+                        td.text(value)
+                    }
+                }
+                tbody.append(tr)
             }
-            const tr = $('<tr>');
-            for (let property in second_level_headers) {
-                let link;
-                if (["Import Results", "Validation Results"].includes(property)) {
-                    const click_here = $('<td>').data('label', property);
-                    link = $('<a>');
-                    link.addClass(link_info_lookup[property]);
-                    link.attr('href', '#');
-                    link.data('study-version-id', row['study_version_id']);
-                    link.text("Click Here");
-                    click_here.append(link);
-                    tr.append(click_here);
-                    continue
-                }
-                const value_type = second_level_headers[property];
-                const value = row[property];
-                const td = $('<td>').data('label', property);
-                if (value_type === "bool") {
-                    handle_bool(td, value, property)
-                } else if (property === "validation_time_added") {
-                    td.text(timeConverter(value));
-                } else if (value_type === "exit_code") {
-                    if ([0, 1, 2, 3].includes(value))
-                        td.text(value === 0 ? "SUCCESS" : (value === 3 ? "WARNING" : "ERROR"));
-                } else if (property === "import_time_added") {
-                    td.text(timeConverter(value));
-                }
-                else {
-                    td.text(value)
-                }
-            }
-            tbody.append(tr)
-        });
+        );
         table.append(tbody);
         main.empty();
         main.append(table);
@@ -273,4 +272,5 @@ $(document).ready(function () {
     $("#main-breadcrumb").click(function () {
         render_toplevel()
     })
-});
+})
+;
