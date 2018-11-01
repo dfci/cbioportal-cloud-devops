@@ -122,7 +122,8 @@ class AuthorizationManager(object):
         true_val = os.environ['AUTH_SHEET_TRUEVAL']
         user_records = worksheet.get_all_records()
         distinct_emails = set()
-        public_studes = self.get_public_studies()
+        public_studies = self.get_public_studies()
+        print("Found public studies {}".format(public_studies))
         for record in user_records:
             name = ' '.join(
                 [record[key] for key in (key_map['name'] if isinstance(key_map['name'], list) else [key_map['name']])])
