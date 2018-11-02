@@ -61,7 +61,6 @@ def auth_sync(initialization: Initialization = Initialization()):
 
 
 def study_validation(initialization: Initialization = Initialization()):
-    auth_sync(initialization)
     print("Running study_validation")
     try:
         with sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
@@ -69,6 +68,7 @@ def study_validation(initialization: Initialization = Initialization()):
             sync_obj.perform_study_validation()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
+    auth_sync(initialization)
 
 
 def study_import(initialization: Initialization = Initialization()):
@@ -80,6 +80,7 @@ def study_import(initialization: Initialization = Initialization()):
             sync_obj.perform_study_import()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
+    auth_sync(initialization)
 
 
 if __name__ == '__main__':
