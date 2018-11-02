@@ -133,7 +133,7 @@ class AuthorizationManager(object):
             distinct_emails.add(email)
             self.user_handler(email, name, enabled, public_studies)
             email_row = worksheet.find(email).row
-            worksheet.update_cell(approved_col, email_row, true_val)
+            worksheet.update_cell(email_row, approved_col, true_val)
         admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
         for email in admin_emails - distinct_emails:
             self.user_handler(email, email, True, public_studies)
