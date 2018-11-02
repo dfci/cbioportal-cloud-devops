@@ -92,41 +92,39 @@ CREATE TABLE IF NOT EXISTS study_version_import
 
 CREATE UNIQUE INDEX IF NOT EXISTS study_version_import_id_uindex
   ON study_version_import (id);
-
 CREATE VIEW IF NOT EXISTS top_level_dashboard AS
   WITH
-      _most_recent_version_status AS (SELECT o.id                          org_id,
-                                             o.org_name,
-                                             s.id                          study_id,
-                                             s.study_name,
-                                             s.available,
-                                             v.id                          study_version_id,
-                                             row_number()                  OVER (PARTITION BY s.id ORDER BY v.id DESC) _id,
-                                             v.passes_validation           current_version_passes_validation,
-                                             v.loads_successfully          current_version_loads_successfully,
-                                             CASE
-                                               WHEN v.currently_loaded IS NULL THEN FALSE
-                                               ELSE v.currently_loaded END current_version_loaded
-                                      FROM orgs o
-                                             INNER JOIN studies s ON o.id = s.org_id
-                                             INNER JOIN study_versions v ON s.id = v.study_id),
+      _version_status AS (SELECT o.id                 org_id,
+                                 o.org_name,
+                                 s.id                 study_id,
+                                 s.study_name,
+                                 s.available,
+                                 v.id                 study_version_id,
+                                 row_number()         OVER (PARTITION BY s.id ORDER BY v.id DESC) _id,
+                                 v.passes_validation  current_version_passes_validation,
+                                 v.loads_successfully current_version_loads_successfully,
+                                 v.currently_loaded   current_version_loaded
+                          FROM orgs o
+                                 INNER JOIN studies s ON o.id = s.org_id
+                                 INNER JOIN study_versions v ON s.id = v.study_id),
       most_recent_version_status AS (SELECT *
-                                     FROM _most_recent_version_status
+                                     FROM _version_status
                                      WHERE _id = 1),
-      _historical_version_status AS (SELECT m1.*, FALSE previous_version_loaded
-                                     FROM _most_recent_version_status m1
-                                            INNER JOIN _most_recent_version_status m2
-                                              ON m2.study_version_id = m1.study_version_id
-                                     WHERE m2._id != 1),
-      historical_version_status AS (SELECT m.study_id,
+      historical_version_status AS (SELECT s.id                           s_id,
                                            CASE
-                                             WHEN previous_version_loaded IS NULL THEN FALSE
-                                             ELSE previous_version_loaded END previous_version_loaded
-                                    FROM most_recent_version_status m
-                                           LEFT JOIN _historical_version_status h ON h.study_id = m.study_id)
-  SELECT m.*, h.previous_version_loaded
+                                             WHEN sv.currently_loaded IS NULL THEN FALSE
+                                             ELSE sv.currently_loaded END currently_loaded
+                                    FROM studies s
+                                           LEFT JOIN study_versions sv ON (s.id = sv.study_id) AND sv.currently_loaded
+                                    WHERE sv.id IN (SELECT study_version_id FROM _version_status WHERE _id != 1
+                                                                                                   AND current_version_loaded))
+  SELECT m.*,
+         CASE
+           WHEN m.current_version_loaded THEN FALSE
+           WHEN h.currently_loaded IS NULL THEN FALSE
+           ELSE h.currently_loaded END previous_version_loaded
   FROM most_recent_version_status m
-         INNER JOIN historical_version_status h ON h.study_id = m.study_id
+         LEFT JOIN historical_version_status h ON h.s_id = m.study_id
   ORDER BY org_id DESC, study_id DESC, study_version_id DESC;
 
 CREATE VIEW IF NOT EXISTS second_level_dashboard AS
