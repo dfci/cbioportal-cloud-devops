@@ -150,10 +150,17 @@ class StudyVersionAccess(object):
             results = self.sql.exec_sql(statement)
         return [StudyVersion(*result, self.sql) for result in results] if results is not None else list()
 
+    def set_all_study_versions_in_study_currently_loaded(self, study: Study, currently_loaded):
+        statement = ('UPDATE study_versions '
+                     'SET currently_loaded = ? '
+                     'WHERE study_id = ? '
+                     'AND currently_loaded IS NOT NULL ')
+        self.sql.exec_sql(statement, currently_loaded, study.get_id())
+
     def get_study_versions_needing_import_test(self):
         statement = (
             'WITH  q AS (SELECT sv.id, '
-            '   row_number() OVER (PARTITION BY s.id ORDER BY sv.id DESC, s.id DESC) AS _id '
+            'row_number() OVER (PARTITION BY s.id ORDER BY sv.id DESC, s.id DESC) AS _id '
             'FROM study_versions sv '
             'INNER JOIN study_version_validation v ON sv.id = v.study_version_id '
             'INNER JOIN studies s ON sv.study_id = s.id '

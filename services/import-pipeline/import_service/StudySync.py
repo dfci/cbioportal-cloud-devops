@@ -198,6 +198,8 @@ class StudySync(object):
                     study_version_tmp_path)
                 try:
                     study_version.set_currently_loaded(False)
+                    self.StudyVersionAccess.set_all_study_versions_in_study_currently_loaded(study_version.get_study(),
+                                                                                             False)
                     print("Running command '{}'".format(cmd))
                     p = subprocess.check_output(cmd,
                                                 shell=True,
