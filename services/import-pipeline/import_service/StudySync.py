@@ -193,7 +193,9 @@ class StudySync(object):
                     print("{} -> {}".format(file_path, full_link_path))
                     os.makedirs(os.path.dirname(full_link_path), exist_ok=True)
                     os.symlink(file_path, full_link_path)
-                cmd = "python {} -s {} -n -o".format(self._metaimport_path, study_version_tmp_path)
+                cmd = "python {} --command import-study --study_directory {}".format(
+                    self._cbioportalimporter_path,
+                    study_version_tmp_path)
                 try:
                     study_version.set_currently_loaded(False)
                     print("Running command '{}'".format(cmd))

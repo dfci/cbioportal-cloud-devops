@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ac967de8-8c63-4eb6-b7f0-742dfa1ddf4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +105,7 @@
           <entry key="json" value="3" />
           <entry key="md" value="5216" />
           <entry key="properties" value="581" />
-          <entry key="py" value="46430" />
+          <entry key="py" value="46516" />
           <entry key="sh" value="6138" />
           <entry key="sql" value="421" />
           <entry key="txt" value="1605" />
@@ -123,7 +124,7 @@
           <entry key="Markdown" value="5216" />
           <entry key="PLAIN_TEXT" value="2304" />
           <entry key="Properties" value="581" />
-          <entry key="Python" value="47061" />
+          <entry key="Python" value="47147" />
           <entry key="SQL" value="421" />
           <entry key="XML" value="447" />
           <entry key="YAML" value="9805" />
@@ -171,19 +172,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="154" column="36" selection-start-line="154" selection-start-column="36" selection-end-line="154" selection-end-column="36" />
+            <state relative-caret-position="495">
+              <caret line="132" column="65" selection-start-line="132" selection-start-column="65" selection-end-line="132" selection-end-column="65" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1541107676388" expanded="true" signature="269:1697" ph="..." />
-                <marker date="1541107676388" expanded="true" signature="470:573" ph="..." />
-                <marker date="1541107676388" expanded="true" signature="787:986" ph="..." />
-                <marker date="1541107676388" expanded="true" signature="1352:1517" ph="..." />
-                <marker date="1541107676388" expanded="true" signature="2135:2201" ph="..." />
-                <marker date="1541107676388" expanded="true" signature="6668:7583" ph="..." />
+                <marker date="1541167644322" expanded="true" signature="269:1697" ph="..." />
+                <marker date="1541167644322" expanded="true" signature="470:573" ph="..." />
+                <marker date="1541167644322" expanded="true" signature="787:986" ph="..." />
+                <marker date="1541167644322" expanded="true" signature="1352:1517" ph="..." />
+                <marker date="1541167644322" expanded="true" signature="2135:2201" ph="..." />
+                <marker date="1541167644322" expanded="true" signature="6684:7599" ph="..." />
               </folding>
             </state>
           </provider>
@@ -198,16 +199,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
+            <state relative-caret-position="365">
+              <caret line="195" column="75" selection-start-line="195" selection-start-column="75" selection-end-line="195" selection-end-column="75" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1541105765211" expanded="true" signature="1892:1939" ph="..." />
-                <marker date="1541105765211" expanded="true" signature="1962:2731" ph="..." />
-                <marker date="1541105765211" expanded="true" signature="2726:2731" ph="..." />
+                <marker date="1541170502922" expanded="true" signature="1892:1939" ph="..." />
+                <marker date="1541170502922" expanded="true" signature="1962:2731" ph="..." />
+                <marker date="1541170502922" expanded="true" signature="2726:2731" ph="..." />
               </folding>
             </state>
           </provider>
@@ -216,11 +217,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/Util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+            <state relative-caret-position="508">
+              <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1540998017192" expanded="true" signature="637:641" ph="..." />
+                <marker date="1541167555429" expanded="true" signature="637:641" ph="..." />
               </folding>
             </state>
           </provider>
@@ -330,7 +331,6 @@
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/FileSyncSource.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementItems.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/main.py" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/Util.py" />
         <option value="$PROJECT_DIR$/services/nginx-wrapper/nginx.conf" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/data/study_version_validation.json" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/index.html" />
@@ -340,9 +340,10 @@
         <option value="$PROJECT_DIR$/mountpoints/dashboard/.gitignore" />
         <option value="$PROJECT_DIR$/services/import-pipeline/Dockerfile" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/main.css" />
-        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" />
         <option value="$PROJECT_DIR$/mountpoints/dashboard/main.js" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/Util.py" />
         <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py" />
+        <option value="$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py" />
       </list>
     </option>
   </component>
@@ -357,10 +358,11 @@
       <path value="$PROJECT_DIR$/mountpoints/host/cbioportal/portal/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="947" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1884" />
+    <option name="y" value="-248" />
+    <option name="width" value="1440" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -543,20 +545,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537212938226</updated>
-    </task>
-    <task id="LOCAL-00043" summary="in process of finishing importer">
-      <created>1539210288096</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1539210288096</updated>
-    </task>
-    <task id="LOCAL-00044" summary="in process of finishing importer">
-      <created>1539211366181</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1539211366181</updated>
     </task>
     <task id="LOCAL-00045" summary="fixes, now verified working up to validation">
       <created>1539270136481</created>
@@ -887,14 +875,28 @@
       <option name="project" value="LOCAL" />
       <updated>1541107681777</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="dashboard improvements">
+      <created>1541167561501</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1541167561502</updated>
+    </task>
+    <task id="LOCAL-00093" summary="dashboard improvements">
+      <created>1541167650318</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1541167650318</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="6" />
+    <frame x="-1884" y="-248" width="1440" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22649573" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2653791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" weight="0.32982457" />
@@ -1152,17 +1154,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/Util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1540998017192" expanded="true" signature="637:641" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -1182,19 +1173,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1541105765211" expanded="true" signature="1892:1939" ph="..." />
-            <marker date="1541105765211" expanded="true" signature="1962:2731" ph="..." />
-            <marker date="1541105765211" expanded="true" signature="2726:2731" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mountpoints/dashboard/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
@@ -1205,18 +1183,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/Util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1541167555429" expanded="true" signature="637:641" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudyManagementAccess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="154" column="36" selection-start-line="154" selection-start-column="36" selection-end-line="154" selection-end-column="36" />
+        <state relative-caret-position="495">
+          <caret line="132" column="65" selection-start-line="132" selection-start-column="65" selection-end-line="132" selection-end-column="65" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1541107676388" expanded="true" signature="269:1697" ph="..." />
-            <marker date="1541107676388" expanded="true" signature="470:573" ph="..." />
-            <marker date="1541107676388" expanded="true" signature="787:986" ph="..." />
-            <marker date="1541107676388" expanded="true" signature="1352:1517" ph="..." />
-            <marker date="1541107676388" expanded="true" signature="2135:2201" ph="..." />
-            <marker date="1541107676388" expanded="true" signature="6668:7583" ph="..." />
+            <marker date="1541167644322" expanded="true" signature="269:1697" ph="..." />
+            <marker date="1541167644322" expanded="true" signature="470:573" ph="..." />
+            <marker date="1541167644322" expanded="true" signature="787:986" ph="..." />
+            <marker date="1541167644322" expanded="true" signature="1352:1517" ph="..." />
+            <marker date="1541167644322" expanded="true" signature="2135:2201" ph="..." />
+            <marker date="1541167644322" expanded="true" signature="6684:7599" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/import-pipeline/import_service/StudySync.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="195" column="75" selection-start-line="195" selection-start-column="75" selection-end-line="195" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1541170502922" expanded="true" signature="1892:1939" ph="..." />
+            <marker date="1541170502922" expanded="true" signature="1962:2731" ph="..." />
+            <marker date="1541170502922" expanded="true" signature="2726:2731" ph="..." />
           </folding>
         </state>
       </provider>
