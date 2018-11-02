@@ -130,7 +130,7 @@ class AuthorizationManager(object):
             email = record[key_map['email']]
             enabled = True if record[key_map['enabled']] == true_val else False
             distinct_emails.add(email)
-            self.user_handler(email, name, enabled)
+            self.user_handler(email, name, enabled, public_studies)
         admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
         for email in admin_emails - distinct_emails:
             self.user_handler(email, email, True, public_studies)
