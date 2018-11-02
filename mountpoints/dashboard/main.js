@@ -38,7 +38,7 @@ function timeConverter(UNIX_timestamp) {
     const hour = a.getHours();
     const min = a.getMinutes();
     const sec = a.getSeconds();
-    return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
+    return date + ' ' + month + ' ' + year + (' ' + hour).padStart(2, "0") + (':' + min).padStart(2, "0") + (':' + sec).padStart(2, "0")
 }
 
 $(document).ready(function () {
@@ -129,6 +129,9 @@ $(document).ready(function () {
         const tbody = $('<tbody>');
         top_level_data.forEach(function (row) {
             const tr = $('<tr>');
+            if (row['current_version_loaded'] || row['previous_version_loaded']) tr.addClass('positive');
+            else if (!(row['current_version_loaded'] == null && row['previous_version_loaded'] == null))
+                tr.addClass('negative');
             for (let property in top_level_headers) {
                 const value_type = top_level_headers[property];
                 const value = row[property];

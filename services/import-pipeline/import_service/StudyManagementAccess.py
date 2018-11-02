@@ -124,6 +124,7 @@ class AuthorizationManager(object):
         distinct_emails = set()
         public_studies = self.get_public_studies()
         print("Found public studies {}".format(public_studies))
+        approved_col = worksheet.find("Approved in portal").col
         for record in user_records:
             name = ' '.join(
                 [record[key] for key in (key_map['name'] if isinstance(key_map['name'], list) else [key_map['name']])])
@@ -131,6 +132,8 @@ class AuthorizationManager(object):
             enabled = True if record[key_map['enabled']] == true_val else False
             distinct_emails.add(email)
             self.user_handler(email, name, enabled, public_studies)
+            email_row = worksheet.find(email).row
+            worksheet.update_cell(approved_col, email_row, true_val)
         admin_emails = {email for email in os.environ['ADMIN_EMAILS'].split(',')}
         for email in admin_emails - distinct_emails:
             self.user_handler(email, email, True, public_studies)
