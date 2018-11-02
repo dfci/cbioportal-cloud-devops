@@ -71,7 +71,7 @@ class SQL_mysql(object):
         return result[0] if result is not None else result
 
     def exec_sql_to_column_set(self, statement, *args, col_no=0):
-        results = self.exec_sql(statement, args)
+        results = self.exec_sql(statement, *args)
         return {result[col_no] for result in results}
 
 
