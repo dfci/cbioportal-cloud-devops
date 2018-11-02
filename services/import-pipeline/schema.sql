@@ -110,18 +110,14 @@ CREATE VIEW IF NOT EXISTS top_level_dashboard AS
       most_recent_version_status AS (SELECT *
                                      FROM _version_status
                                      WHERE _id = 1),
-      historical_version_status AS (SELECT s.id                           s_id,
-                                           CASE
-                                             WHEN sv.currently_loaded IS NULL THEN FALSE
-                                             ELSE sv.currently_loaded END currently_loaded
+      historical_version_status AS (SELECT s.id s_id, sv.currently_loaded
                                     FROM studies s
                                            LEFT JOIN study_versions sv ON (s.id = sv.study_id) AND sv.currently_loaded
                                     WHERE sv.id IN (SELECT study_version_id FROM _version_status WHERE _id != 1
                                                                                                    AND current_version_loaded))
   SELECT m.*,
          CASE
-           WHEN m.current_version_loaded THEN FALSE
-           WHEN h.currently_loaded IS NULL THEN FALSE
+           WHEN m.current_version_loaded AND h.currently_loaded IS NOT NULL THEN FALSE
            ELSE h.currently_loaded END previous_version_loaded
   FROM most_recent_version_status m
          LEFT JOIN historical_version_status h ON h.s_id = m.study_id
