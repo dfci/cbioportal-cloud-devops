@@ -36,8 +36,9 @@ Skip this section if you already have an environment.  Following steps will assu
     - Using a bind mount: ```mount  -o bind /path/to/location/to/store/data ./mountpoints/cbioportal-mysql-data```
     - Mounting the block device directly ```mount /dev/devicename ./mountpoints/cbioportal-mysql-data```
 3. Make any required changes to the portal.properties file in [./services/cbioportal/resources/portal.properties](./services/cbioportal/resources/portal.properties)
-4. Make sure any other resources that are required for cbioportal, such as a SAML keystore, are placed in [./services/cbioportal/resources](./services/cbioportal/resources)
+4. Make sure any other resources that may be required for your instance of cBioPortal, such as a SAML keystore, are placed in [./services/cbioportal/resources](./services/cbioportal/resources)
 5. Run ```docker-compose build``` to build the images
+6. Make sure all required and desired environment variables are set (see [Environment Variables](#environment-variables))
 6. Run ```docker-compose up -d``` to start cbioportal and all associated services
 7. View the logs by running ```docker-compose logs -f```
 8. On first run, cbioportal will clone the cbioportal repository to ```/host/cbioportal```. ```/host``` is bind-mounted from [./mountpoints/host](./mountpoints/host).  If you wish to force cbioportal to reclone the repo, just run ```rm -rf ./mountpoints/host/cbioportal```
@@ -45,7 +46,8 @@ Skip this section if you already have an environment.  Following steps will assu
 10. On startup, cbioportal will wait until it can get a connection to cbioportal-mysql, and check for the cbioportal database.  If the database does not exist, it will be created, and populated with the seed data.
 11. Also on startup, if the database was created, or if the environment variable DO_DB_MIGRATE is set to "yes" (without quotes), the database migration script will be run.  This means you can force the migration script to run when bringing the container up, e.g. ```DO_DB_MIGRATE=yes docker-compose up -d```
     - To force the a build of cbioportal as well as force db migrate script to be run, do ```FORCE_MVN_BUILD=yes DO_DB_MIGRATE=yes docker-compose up -d```
-12. To load studies, put whatever files/folders you need into [./mountpoints/host](./mountpoints/host), where they will be accessible in the cbioportal container under ```/host```.  You can get shell access to the cbioportal container by running ```docker-compose exec cbioportal bash```.
+12. Studies will be loaded by the import-pipeline every night by default every night, for details or to make modifications check [services/import-pipeline/import_service/main.py](./services/import-pipeline/import_service/main.py).  Studies automatically imported via the import-pipeline will show up in the dashboard at <your-url>/dashboard, where you can check study versions validation and import status.
+13. To load studies without going through the import-pipeline, put whatever files/folders you need into [./mountpoints/host](./mountpoints/host), where they will be accessible in the cbioportal container under ```/host```.  You can get shell access to the cbioportal container by running ```docker-compose exec cbioportal bash```.
     - ```${PORTAL_HOME}``` is set to ```/host/cbioportal```, so you can load studies and run all scripts like you would normally.
 
 ## Useful Commands
@@ -66,6 +68,45 @@ Skip this section if you already have an environment.  Following steps will assu
 - Get a mysql prompt to cbioportal-mysql
     - ```docker-compose exec cbioportal-mysql mysql -pletmein cbioportal```
     
+## Environment Variables
+- import-pipeline
+    - ACCESS_TOKEN
+        - Dropbox API access token
+        - Default: [not set by default]
+    - ALLOWED_FOLDER
+        - Comma-separated list of top-level folders containing studies in Dropbox
+        - Default: [not set by default]
+    - ADMIN_EMAILS
+        - Comma-separated list of emails that should have access to all studies in cBioPortal
+        - Default: [not set by default]
+    - GCLOUD_CREDS
+        - Contents of the Google Compute Cloud credentials JSON file for accessing the Google sheet with user information
+        - Default: [not set by default]
+    - AUTH_SHEET_KEY
+        - The spreadsheet ID of the Google sheet with user information
+        - Default: [not set by default]
+    - AUTH_SHEET_WORKSHEET_NAME
+        - The title of the worksheet in the Google sheet
+        - Default: [not set by default]
+    - AUTH_SHEET_KEYMAP
+        - JSON mapping the required fields of the USERS table to headers of the columns in the Google sheet
+        - e.g. export AUTH_SHEET_KEYMAP='{"name": ["First Name", "Last Name"], "email": "Email address", "enabled": "Approved by whomever"}'
+
+        - If the value of "name" is a list of column headers, the values at each of those columns will be joined by a space
+        - Default: [not set by default]
+    - AUTH_SHEET_TRUEVAL
+        - The string in the spreadsheet denoting a TRUE value
+        - e.g. "Yes"
+        - Default: [not set by default]
+- cbioportal
+    - DO_DB_MIGRATE
+        - If this is set to "yes", then the container will attempt to run the DB migration script on start
+        - Default: "no"
+    - FORCE_MVN_BUILD
+        - If this is set to "yes", then the container will build cBioPortal on start
+        - Even if this is not set, if /usr/local/tomcat/webapps/ROOT does not exist, the project will still be built
+        - Default: "no"
+        
 ## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
  * [scripts](./scripts)
@@ -74,7 +115,12 @@ Skip this section if you already have an environment.  Following steps will assu
      * [letsencrypt_gcloud.sh](./scripts/letsencrypt_gcloud.sh) - *Helper script to issue SSL certs from LetsEncrypt on Google Cloud*
  * [mountpoints](./mountpoints)
    * [cbioportal-mysql-data](./mountpoints/cbioportal-mysql-data) - *Directory that is bind-mounted to cbioportal-mysql to serve as the data directory*
+   * [dashboard](./mountpoints/dashboard) - *Directory that is bind-mounted to import-pipeline to put dashboard data and also bind-mounted to nginx-wrapper to host the dashboard at /dashboard*
+     * [index.html](./mountpoints/dashboard/index.html) - *HTML for the import-pipeline dashboard*
+     * [main.css](./mountpoints/dashboard/main.css) - *CSS for the import-pipeline dashboard*
+     * [main.js](./mountpoints/dashboard/main.js) - *JS for the import-pipeline dashboard*
    * [host](./mountpoints/host) - *Directory that is bind-mounted to /host on cbioportal and cbioportal-mysql, so files can be accessed on both easily if needed*
+   * [importer](./mountpoints/importer) - *Directory that is bind-mounted to import-pipeline to serve as the data directory; files downloaded from dropbox are stored here, as well as the sqlite3 database to maintain state*
    * [nginx-wrapper](./mountpoints/nginx-wrapper) - *Directory to put cert.key and cert.crt for nginx-wrapper*
    * [mvn-repo](./mountpoints/mvn-repo) - *Directory that is bind-mounted to /root/.m2/repository on the cbioportal container, to cache maven dependencies*
  * [services](./services) - *One folder for each service, containing the Dockerfile and supporting files*
@@ -104,3 +150,15 @@ Skip this section if you already have an environment.  Following steps will assu
      * [Dockerfile](./services/oncokb-mysql/Dockerfile)
    * [cancerhotspots](./services/cancerhotspots) - *Cancer Hotspots service for OncoKB, making it a secondary requirement for cBioPortal*
      * [Dockerfile](./services/cancerhotspots/Dockerfile)
+   * [import-pipeline](./services/import-pipeline) - *Import Pipeline for loading, validating, and keeping track of studies in DropBox*
+     * [Dockerfile](./services/import-pipeline/Dockerfile)
+     * [schema.sql](./services/import-pipeline/schema.sql) - *schema for the sqlite3 database that maintains study versions state*
+     * [import_service](./services/import-pipeline/import_service/) - *Python package for making up the import-pipeline*
+        * [\_\_init\_\_.py](./services/import-pipeline/import_service/__init__.py)
+        * [main.py](./services/import-pipeline/import_service/main.py) - *Main script for import-pipeline - uses imports all other modules, and sets of scheduling for different services*
+        * [FileSyncSource.py](./services/import-pipeline/import_service/FileSyncSource.py) - *Module for interacting with DropBox*
+        * [StudyManageMentAccess.py](./services/import-pipeline/import_service/StudyManagementAccess.py) - *Module which handles authorization on studies, and user management from a Google sheet*
+        * [StudyManagementItemAccess.py](./services/import-pipeline/import_service/StudyManagementItemAccess.py) - *Module for interacting with the sqlite3 db for reading, writing and tracking study state*
+        * [StudyManagementItems.py](./services/import-pipeline/import_service/StudyManagementItems.py) - *Module which represents the data structures stored in the sqlite3 database, allowing read/write access*
+        * [StudySync.py](./services/import-pipeline/import_service/StudySync.py) - *Module containing the actual services for study importing/validation/downloading/versioning*
+        * [Util.py](./services/import-pipeline/import_service/Util.py) - *Module containing various utilities, functions, abstractions, etc.*

@@ -20,6 +20,10 @@ services:
       source: ./mountpoints/nginx-wrapper/cert.key
       target: /etc/nginx/cert.key
       read_only: true
+    - type: bind
+      source: ./mountpoints/dashboard/
+      target: /etc/nginx/html/dashboard
+      read_only: true
     depends_on:
     - cbioportal
     links:
@@ -96,6 +100,7 @@ services:
       source: ./mountpoints/cbioportal-mysql-data
       target: /var/lib/mysql
       read_only: false
+    command: --ssl=0
     networks:
       cbio-bridge:
         ipv4_address: 172.28.10.12
@@ -190,6 +195,56 @@ services:
     restart: always
     networks:
     - cbio-bridge
+  import-pipeline:
+    build:
+      context: services/import-pipeline
+    environment:
+      ACCESS_TOKEN: ${DROPBOX_ACCESS_TOKEN}
+      ALLOWED_FOLDER: ${DROPBOX_ALLOWED_FOLDERS}
+      ADMIN_EMAILS: ${ADMIN_EMAILS}
+      PORTAL_HOME: /host/cbioportal
+      DOWNLOAD_DIR: /importer/files
+      DB_LOCATION: /importer/main.db
+      STUDY_LINK_DIR: /study_link_dir
+      SCHEMA_SQL_PATH: /schema.sql
+      DB_HOST: cbioportal-mysql
+      DB_NAME: *mysql_database
+      DB_USER: root
+      DB_PASSWORD: *mysql_root_password
+      GCLOUD_CREDS: ${GCLOUD_CREDS}
+      AUTH_SHEET_KEY: ${AUTH_SHEET_KEY}
+      AUTH_SHEET_WORKSHEET_NAME: ${AUTH_SHEET_WORKSHEET_NAME}
+      AUTH_SHEET_KEYMAP: ${AUTH_SHEET_KEYMAP}
+      AUTH_SHEET_TRUEVAL: ${AUTH_SHEET_TRUEVAL}
+    volumes:
+    - type: bind
+      source: ./mountpoints/host
+      target: /host
+      read_only: false
+    - type: bind
+      source: ./mountpoints/importer
+      target: /importer
+      read_only: false
+    - type: bind
+      source: ./mountpoints/dashboard
+      target: /dashboard
+      read_only: false
+    - type: bind
+      source: ./services/import-pipeline/schema.sql
+      target: /schema.sql
+      read_only: true
+    - type: bind
+      source: ./services/import-pipeline/import_service
+      target: /importer/import_service
+      read_only: true
+    networks:
+    - cbio-bridge
+    depends_on:
+    - cbioportal
+    - cbioportal-mysql
+    links:
+    - cbioportal
+    - cbioportal-mysql
 
 networks:
   cbio-bridge:
