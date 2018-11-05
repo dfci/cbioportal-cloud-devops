@@ -111,6 +111,6 @@ Skip this section if you already have an environment.  Following steps will assu
      * [Dockerfile](./services/import-pipeline/Dockerfile)
      * [schema.sql](./services/import-pipeline/schema.sql) - *schema for the sqlite3 database that maintains study versions state*
      * [import_service](./services/import-pipeline/import_service/) - *Python package for making up the import-pipeline*
-        * [__init__.py](./services/import-pipeline/import_service/__init__.py)
+        * [\_\_init\_\_.py](./services/import-pipeline/import_service/__init__.py)
    * [cancerhotspots](./services/cancerhotspots) - *Cancer Hotspots service for OncoKB, making it a secondary requirement for cBioPortal*
      * [Dockerfile](./services/cancerhotspots/Dockerfile)
