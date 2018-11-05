@@ -79,6 +79,7 @@ Skip this section if you already have an environment.  Following steps will assu
      * [main.css](./mountpoints/dashboard/main.css) - *CSS for the import-pipeline dashboard*
      * [main.js](./mountpoints/dashboard/main.js) - *JS for the import-pipeline dashboard*
    * [host](./mountpoints/host) - *Directory that is bind-mounted to /host on cbioportal and cbioportal-mysql, so files can be accessed on both easily if needed*
+   * [importer](./mountpoints/importer) - *Directory that is bind-mounted to import-pipeline to serve as the data directory; files downloaded from dropbox are stored here, as well as the sqlite3 database to maintain state*
    * [nginx-wrapper](./mountpoints/nginx-wrapper) - *Directory to put cert.key and cert.crt for nginx-wrapper*
    * [mvn-repo](./mountpoints/mvn-repo) - *Directory that is bind-mounted to /root/.m2/repository on the cbioportal container, to cache maven dependencies*
  * [services](./services) - *One folder for each service, containing the Dockerfile and supporting files*
@@ -106,5 +107,10 @@ Skip this section if you already have an environment.  Following steps will assu
      * [Dockerfile](./services/oncokb/Dockerfile)
    * [oncokb-mysql](./services/oncokb-mysql) - *MySQL backend for OncoKB*
      * [Dockerfile](./services/oncokb-mysql/Dockerfile)
+   * [import-pipeline](./services/import-pipeline) - *Import Pipeline for loading, validating, and keeping track of studies in DropBox*
+     * [Dockerfile](./services/import-pipeline/Dockerfile)
+     * [schema.sql](./services/import-pipeline/schema.sql) - *schema for the sqlite3 database that maintains study versions state*
+     * [import_service](./services/import-pipeline/import_service/) - *Python package for making up the import-pipeline*
+        * [__init__.py](./services/import-pipeline/import_service/__init__.py)
    * [cancerhotspots](./services/cancerhotspots) - *Cancer Hotspots service for OncoKB, making it a secondary requirement for cBioPortal*
      * [Dockerfile](./services/cancerhotspots/Dockerfile)
