@@ -99,11 +99,11 @@ Skip this section if you already have an environment.  Following steps will assu
 - cbioportal
     - DO_DB_MIGRATE
         - If this is set to "yes", then the container will attempt to run the DB migration script on start
-        - Default: no
+        - Default: "no"
     - FORCE_MVN_BUILD
         - If this is set to "yes", then the container will build cBioPortal on start
         - Even if this is not set, if /usr/local/tomcat/webapps/ROOT does not exist, the project will still be built
-        - Default: no
+        - Default: "no"
         
 ## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
