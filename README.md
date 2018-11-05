@@ -107,10 +107,17 @@ Skip this section if you already have an environment.  Following steps will assu
      * [Dockerfile](./services/oncokb/Dockerfile)
    * [oncokb-mysql](./services/oncokb-mysql) - *MySQL backend for OncoKB*
      * [Dockerfile](./services/oncokb-mysql/Dockerfile)
+   * [cancerhotspots](./services/cancerhotspots) - *Cancer Hotspots service for OncoKB, making it a secondary requirement for cBioPortal*
+     * [Dockerfile](./services/cancerhotspots/Dockerfile)
    * [import-pipeline](./services/import-pipeline) - *Import Pipeline for loading, validating, and keeping track of studies in DropBox*
      * [Dockerfile](./services/import-pipeline/Dockerfile)
      * [schema.sql](./services/import-pipeline/schema.sql) - *schema for the sqlite3 database that maintains study versions state*
      * [import_service](./services/import-pipeline/import_service/) - *Python package for making up the import-pipeline*
         * [\_\_init\_\_.py](./services/import-pipeline/import_service/__init__.py)
-   * [cancerhotspots](./services/cancerhotspots) - *Cancer Hotspots service for OncoKB, making it a secondary requirement for cBioPortal*
-     * [Dockerfile](./services/cancerhotspots/Dockerfile)
+        * [main.py](./services/import-pipeline/import_service/main.py) - *Main script for import-pipeline - uses imports all other modules, and sets of scheduling for different services*
+        * [FileSyncSource.py](./services/import-pipeline/import_service/FileSyncSource.py) - *Module for interacting with DropBox*
+        * [StudyManageMentAccess.py](./services/import-pipeline/import_service/StudyManagementAccess.py) - *Module which handles authorization on studies, and user management from a Google sheet*
+        * [StudyManagementItemAccess.py](./services/import-pipeline/import_service/StudyManagementItemAccess.py) - *Module for interacting with the sqlite3 db for reading, writing and tracking study state*
+        * [StudyManagementItems.py](./services/import-pipeline/import_service/StudyManagementItems.py) - *Module which represents the data structures stored in the sqlite3 database, allowing read/write access*
+        * [StudySync.py](./services/import-pipeline/import_service/StudySync.py) - *Module containing the actual services for study importing/validation/downloading/versioning*
+        * [Util.py](./services/import-pipeline/import_service/Util.py) - *Module containing various utilities, functions, abstractions, etc.*
