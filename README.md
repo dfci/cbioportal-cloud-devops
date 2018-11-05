@@ -76,8 +76,8 @@ Skip this section if you already have an environment.  Following steps will assu
    * [cbioportal-mysql-data](./mountpoints/cbioportal-mysql-data) - *Directory that is bind-mounted to cbioportal-mysql to serve as the data directory*
    * [dashboard](./mountpoints/dashboard) - *Directory that is bind-mounted to import-pipeline to put dashboard data and also bind-mounted to nginx-wrapper to host the dashboard at /dashboard*
      * [index.html](./mountpoints/dashboard/index.html) - *HTML for the import-pipeline dashboard*
-     * [main.css](./mountpoints/dashboard/index.css) - *CSS for the import-pipeline dashboard*
-     * [main.js](./mountpoints/dashboard/index.js) - *JS for the import-pipeline dashboard*
+     * [main.css](./mountpoints/dashboard/main.css) - *CSS for the import-pipeline dashboard*
+     * [main.js](./mountpoints/dashboard/main.js) - *JS for the import-pipeline dashboard*
    * [host](./mountpoints/host) - *Directory that is bind-mounted to /host on cbioportal and cbioportal-mysql, so files can be accessed on both easily if needed*
    * [nginx-wrapper](./mountpoints/nginx-wrapper) - *Directory to put cert.key and cert.crt for nginx-wrapper*
    * [mvn-repo](./mountpoints/mvn-repo) - *Directory that is bind-mounted to /root/.m2/repository on the cbioportal container, to cache maven dependencies*
