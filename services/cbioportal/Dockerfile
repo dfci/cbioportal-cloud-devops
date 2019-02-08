@@ -11,7 +11,7 @@ RUN apt-get install -y python3-dev python3-requests python3-jinja2 \
 ENV PORTAL_HOME=/host/cbioportal JDBC_DRIVER=com.mysql.jdbc.Driver \
     DB_HOST=cbioportal-mysql DB_USER=root \
     DB_PASSWORD=letmein DB_PORT=3306 \
-    DB_NAME=cbioportal BRANCH=master
+    DB_NAME=cbioportal
 
 
 RUN rm -rf /usr/local/tomcat/webapps/* && \
