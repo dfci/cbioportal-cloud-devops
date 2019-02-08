@@ -20,7 +20,7 @@ RUN rm -rf /usr/local/tomcat/webapps/* && \
 
 ARG branch
 RUN wget -O schema.sql \
-     https://raw.githubusercontent.com/cBioPortal/cbioportal/${BRANCH}/db-scripts/src/main/resources/cgds.sql && \
+     https://raw.githubusercontent.com/cBioPortal/cbioportal/${branch}/db-scripts/src/main/resources/cgds.sql && \
     wget -O seed-db.sql.gz \
      https://github.com/cBioPortal/datahub/raw/master/seedDB/seed-cbioportal_hg19_v2.6.0.sql.gz
 
