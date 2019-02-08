@@ -18,6 +18,7 @@ fi
 cp /resources/* ${PORTAL_HOME}/src/main/resources/
 
 if [ "${FORCE_MVN_BUILD}" == "yes" ] || [ ! -d /usr/local/tomcat/webapps/ROOT ]; then
+    cd ${PORTAL_HOME}
     rm -rf /usr/local/tomcat/webapps/ROOT/*
     mvn -f ${PORTAL_HOME}/pom.xml -DskipTests -Djdbc.driver=${JDBC_DRIVER} -Dfinal.war.name=cbioportal \
         -Ddb.host=${DB_HOST} -Ddb.user=${DB_USER} -Ddb.password=${DB_PASSWORD} \

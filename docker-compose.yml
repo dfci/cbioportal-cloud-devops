@@ -36,7 +36,7 @@ services:
       context: services/cbioportal
     restart: always
     environment:
-      BRANCH: master
+      BRANCH: release-2.1.0
       DB_HOST: cbioportal-mysql
       DB_PORT: "3306"
       DB_USER: root
@@ -109,7 +109,7 @@ services:
     build:
       context: services/oncokb
       args:
-        BRANCH: &oncokb_branch v0.3.1
+        BRANCH: &oncokb_branch v0.3.11
         DB_HOST: oncokb-mysql
         DB_PORT: "3306"
         DB_USER: root
