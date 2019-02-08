@@ -35,7 +35,7 @@ services:
     build:
       context: services/cbioportal
       args:
-        BRANCH: &cbioportal_branch release-2.1.0
+        BRANCH: &cbioportal_branch v2.0.1
         SEED_SQL_FILE: seed-cbioportal_hg19_v2.7.2.sql.gz
     restart: always
     environment:
