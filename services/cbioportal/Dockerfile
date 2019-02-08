@@ -18,7 +18,7 @@ RUN rm -rf /usr/local/tomcat/webapps/* && \
     echo 'JAVA_OPTS="$JAVA_OPTS -Ddbconnector=dbcp"' >> /usr/local/tomcat/bin/setenv.sh && \
     chmod +x /usr/local/tomcat/bin/setenv.sh
 
-ENV BRANCH master
+ARG BRANCH
 RUN wget -O schema.sql \
      https://raw.githubusercontent.com/cBioPortal/cbioportal/${BRANCH}/db-scripts/src/main/resources/cgds.sql && \
     wget -O seed-db.sql.gz \

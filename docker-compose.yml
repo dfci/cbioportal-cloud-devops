@@ -34,9 +34,11 @@ services:
     image: cbioportal-cloud:latest
     build:
       context: services/cbioportal
+      args:
+        BRANCH: &cbioportal_branch release-2.1.0
     restart: always
     environment:
-      BRANCH: release-2.1.0
+      BRANCH: *cbioportal_branch
       DB_HOST: cbioportal-mysql
       DB_PORT: "3306"
       DB_USER: root
