@@ -66,15 +66,10 @@ class AuthorizationManager(object):
 
     def _run_auth_sync(self):
         for top_level in self.TopLevelFolderAccess.list_all_orgs():
-            print(7, top_level.get_name())
             for study in top_level.get_studies():
-                print(8, study.get_study_name())
                 study_version = self.StudyVersionAccess.get_active_study_version(study)
-                print(9, study_version)
                 if study_version is not None:
-                    print(10, study_version.get_id())
                     access_file = self.StudyAccessAccess.get_most_recent_access_file_for_study(study)
-                    print(11, access_file)
                     is_valid = None
                     authorized_emails = set() | {email for email in os.environ['ADMIN_EMAILS'].split(',')}
                     if access_file is not None:
@@ -83,14 +78,12 @@ class AuthorizationManager(object):
 
                     meta_study_file = self.FileAccess.get_file_from_study_version_file(
                         self.FileAccess.get_meta_study_version_file_from_study_version(study_version))
-                    print(12, meta_study_file)
                     meta_dict = {k: v
                                  for k, v
                                  in [(line.split(':')[0], line.split(':')[1])
                                      if ':' in line else (line, None)
                                      for line in line_iter(
                                         meta_study_file.get_contents())]} if meta_study_file is not None else dict()
-                    print(13, meta_dict)
                     if meta_dict:
                         cancer_study_name = meta_dict['cancer_study_identifier'].strip()
                         print(
@@ -109,7 +102,6 @@ class AuthorizationManager(object):
                             self.authorize_for_study(email, cancer_study_name)
 
     def _run_user_sync(self):
-        return
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
         gcloud_creds = json.loads(os.environ['GCLOUD_CREDS'])
