@@ -200,7 +200,9 @@ class StudyFileAccess(object):
         return result[0] if result is not None and result else result
 
     def study_access_exists(self, study: Study, file: File):
-        return True if self.get_study_access_by_study_and_file(study, file) is not None else False
+        result = self.get_study_access_by_study_and_file(study, file)
+        print(5, result)
+        return True if result is not None and result else False
 
     def get_most_recent_access_file_for_study(self, study: Study):
         statement = ('SELECT file_id '
