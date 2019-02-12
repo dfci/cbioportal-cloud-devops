@@ -211,6 +211,7 @@ class StudyFileAccess(object):
                      'ORDER BY id DESC '
                      'LIMIT 1')
         result = self.sql.exec_sql(statement, study.get_id())
+        print(6, result)
         if result is not None and result:
             file = FilesAccess(self.sql).get_file_by_id(result[0])
             return file
