@@ -68,33 +68,34 @@ class AuthorizationManager(object):
         for top_level in self.TopLevelFolderAccess.list_all_orgs():
             for study in top_level.get_studies():
                 study_version = self.StudyVersionAccess.get_active_study_version(study)
-                access_file = self.StudyAccessAccess.get_most_recent_access_file_for_study(study)
-                is_valid = None
-                authorized_emails = set() | {email for email in os.environ['ADMIN_EMAILS'].split(',')}
-                if access_file is not None:
-                    for line in line_iter(access_file.get_contents()):
-                        authorized_emails.add(line.strip())
+                if study_version is not None:
+                    access_file = self.StudyAccessAccess.get_most_recent_access_file_for_study(study)
+                    is_valid = None
+                    authorized_emails = set() | {email for email in os.environ['ADMIN_EMAILS'].split(',')}
+                    if access_file is not None:
+                        for line in line_iter(access_file.get_contents()):
+                            authorized_emails.add(line.strip())
 
-                meta_study_file = self.FileAccess.get_file_from_study_version_file(
-                    self.FileAccess.get_meta_study_file_from_study_version(study_version))
-                meta_dict = {k: v
-                             for k, v
-                             in [(line.split(':')[0], line.split(':')[1])
-                                 if ':' in line else (line, None)
-                                 for line in line_iter(meta_study_file.get_contents())]}
-                cancer_study_name = meta_dict['cancer_study_identifier'].strip()
-                print("Found meta study file for study '{}' at '{}' with cancer_study_identifier as '{}'".format(
-                    study.get_study_name(), meta_study_file.get_path(), cancer_study_name))
-                if is_valid is not None:
-                    print("Current access.txt for study '{}' is not valid, please fix.".format(cancer_study_name))
-                    break
-                print("Removing all authorizations...")
-                self.unauthorize_all_for_study(cancer_study_name)
-                for email in authorized_emails:
-                    print("Authorizing email '{}' for study '{}' with cancer_study_identifier '{}".format(email,
-                                                                                                          study.get_study_name(),
-                                                                                                          cancer_study_name))
-                    self.authorize_for_study(email, cancer_study_name)
+                    meta_study_file = self.FileAccess.get_file_from_study_version_file(
+                        self.FileAccess.get_meta_study_file_from_study_version(study_version))
+                    meta_dict = {k: v
+                                 for k, v
+                                 in [(line.split(':')[0], line.split(':')[1])
+                                     if ':' in line else (line, None)
+                                     for line in line_iter(meta_study_file.get_contents())]}
+                    cancer_study_name = meta_dict['cancer_study_identifier'].strip()
+                    print("Found meta study file for study '{}' at '{}' with cancer_study_identifier as '{}'".format(
+                        study.get_study_name(), meta_study_file.get_path(), cancer_study_name))
+                    if is_valid is not None:
+                        print("Current access.txt for study '{}' is not valid, please fix.".format(cancer_study_name))
+                        break
+                    print("Removing all authorizations...")
+                    self.unauthorize_all_for_study(cancer_study_name)
+                    for email in authorized_emails:
+                        print("Authorizing email '{}' for study '{}' with cancer_study_identifier '{}".format(email,
+                                                                                                              study.get_study_name(),
+                                                                                                              cancer_study_name))
+                        self.authorize_for_study(email, cancer_study_name)
 
     def _run_user_sync(self):
         return
