@@ -82,8 +82,8 @@ class AuthorizationManager(object):
                                  for k, v
                                  in [(line.split(':')[0], line.split(':')[1])
                                      if ':' in line else (line, None)
-                                     for line in line_iter(meta_study_file.get_contents())] if
-                                 meta_study_file is not None}
+                                     for line in line_iter(
+                                        meta_study_file.get_contents())]} if meta_study_file is not None else dict()
                     if meta_dict:
                         cancer_study_name = meta_dict['cancer_study_identifier'].strip()
                         print(
