@@ -4,7 +4,7 @@ import hashlib
 import shutil
 import time
 import subprocess
-from Util import content_hasher, SQL_sqlite3, print
+from Util import content_hasher, SQL_sqlite3, print, is_valid_access_file
 from FileSyncSource import *
 from StudyManagementAccess import *
 
@@ -38,6 +38,7 @@ class StudySync(object):
         self.StudyAccess = StudyAccess(self._sql)
         self.OrganizationsAccess = TopLevelFoldersAccess(self._sql)
         self.FileAccess = FilesAccess(self._sql)
+        self.StudyAccessAccess = StudyFileAccess(self._sql)
 
     def perform_db_sync(self):
         self._run_local_db_init()
@@ -126,6 +127,12 @@ class StudySync(object):
                                   for content_hash in content_hash_entries.keys()
                                   if os.path.basename(path) not in self.UNVERSIONED_FILE_NAMES]
                 aggregate_hash = hashlib.sha256(b''.join(sorted(aggregate_list))).hexdigest()
+                for path, content_hash_entries in filter(lambda x: os.path.basename(x[0]) == "access.txt",
+                                                         path_entries.items()):
+                    for content_hash in content_hash_entries:
+                        file = self.FileAccess.get_file_by_content_hash(content_hash)
+                        if is_valid_access_file(file) and not self.StudyAccessAccess.study_access_exists(study, file):
+                            self.StudyAccessAccess.add_new_study_access(study, file)
                 if not self.StudyVersionAccess.study_version_exists(study, aggregate_hash):
                     study_version = self.StudyVersionAccess.new_study_version(study, aggregate_hash)
                     for path, content_hash_entries in path_entries.items():

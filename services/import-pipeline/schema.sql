@@ -34,6 +34,17 @@ CREATE UNIQUE INDEX IF NOT EXISTS studies_id_uindex
 CREATE UNIQUE INDEX IF NOT EXISTS studies_study_name_uindex
   ON studies (org_id, study_name);
 
+CREATE TABLE IF NOT EXISTS study_access
+(
+  id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  study_id           INT                               NOT NULL,
+  file_id            INT                               NOT NULL,
+  CONSTRAINT study_access_studies_id_fk FOREIGN KEY (study_id) REFERENCES studies (id),
+  CONSTRAINT study_access_files_id_fk FOREIGN KEY (file_ID) REFERENCES files (id)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS study_access_id_uindex ON study_access(id);
+
 CREATE TABLE IF NOT EXISTS study_versions
 (
   id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

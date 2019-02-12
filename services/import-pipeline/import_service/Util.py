@@ -1,3 +1,4 @@
+import re
 import sqlite3
 import time
 import hashlib
@@ -29,7 +30,7 @@ class SQL_sqlite3(object):
 
     def exec_sql_to_single_val(self, statement, *args):
         result = self.exec_sql(statement, *args)
-        return result[0] if result is not None else result
+        return result[0] if result is not None and len(result) > 0 else result
 
     def exec_sql_to_column_set(self, statement, *args, col_no=0):
         results = self.exec_sql(statement, args)
@@ -85,3 +86,13 @@ def dict_factory(cursor, row):
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
     return d
+
+
+def is_valid_access_file(access_file):
+    email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+    is_valid = True
+    for line in line_iter(access_file.get_contents()):
+        if re.match(email_regex, line.strip()) is None:
+            is_valid = False
+            break
+    return is_valid

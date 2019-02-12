@@ -179,3 +179,36 @@ class StudyVersionAccess(object):
 class StudyVersionValidationAccess(object):
     def __init__(self, sql: SQL_sqlite3):
         self.sql = sql
+
+
+class StudyFileAccess(object):
+    def __init__(self, sql: SQL_sqlite3):
+        self.sql = sql
+
+    def add_new_study_access(self, study: Study, file: File):
+        statement = ('INSERT INTO study_access (study_id, file_id)'
+                     'VALUES (?, ?)')
+        self.sql.exec_sql(statement, study.get_id(), file.get_id())
+
+    def get_study_access_by_study_and_file(self, study: Study, file: File):
+        statement = ('SELECT id FROM study_access '
+                     'WHERE study_id = ? '
+                     'AND file_id = ?')
+        result = self.sql.exec_sql_to_single_val(statement, study.get_id(), file.get_id())
+        return result
+
+    def study_access_exists(self, study: Study, file: File):
+        return True if self.get_study_access_by_study_and_file(study, file) is not None else False
+
+    def get_most_recent_access_file_for_study(self, study: Study):
+        statement = ('SELECT file_id '
+                     'FROM study_access '
+                     'WHERE study_id = ? '
+                     'ORDER BY id DESC '
+                     'LIMIT 1')
+        result = self.sql.exec_sql_to_single_val(statement, study.get_id())
+        if result is not None:
+            file = FilesAccess(self.sql).get_file_by_id(result)
+            return file
+        else:
+            return None

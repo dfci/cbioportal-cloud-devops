@@ -176,3 +176,24 @@ class StudyVersionFile(object):
 
 class StudyVersionValidation(object):
     pass
+
+
+class StudyAccessFile(object):
+    def __init__(self, _id, study_id, file_id, time_added, sql: SQL_sqlite3):
+        self.sql = sql
+        self.time_added = time_added
+        self.file_id = file_id
+        self.study_id = study_id
+        self._id = id
+
+    def _get_id(self):
+        return self._id
+
+    def get_file_id(self):
+        return self.file_id
+
+    def get_study_id(self):
+        return self.study_id
+
+    def get_time_added(self):
+        return self.time_added

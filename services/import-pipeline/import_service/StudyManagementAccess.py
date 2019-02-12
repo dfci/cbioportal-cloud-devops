@@ -1,7 +1,6 @@
 from StudyManagementItemAccess import *
 from StudyManagementItems import *
 from Util import SQL_sqlite3, SQL_mysql, line_iter, print
-import re
 import os
 import json
 import gspread
@@ -55,6 +54,7 @@ class AuthorizationManager(object):
         self._local_sql = local_sql
         self._cbio_sql = cbio_sql
         self.StudyAccess = StudyAccess(local_sql)
+        self.StudyAccessAccess = StudyAccessFile(local_sql)
         self.StudyVersionAccess = StudyVersionAccess(local_sql)
         self.FileAccess = FilesAccess(local_sql)
         self.email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
@@ -79,14 +79,11 @@ class AuthorizationManager(object):
         for result in results:
             study = self.StudyAccess.get_study_by_id(result[0])
             study_version = self.StudyVersionAccess.get_study_version_by_id(result[1])
-            access_file = self.FileAccess.get_file_by_id(result[2])
+            access_file = self.StudyAccessAccess.get_most_recent_access_file_for_study(study)
             is_valid = None
             authorized_emails = set() | {email for email in os.environ['ADMIN_EMAILS'].split(',')}
-            for line in line_iter(access_file.get_contents()):
-                if re.match(self.email_regex, line.strip()) is None:
-                    is_valid = False
-                    break
-                else:
+            if access_file is not None:
+                for line in line_iter(access_file.get_contents()):
                     authorized_emails.add(line.strip())
 
             meta_study_file = self.FileAccess.get_file_from_study_version_file(
@@ -111,6 +108,7 @@ class AuthorizationManager(object):
                 self.authorize_for_study(email, cancer_study_name)
 
     def _run_user_sync(self):
+        return
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
         gcloud_creds = json.loads(os.environ['GCLOUD_CREDS'])
