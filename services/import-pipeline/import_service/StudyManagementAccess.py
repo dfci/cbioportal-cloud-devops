@@ -50,7 +50,7 @@ class _User(object):
 
 
 class AuthorizationManager(object):
-    def __init__(self, local_sql: SQL_sqlite3, cbio_sql: SQL_mysql):
+    def __init__(self, local_sql: SQL_sqlite3, cbio_sql: SQL_mysql, user_sync_enabled: bool = True):
         self._local_sql = local_sql
         self._cbio_sql = cbio_sql
         self.TopLevelFolderAccess = TopLevelFoldersAccess(local_sql)
@@ -58,11 +58,13 @@ class AuthorizationManager(object):
         self.StudyAccessAccess = StudyFileAccess(local_sql)
         self.StudyVersionAccess = StudyVersionAccess(local_sql)
         self.FileAccess = FilesAccess(local_sql)
+        self.user_sync_enabled = user_sync_enabled
         self.email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
 
     def run(self):
         self._run_auth_sync()
-        self._run_user_sync()
+        if self.user_sync_enabled:
+            self._run_user_sync()
 
     def _run_auth_sync(self):
         for top_level in self.TopLevelFolderAccess.list_all_orgs():
@@ -83,7 +85,7 @@ class AuthorizationManager(object):
                                  in [(line.split(':')[0], line.split(':')[1])
                                      if ':' in line else (line, None)
                                      for line in line_iter(
-                                        meta_study_file.get_contents())]} if meta_study_file is not None else dict()
+                            meta_study_file.get_contents())]} if meta_study_file is not None else dict()
                     if meta_dict:
                         cancer_study_name = meta_dict['cancer_study_identifier'].strip()
                         print(

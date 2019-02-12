@@ -53,8 +53,9 @@ def auth_sync(initialization: Initialization = Initialization()):
         print(time.time(), e)
     try:
         cbio_con = MySQLdb.connect(**initialization.CBIOPORTAL_DB_CONNECTION_INFO)
+        user_sync_enabled = True if os.getenv("DISABLE_USER_SYNC", "no") != "yes" else False
         with SQL_mysql(cbio_con) as cbioportal_sql, sqlite3.connect(initialization.DB_LOCATION) as sqlite_connection:
-            auth_sync_obj = AuthorizationManager(SQL_sqlite3(sqlite_connection), cbioportal_sql)
+            auth_sync_obj = AuthorizationManager(SQL_sqlite3(sqlite_connection), cbioportal_sql, user_sync_enabled)
             auth_sync_obj.run()
     except sqlite3.IntegrityError as e:
         print(time.time(), e)
