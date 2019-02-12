@@ -54,7 +54,7 @@ class AuthorizationManager(object):
         self._local_sql = local_sql
         self._cbio_sql = cbio_sql
         self.StudyAccess = StudyAccess(local_sql)
-        self.StudyAccessAccess = StudyAccessFile(local_sql)
+        self.StudyAccessAccess = StudyFileAccess(local_sql)
         self.StudyVersionAccess = StudyVersionAccess(local_sql)
         self.FileAccess = FilesAccess(local_sql)
         self.email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
