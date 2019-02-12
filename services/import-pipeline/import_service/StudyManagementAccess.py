@@ -66,9 +66,13 @@ class AuthorizationManager(object):
 
     def _run_auth_sync(self):
         for top_level in self.TopLevelFolderAccess.list_all_orgs():
+            print(7, top_level.get_name())
             for study in top_level.get_studies():
+                print(8, study.get_study_name())
                 study_version = self.StudyVersionAccess.get_active_study_version(study)
+                print(9, study_version)
                 if study_version is not None:
+                    print(10, study_version.get_id())
                     access_file = self.StudyAccessAccess.get_most_recent_access_file_for_study(study)
                     is_valid = None
                     authorized_emails = set() | {email for email in os.environ['ADMIN_EMAILS'].split(',')}
