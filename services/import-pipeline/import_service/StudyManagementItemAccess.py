@@ -45,11 +45,13 @@ class FilesAccess(object):
     def get_meta_study_version_file_from_study_version(self, study_version: StudyVersion):
         study_version_files = study_version.get_study_version_files()
         for study_version_file in study_version_files:
+            print(14, study_version_file.get_file_path())
             if study_version_file.get_file_path().startswith("meta_"):
                 file = self.get_file_from_study_version_file(study_version_file)
                 meta_dict = {k: v for k, v in
                              [(line.split(':')[0], ''.join(line.split(':')[1::])) if ':' in line else (line, None)
                               for line in line_iter(file.get_contents())]}
+                print(15, meta_dict)
                 if 'cancer_study_identifier' in meta_dict and 'type_of_cancer' in meta_dict:
                     return study_version_file
         return None
