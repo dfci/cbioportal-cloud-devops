@@ -213,7 +213,7 @@ class StudyFileAccess(object):
         results = self.sql.exec_sql(statement, study.get_id())
         result = [result[0] for result in results][0] if results else None
         if result is not None and result:
-            file = FilesAccess(self.sql).get_file_by_id(result[0])
+            file = FilesAccess(self.sql).get_file_by_id(result)
             return file
         else:
             return None
