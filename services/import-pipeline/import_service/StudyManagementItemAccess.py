@@ -194,8 +194,8 @@ class StudyFileAccess(object):
         statement = ('SELECT id FROM study_access '
                      'WHERE study_id = ? '
                      'AND file_id = ?')
-        result = self.sql.exec_sql_to_single_val(statement, study.get_id(), file.get_id())
-        return result
+        result = self.sql.exec_sql(statement, study.get_id(), file.get_id())
+        return result[0] if result is not None and result else result
 
     def study_access_exists(self, study: Study, file: File):
         return True if self.get_study_access_by_study_and_file(study, file) is not None else False
@@ -206,9 +206,9 @@ class StudyFileAccess(object):
                      'WHERE study_id = ? '
                      'ORDER BY id DESC '
                      'LIMIT 1')
-        result = self.sql.exec_sql_to_single_val(statement, study.get_id())
-        if result is not None:
-            file = FilesAccess(self.sql).get_file_by_id(result)
+        result = self.sql.exec_sql(statement, study.get_id())
+        if result is not None and result:
+            file = FilesAccess(self.sql).get_file_by_id(result[0])
             return file
         else:
             return None
