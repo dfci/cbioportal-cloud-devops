@@ -25,6 +25,8 @@ class FilesAccess(object):
         return [self.get_file_by_content_hash(content_hash) for content_hash in content_hashes]
 
     def get_file_from_study_version_file(self, study_version_file: StudyVersionFile):
+        if study_version_file is None:
+            return None
         statement = ('SELECT f.content_hash '
                      'FROM study_version_files svf '
                      'INNER JOIN files f '
@@ -40,7 +42,7 @@ class FilesAccess(object):
         result = self.sql.exec_sql(statement, file_id, fetchall=False)
         return File(*result, self.sql) if result else None
 
-    def get_meta_study_file_from_study_version(self, study_version: StudyVersion):
+    def get_meta_study_version_file_from_study_version(self, study_version: StudyVersion):
         study_version_files = study_version.get_study_version_files()
         for study_version_file in study_version_files:
             if study_version_file.get_file_path().startswith("meta_"):

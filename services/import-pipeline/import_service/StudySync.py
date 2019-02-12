@@ -233,7 +233,7 @@ class StudySync(object):
                 if not success:
                     try:
                         print("Removing study version as import failed")
-                        meta_file = self.FileAccess.get_meta_study_file_from_study_version(study_version)
+                        meta_file = self.FileAccess.get_meta_study_version_file_from_study_version(study_version)
                         if meta_file:
                             print("Found meta study file '{}'".format(meta_file))
                             meta_file_path = os.path.join(study_version_tmp_path, meta_file.get_file_path())
