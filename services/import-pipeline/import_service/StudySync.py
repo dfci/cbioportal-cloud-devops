@@ -129,8 +129,12 @@ class StudySync(object):
                 aggregate_hash = hashlib.sha256(b''.join(sorted(aggregate_list))).hexdigest()
                 for path, content_hash_entries in filter(lambda x: os.path.basename(x[0]) == "access.txt",
                                                          path_entries.items()):
+                    print(1, path)
                     for content_hash in content_hash_entries:
+                        print(2, content_hash)
                         file = self.FileAccess.get_file_by_content_hash(content_hash)
+                        print(3, is_valid_access_file(file))
+                        print(4, self.StudyAccessAccess.study_access_exists(study, file))
                         if is_valid_access_file(file) and not self.StudyAccessAccess.study_access_exists(study, file):
                             self.StudyAccessAccess.add_new_study_access(study, file)
                 if not self.StudyVersionAccess.study_version_exists(study, aggregate_hash):
