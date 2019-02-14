@@ -4,9 +4,9 @@ services:
     image: cbioportal-cloud-nginx-wrapper:latest
     build:
       context: services/nginx-wrapper
-    ports:
-    - "80:80"
-    - "443:443"
+    ports: #NGINX_WRAPPER
+    - "${NGINX_WRAPPER_PORT_HTTP}:80"
+    - "${NGINX_WRAPPER_PORT_HTTPS}:443"
     volumes:
     - type: bind
       source: ./services/nginx-wrapper/nginx.conf
@@ -35,11 +35,11 @@ services:
     build:
       context: services/cbioportal
       args:
-        BRANCH: &cbioportal_branch v2.0.1
-        SEED_SQL_FILE: seed-cbioportal_hg19_v2.7.2.sql.gz
+        BRANCH: ${CBIOPORTAL_BRANCH}
+        SEED_SQL_FILE: ${CBIOPORTAL_SEED_SQL_FILE}
     restart: always
     environment:
-      BRANCH: *cbioportal_branch
+      BRANCH: ${CBIOPORTAL_BRANCH}
       DB_HOST: cbioportal-mysql
       DB_PORT: "3306"
       DB_USER: root
@@ -81,7 +81,7 @@ services:
     - session-service
     networks:
       cbio-bridge:
-        ipv4_address: 172.28.10.11
+        ipv4_address: ${CBIOPORTAL_IPV4_ADDR}
   cbioportal-mysql:
     image: cbioportal-cloud-cbioportal-mysql:latest
     build:
@@ -106,13 +106,13 @@ services:
     command: --ssl=0
     networks:
       cbio-bridge:
-        ipv4_address: 172.28.10.12
+        ipv4_address: ${CBIOPORTAL_MYSQL_IPV4_ADDR}
   oncokb:
     image: cbioportal-cloud-oncokb:latest
     build:
       context: services/oncokb
       args:
-        BRANCH: &oncokb_branch v0.3.11
+        BRANCH: ${ONCOKB_BRANCH}
         DB_HOST: oncokb-mysql
         DB_PORT: "3306"
         DB_USER: root
@@ -130,7 +130,7 @@ services:
     build:
       context: services/oncokb-mysql
       args:
-        BRANCH: *oncokb_branch
+        BRANCH: ${ONCOKB_BRANCH}
     environment:
       MYSQL_ROOT_PASSWORD: letmein
       MYSQL_DATABASE: oncokb
@@ -142,7 +142,7 @@ services:
     build:
       context: services/genome-nexus
       args:
-        BRANCH: master
+        BRANCH: ${GENOME_NEXUS_BRANCH}
     environment:
       GN_MONGO_HOST: genome-nexus-mongodb
       GN_MONGO_PORT: "27017"
@@ -160,7 +160,7 @@ services:
     build:
       context: services/genome-nexus-mongodb
       args:
-        BRANCH: v0.4
+        BRANCH: ${GENOME_NEXUS_MONGODB_BRANCH}
     restart: always
     networks:
     - cbio-bridge
@@ -169,7 +169,7 @@ services:
     build:
       context: services/session-service
       args:
-        BRANCH: master
+        BRANCH: ${SESSION_SERVICE_BRANCH}
     environment:
       SS_MONGO_HOST: session-service-mongodb
       SS_MONGO_PORT: "27017"
@@ -194,7 +194,7 @@ services:
     build:
       context: services/cancerhotspots
       args:
-        BRANCH: master
+        BRANCH: ${CANCERHOTSPOTS_BRANCH}
     restart: always
     networks:
     - cbio-bridge
@@ -210,7 +210,8 @@ services:
       DB_LOCATION: /importer/main.db
       STUDY_LINK_DIR: /study_link_dir
       SCHEMA_SQL_PATH: /schema.sql
-      DISABLE_USER_SYNC: no
+      DISABLE_USER_SYNC: ${IMPORT_PIPELINE_DISABLE_USER_SYNC}
+      DISABLE_UNAUTH: ${IMPORT_PIPELINE_DISABLE_UNAUTH}
       DB_HOST: cbioportal-mysql
       DB_NAME: *mysql_database
       DB_USER: root
@@ -256,5 +257,5 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: "172.28.10.0/24"
+      - subnet: ${SUBNET}
 
