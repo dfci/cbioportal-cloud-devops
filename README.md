@@ -147,6 +147,7 @@ Skip this section if you already have an environment.  Following steps will assu
         
 ## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
+ * [default_env.sh](./default_env.sh) - *File to source for the default environment variables to run the docker-compose*
  * [scripts](./scripts)
      * [generate_self_signed_keys_for_nginx.sh](./scripts/generate_self_signed_keys_for_nginx.sh) - *Generates self-signed cert and key to use with nginx-wrapper, so you can test with HTTPS enabled, puts them in [./mountpoints/nginx-wrapper](./mountpoints/nginx-wrapper)*
      * [gce_debian_9_setup.sh](./scripts/gce_debian_9_setup.sh) - *Setup script for Debian image in Google Cloud*
