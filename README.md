@@ -37,17 +37,18 @@ Skip this section if you already have an environment.  Following steps will assu
     - Mounting the block device directly ```mount /dev/devicename ./mountpoints/cbioportal-mysql-data```
 3. Make any required changes to the portal.properties file in [./services/cbioportal/resources/portal.properties](./services/cbioportal/resources/portal.properties)
 4. Make sure any other resources that may be required for your instance of cBioPortal, such as a SAML keystore, are placed in [./services/cbioportal/resources](./services/cbioportal/resources)
-5. Run ```docker-compose build``` to build the images
-6. Make sure all required and desired environment variables are set (see [Environment Variables](#environment-variables))
-6. Run ```docker-compose up -d``` to start cbioportal and all associated services
-7. View the logs by running ```docker-compose logs -f```
-8. On first run, cbioportal will clone the cbioportal repository to ```/host/cbioportal```. ```/host``` is bind-mounted from [./mountpoints/host](./mountpoints/host).  If you wish to force cbioportal to reclone the repo, just run ```rm -rf ./mountpoints/host/cbioportal```
-9. Also on first run, cbioportal will build the project.  On subsequent runs, if you wish to rebuild, run the container with the environment variable FORCE_MVN_BUILD=yes, e.g. ```FORCE_MVN_BUILD=yes docker-compose up -d```
-10. On startup, cbioportal will wait until it can get a connection to cbioportal-mysql, and check for the cbioportal database.  If the database does not exist, it will be created, and populated with the seed data.
-11. Also on startup, if the database was created, or if the environment variable DO_DB_MIGRATE is set to "yes" (without quotes), the database migration script will be run.  This means you can force the migration script to run when bringing the container up, e.g. ```DO_DB_MIGRATE=yes docker-compose up -d```
+5. Run ```source default_env.sh``` to load the necessary environment variables to run the docker-compose, or source your own custom environment file.
+6. Run ```docker-compose build``` to build the images
+7. Make sure all required and desired environment variables are set (see [Environment Variables](#environment-variables))
+8. Run ```docker-compose up -d``` to start cbioportal and all associated services
+9. View the logs by running ```docker-compose logs -f```
+10. On first run, cbioportal will clone the cbioportal repository to ```/host/cbioportal```. ```/host``` is bind-mounted from [./mountpoints/host](./mountpoints/host).  If you wish to force cbioportal to reclone the repo, just run ```rm -rf ./mountpoints/host/cbioportal```
+11. Also on first run, cbioportal will build the project.  On subsequent runs, if you wish to rebuild, run the container with the environment variable FORCE_MVN_BUILD=yes, e.g. ```FORCE_MVN_BUILD=yes docker-compose up -d```
+12. On startup, cbioportal will wait until it can get a connection to cbioportal-mysql, and check for the cbioportal database.  If the database does not exist, it will be created, and populated with the seed data.
+13. Also on startup, if the database was created, or if the environment variable DO_DB_MIGRATE is set to "yes" (without quotes), the database migration script will be run.  This means you can force the migration script to run when bringing the container up, e.g. ```DO_DB_MIGRATE=yes docker-compose up -d```
     - To force the a build of cbioportal as well as force db migrate script to be run, do ```FORCE_MVN_BUILD=yes DO_DB_MIGRATE=yes docker-compose up -d```
-12. Studies will be loaded by the import-pipeline every night by default every night, for details or to make modifications check [services/import-pipeline/import_service/main.py](./services/import-pipeline/import_service/main.py).  Studies automatically imported via the import-pipeline will show up in the dashboard at <your-url>/dashboard, where you can check study versions validation and import status.
-13. To load studies without going through the import-pipeline, put whatever files/folders you need into [./mountpoints/host](./mountpoints/host), where they will be accessible in the cbioportal container under ```/host```.  You can get shell access to the cbioportal container by running ```docker-compose exec cbioportal bash```.
+14. Studies will be loaded by the import-pipeline every night by default every night, for details or to make modifications check [services/import-pipeline/import_service/main.py](./services/import-pipeline/import_service/main.py).  Studies automatically imported via the import-pipeline will show up in the dashboard at <your-url>/dashboard, where you can check study versions validation and import status.
+15. To load studies without going through the import-pipeline, put whatever files/folders you need into [./mountpoints/host](./mountpoints/host), where they will be accessible in the cbioportal container under ```/host```.  You can get shell access to the cbioportal container by running ```docker-compose exec cbioportal bash```.
     - ```${PORTAL_HOME}``` is set to ```/host/cbioportal```, so you can load studies and run all scripts like you would normally.
 
 ## Useful Commands
