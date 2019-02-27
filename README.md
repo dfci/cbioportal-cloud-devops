@@ -74,35 +74,6 @@ Skip this section if you already have an environment.  Following steps will assu
     - SUBNET
         - CIDR IPV4 subnet for the Docker network
         - Default: "172.28.10.0/24"
-- import-pipeline
-    - ACCESS_TOKEN
-        - Dropbox API access token
-        - Default: [not set by default]
-    - ALLOWED_FOLDER
-        - Comma-separated list of top-level folders containing studies in Dropbox
-        - Default: [not set by default]
-    - ADMIN_EMAILS
-        - Comma-separated list of emails that should have access to all studies in cBioPortal
-        - Default: [not set by default]
-    - GCLOUD_CREDS
-        - Contents of the Google Compute Cloud credentials JSON file for accessing the Google sheet with user information
-        - Default: [not set by default]
-    - AUTH_SHEET_KEY
-        - The spreadsheet ID of the Google sheet with user information
-        - Default: [not set by default]
-    - AUTH_SHEET_WORKSHEET_NAME
-        - The title of the worksheet in the Google sheet
-        - Default: [not set by default]
-    - AUTH_SHEET_KEYMAP
-        - JSON mapping the required fields of the USERS table to headers of the columns in the Google sheet
-        - e.g. export AUTH_SHEET_KEYMAP='{"name": ["First Name", "Last Name"], "email": "Email address", "enabled": "Approved by whomever"}'
-
-        - If the value of "name" is a list of column headers, the values at each of those columns will be joined by a space
-        - Default: [not set by default]
-    - AUTH_SHEET_TRUEVAL
-        - The string in the spreadsheet denoting a TRUE value
-        - e.g. "Yes"
-        - Default: [not set by default]
 - cbioportal
     - DO_DB_MIGRATE
         - If this is set to "yes", then the container will attempt to run the DB migration script on start
@@ -144,6 +115,35 @@ Skip this section if you already have an environment.  Following steps will assu
     - CANCERHOTSPOTS_BRANCH
         - Branch to clone/build cancerhotspots from
         - Default: "master"
+- import-pipeline (only worry about setting these if you're using the import-pipeline)
+    - ACCESS_TOKEN
+        - Dropbox API access token
+        - Default: [not set by default]
+    - ALLOWED_FOLDER
+        - Comma-separated list of top-level folders containing studies in Dropbox
+        - Default: [not set by default]
+    - ADMIN_EMAILS
+        - Comma-separated list of emails that should have access to all studies in cBioPortal
+        - Default: [not set by default]
+    - GCLOUD_CREDS
+        - Contents of the Google Compute Cloud credentials JSON file for accessing the Google sheet with user information
+        - Default: [not set by default]
+    - AUTH_SHEET_KEY
+        - The spreadsheet ID of the Google sheet with user information
+        - Default: [not set by default]
+    - AUTH_SHEET_WORKSHEET_NAME
+        - The title of the worksheet in the Google sheet
+        - Default: [not set by default]
+    - AUTH_SHEET_KEYMAP
+        - JSON mapping the required fields of the USERS table to headers of the columns in the Google sheet
+        - e.g. export AUTH_SHEET_KEYMAP='{"name": ["First Name", "Last Name"], "email": "Email address", "enabled": "Approved by whomever"}'
+
+        - If the value of "name" is a list of column headers, the values at each of those columns will be joined by a space
+        - Default: [not set by default]
+    - AUTH_SHEET_TRUEVAL
+        - The string in the spreadsheet denoting a TRUE value
+        - e.g. "Yes"
+        - Default: [not set by default]
         
 ## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
