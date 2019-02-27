@@ -70,6 +70,10 @@ Skip this section if you already have an environment.  Following steps will assu
     - ```docker-compose exec cbioportal-mysql mysql -pletmein cbioportal```
     
 ## Environment Variables
+- General Variables (not associated with any service in particular)
+    - SUBNET
+        - CIDR IPV4 subnet for the Docker network
+        - Default: "172.28.10.0/24"
 - import-pipeline
     - ACCESS_TOKEN
         - Dropbox API access token
@@ -107,6 +111,39 @@ Skip this section if you already have an environment.  Following steps will assu
         - If this is set to "yes", then the container will build cBioPortal on start
         - Even if this is not set, if /usr/local/tomcat/webapps/ROOT does not exist, the project will still be built
         - Default: "no"
+    - CBIOPORTAL_BRANCH
+        - Branch (of public cBioPortal repo) to clone/build cBioPortal from
+        - Default: "v2.0.1"
+    - CBIOPORTAL_SEED_SQL_FILE
+        - Filename of the seed database to use, from the public cBioPortal DataHub
+        - Default: "seed-cbioportal_hg19_v2.7.2.sql.gz"
+    - CBIOPORTAL_IPV4_ADDR
+        - IPV4 address to run cBioPortal on, must be within the ${SUBNET} specified
+        - Default: "172.28.10.11"
+- cbioportal-mysql
+    - CBIOPORTAL_MYSQL_IPV4_ADDR
+        - IPV4 address to run cBioPortal MySQL database on, must be withing the ${SUBNET} specified
+        - Default: "172.28.10.12"
+- oncokb
+    - ONCOKB_BRANCH
+        - Branch to clone/build OncoKB from
+        - Default: "v0.3.11"
+- genome-nexus
+    - GENOME_NEXUS_BRANCH
+        - Branch to clone/build Genome Nexus from
+        - Default: "master"
+- genome-nexus-mongodb
+    - GENOME_NEXUS_MONGODB_BRANCH
+        - Branch to clone/build the Genome Nexus Importer from
+        - Default: "v0.8"
+- session-service
+    - SESSION_SERVICE_BRANCH
+        - Branch to clone/build the session-service from
+        - Default: "master"
+- cancerhotspots
+    - CANCERHOTSPOTS_BRANCH
+        - Branch to clone/build cancerhotspots from
+        - Default: "master"
         
 ## Project tree
  * [docker-compose.yml](./docker-compose.yml) - *Defines the network, services, and bind-mounts*
