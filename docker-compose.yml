@@ -69,6 +69,10 @@ services:
       source: ./services/cbioportal/server.xml
       target: /usr/local/tomcat/conf/server.xml
       read_only: true
+    - type: bind
+      source: ."${CBIOPORTAL_EXTERNAL_DATA}"
+      target: /data/cbioportal
+      read_only: false
     depends_on:
     - cbioportal-mysql
     - oncokb
