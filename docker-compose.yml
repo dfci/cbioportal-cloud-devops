@@ -5,8 +5,12 @@ services:
     build:
       context: services/nginx-wrapper
     ports: #NGINX_WRAPPER
-    - "${NGINX_WRAPPER_PORT_HTTP}:80"
-    - "${NGINX_WRAPPER_PORT_HTTPS}:443"
+    #- "${NGINX_WRAPPER_PORT_HTTP}:80"
+    #- "${NGINX_WRAPPER_PORT_HTTPS}:443"
+    - "80:80"
+    - "443:443"
+    - "8080:8080"
+    - "8443:8443"
     volumes:
     - type: bind
       source: ./services/nginx-wrapper/nginx.conf
@@ -24,6 +28,10 @@ services:
       source: ./mountpoints/dashboard/
       target: /etc/nginx/html/dashboard
       read_only: true
+    - type: bind
+      source: ./mountpoints/host/
+      target: /host
+      read_only: true
     depends_on:
     - cbioportal
     links:
@@ -40,6 +48,7 @@ services:
     restart: always
     environment:
       BRANCH: ${CBIOPORTAL_BRANCH}
+      SUBPATH: ${CBIOPORTAL_SUBPATH:-ROOT}
       DB_HOST: cbioportal-mysql
       DB_PORT: "3306"
       DB_USER: root
@@ -193,6 +202,10 @@ services:
     restart: always
     networks:
     - cbio-bridge
+    volumes:
+    - type: bind
+      source: ./mountpoints/session-service-mongodb-data
+      target: /data/db
   cancerhotspots:
     image: cbioportal-cloud-cancerhotspots:latest
     build:

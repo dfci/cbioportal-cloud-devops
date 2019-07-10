@@ -17,19 +17,19 @@ fi
 
 cp /resources/* ${PORTAL_HOME}/src/main/resources/
 
-if [ "${FORCE_MVN_BUILD}" == "yes" ] || [ ! -d /usr/local/tomcat/webapps/ROOT ]; then
+if [ "${FORCE_MVN_BUILD}" == "yes" ] || [ ! -d /usr/local/tomcat/webapps/${SUBPATH} ]; then
     cd ${PORTAL_HOME}
-    rm -rf /usr/local/tomcat/webapps/ROOT/*
+    rm -rf /usr/local/tomcat/webapps/${SUBPATH}/*
     mvn -f ${PORTAL_HOME}/pom.xml -DskipTests -Djdbc.driver=${JDBC_DRIVER} -Dfinal.war.name=cbioportal \
         -Ddb.host=${DB_HOST} -Ddb.user=${DB_USER} -Ddb.password=${DB_PASSWORD} \
         -Ddb.connection_string=jdbc:mysql://${DB_HOST}:${DB_PORT}/ \
         -Ddb.portal_db_name=${DB_NAME} ${MVN_GOALS};
-    echo "Exploding cbioportal.war to webapps ROOT directory";
-    unzip ${PORTAL_HOME}/portal/target/cbioportal.war -d /usr/local/tomcat/webapps/ROOT > /dev/null 2>&1;
+    echo "Exploding cbioportal.war to webapps ${SUBPATH} directory";
+    unzip ${PORTAL_HOME}/portal/target/cbioportal.war -d /usr/local/tomcat/webapps/${SUBPATH} > /dev/null 2>&1;
 fi;
 
 echo "Copying uncopied resources to classpath"
-cp -n ${PORTAL_HOME}/src/main/resources/* /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/ > /dev/null 2>&1
+cp -n ${PORTAL_HOME}/src/main/resources/* /usr/local/tomcat/webapps/${SUBPATH}/WEB-INF/classes/ > /dev/null 2>&1
 
 echo "Attempting to connect to mysql://${DB_HOST}:${DB_PORT}"
 while ! mysql -u"${DB_USER}" -p"${DB_PASSWORD}" -h"${DB_HOST}" -e "show databases;" > /dev/null 2>&1; do
