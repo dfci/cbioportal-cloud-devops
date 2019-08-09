@@ -69,8 +69,8 @@ $(document).ready(function () {
         });
     };
 
-    top_level_data = AjaxGet("/dashboard/data/top_level.json");
-    second_level_data = AjaxGet("/dashboard/data/second_level.json");
+    top_level_data = AjaxGet("/cbioportaldashboard/data/top_level.json");
+    second_level_data = AjaxGet("/cbioportaldashboard/data/second_level.json");
 
     const second_level_headers = {
         //"passes_validation": "bool",
@@ -243,7 +243,7 @@ $(document).ready(function () {
         const iframe = $('<iframe>')
             .attr("height", "100%")
             .attr("width", "100%")
-            .attr("src", "/dashboard/validation/" + study_version_id + ".html")
+            .attr("src", "/cbioportaldashboard/validation/" + study_version_id + ".html")
             .attr("frameborder", 0);
         main.empty();
         main.append(iframe);
@@ -270,7 +270,7 @@ $(document).ready(function () {
         table.append(tbody);
         main.empty();
         main.append(table);
-        ElemAjaxGetText($('.pretag-import'), '/dashboard/import/' + study_version_id + '.txt');
+        ElemAjaxGetText($('.pretag-import'), '/cbioportaldashboard/import/' + study_version_id + '.txt');
         breadcrumbs.append($('<i>').addClass('right angle icon divider'));
         breadcrumbs.append($('<a>').addClass('section').attr('id', '#import-breadcrumb').text("study import " + study_version_id + " output"));
         $('#import-breadcrumb').nextAll().remove()

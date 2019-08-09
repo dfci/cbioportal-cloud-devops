@@ -25,7 +25,10 @@ class SQL_sqlite3(object):
         self.connection.row_factory = sqlite3.Row
 
     def exec_sql(self, statement, *args, fetchall=True):
-        result = self.connection.execute(statement, args)
+        if args:
+            result = self.connection.execute(statement, args)
+        else:
+            result = self.connection.execute(statement)
         return result.fetchall() if fetchall else result.fetchone()
 
     def exec_sql_to_single_val(self, statement, *args):
@@ -33,7 +36,10 @@ class SQL_sqlite3(object):
         return result[0] if result is not None and len(result) > 0 else result
 
     def exec_sql_to_column_set(self, statement, *args, col_no=0):
-        results = self.exec_sql(statement, args)
+        if args:
+            results = self.exec_sql(statement, args)
+        else:
+            results = self.exec_sql_to_single_val(statement)
         return {result[col_no] for result in results}
 
     def exec_sql_to_dict(self, statement, *args, fetchall=True):
@@ -64,7 +70,10 @@ class SQL_mysql(object):
             self.connection.commit()
 
     def exec_sql(self, statement, *args, fetchall=True):
-        self.cursor.execute(statement, args)
+        if args:
+            self.cursor.execute(statement, args)
+        else:
+            self.cursor.execute(statement)
         return self.cursor.fetchall() if fetchall else self.cursor.fetchone()
 
     def exec_sql_to_single_val(self, statement, *args):
@@ -89,6 +98,8 @@ def dict_factory(cursor, row):
 
 
 def is_valid_access_file(access_file):
+    # hack for dfci
+    return True
     email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
     is_valid = True
     for line in line_iter(access_file.get_contents()):
