@@ -190,11 +190,8 @@ services:
       args:
         BRANCH: ${GENOME_NEXUS_MONGODB_BRANCH}
     restart: always
-    ports:
-    - "27017:27017"
     networks:
     - cbio-internal
-    - cbio-bridge
   session-service:
     image: cbioportal-cloud-session-service:latest
     build:
