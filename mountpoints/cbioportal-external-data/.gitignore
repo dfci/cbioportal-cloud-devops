@@ -2,3 +2,6 @@
 *
 # Except this file
 !.gitignore
+!index.html
+!main.css
+!main.js

@@ -50,10 +50,7 @@ class _User(object):
 
 
 class AuthorizationManager(object):
-    def __init__(self, local_sql: SQL_sqlite3,
-                 cbio_sql: SQL_mysql,
-                 user_sync_enabled: bool = True,
-                 disable_unauth: bool = True):
+    def __init__(self, local_sql: SQL_sqlite3, cbio_sql: SQL_mysql, user_sync_enabled: bool = True):
         self._local_sql = local_sql
         self._cbio_sql = cbio_sql
         self.TopLevelFolderAccess = TopLevelFoldersAccess(local_sql)
@@ -62,15 +59,12 @@ class AuthorizationManager(object):
         self.StudyVersionAccess = StudyVersionAccess(local_sql)
         self.FileAccess = FilesAccess(local_sql)
         self.user_sync_enabled = user_sync_enabled
-        self.disable_unauth = disable_unauth
         self.email_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
 
     def run(self):
         self._run_auth_sync()
         if self.user_sync_enabled:
             self._run_user_sync()
-        else:
-            print("User sync is disabled, skipping...")
 
     def _run_auth_sync(self):
         for top_level in self.TopLevelFolderAccess.list_all_orgs():
@@ -101,11 +95,13 @@ class AuthorizationManager(object):
                             print(
                                 "Current access.txt for study '{}' is not valid, please fix.".format(cancer_study_name))
                             break
-                        if self.disable_unauth:
-                            print("Removing all authorizations...")
-                            self.unauthorize_all_for_study(cancer_study_name)
+                        print("Removing all authorizations...")
+                        self.unauthorize_all_for_study(cancer_study_name)
                         for email in authorized_emails:
-                            self.authorize_for_study(email, study, cancer_study_name)
+                            print("Authorizing email '{}' for study '{}' with cancer_study_identifier '{}".format(email,
+                                                                                                                  study.get_study_name(),
+                                                                                                                  cancer_study_name))
+                            self.authorize_for_study(email, cancer_study_name)
 
     def _run_user_sync(self):
         scope = ['https://spreadsheets.google.com/feeds',
@@ -151,22 +147,24 @@ class AuthorizationManager(object):
 
     def get_public_studies(self):
         statement = """SELECT cancer_study_identifier 
-                         FROM cancer_study 
-                         WHERE GROUPS  = 'PUBLIC' """
+                     FROM cancer_study 
+                     WHERE GROUPS  = 'this_is_a_public_study' """
         return {study for study in self._cbio_sql.exec_sql_to_column_set(statement)}
 
     def unauthorize_all_for_study(self, study_name):
+        # never unauthorize
+        return
         statement = "DELETE FROM authorities WHERE authority LIKE 'cbioportal:{}'".format(study_name.upper())
         self._cbio_sql.exec_sql(statement)
 
-    def authorize_for_study(self, email, study, study_name):
+    def authorize_for_study(self, email, study_name):
         statement1 = "SELECT email FROM authorities WHERE email = '{}' AND authority LIKE '%{}%'".format(email,
                                                                                                          study_name.upper())
         results = self._cbio_sql.exec_sql_to_column_set(statement1)
+        print(results)
         if not results:
-            print("Authorizing email '{}' for study '{}' with cancer_study_identifier '{}".format(email,
-                                                                                                  study.get_study_name(),
-                                                                                                  study_name))
+            print("Authorizing email '{}' for study '{}'".format(email,
+                                                                     study_name))
             statement2 = "INSERT INTO authorities (email, authority) VALUES (%s, 'cbioportal:{}')".format(
                 study_name.upper())
             self._cbio_sql.exec_sql(statement2, email)

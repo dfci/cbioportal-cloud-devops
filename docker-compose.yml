@@ -57,6 +57,9 @@ services:
       DO_DB_MIGRATE: ${DO_DB_MIGRATE:-no}
       MVN_GOALS: clean install
       FORCE_MVN_BUILD: ${FORCE_MVN_BUILD:-no}
+    extra_hosts:
+    - "civicdb.org:127.0.0.1"
+    - "mutationassessor.org:127.0.0.1"
     volumes:
     - type: bind
       source: ./mountpoints/host
@@ -82,6 +85,15 @@ services:
       source: ."${CBIOPORTAL_EXTERNAL_DATA}"
       target: /data/cbioportal
       read_only: false
+    - type: bind
+      source: /data/dfci/cbioone
+      target: /cbioone
+    - type: bind
+      source: /data/dfci/cbioone/data/profile_latest.tar.gz
+      target: /usr/local/tomcat/webapps/cbioportal/profile_latest.tar.gz
+      bind:
+          propagation: shared
+      read_only: false
     depends_on:
     - cbioportal-mysql
     - oncokb
@@ -95,6 +107,7 @@ services:
     networks:
       cbio-bridge:
         ipv4_address: ${CBIOPORTAL_IPV4_ADDR}
+      cbio-internal:
   cbioportal-mysql:
     image: cbioportal-cloud-cbioportal-mysql:latest
     build:
@@ -117,6 +130,8 @@ services:
       target: /var/lib/mysql
       read_only: false
     command: --ssl=0
+    ports:
+        - "3309:3306"
     networks:
       cbio-bridge:
         ipv4_address: ${CBIOPORTAL_MYSQL_IPV4_ADDR}
@@ -137,7 +152,7 @@ services:
     links:
     - oncokb-mysql
     networks:
-    - cbio-bridge
+    - cbio-internal
   oncokb-mysql:
     image: cbioportal-cloud-oncokb-mysql:latest
     build:
@@ -149,7 +164,7 @@ services:
       MYSQL_DATABASE: oncokb
     restart: always
     networks:
-    - cbio-bridge
+    - cbio-internal
   genome-nexus:
     image: cbioportal-cloud-genome-nexus:latest
     build:
@@ -167,7 +182,7 @@ services:
     - genome-nexus-mongodb
     restart: always
     networks:
-    - cbio-bridge
+    - cbio-internal
   genome-nexus-mongodb:
     image: cbioportal-cloud-genome-nexus-mongodb:latest
     build:
@@ -175,7 +190,10 @@ services:
       args:
         BRANCH: ${GENOME_NEXUS_MONGODB_BRANCH}
     restart: always
+    ports:
+    - "27017:27017"
     networks:
+    - cbio-internal
     - cbio-bridge
   session-service:
     image: cbioportal-cloud-session-service:latest
@@ -194,27 +212,54 @@ services:
     - session-service-mongodb
     restart: always
     networks:
-    - cbio-bridge
+    - cbio-internal
   session-service-mongodb:
     image: cbioportal-cloud-session-service-mongodb:latest
     build:
       context: services/session-service-mongodb
     restart: always
     networks:
-    - cbio-bridge
+    - cbio-internal
     volumes:
     - type: bind
       source: ./mountpoints/session-service-mongodb-data
       target: /data/db
-  cancerhotspots:
-    image: cbioportal-cloud-cancerhotspots:latest
+      read_only: false
+  genome-nexus-vep-old:
+    image: cbioportal-cloud-genome-nexus-vep:latest
     build:
-      context: services/cancerhotspots
+      context: services/genome-nexus-vep
       args:
-        BRANCH: ${CANCERHOTSPOTS_BRANCH}
+        BRANCH: ${GENOME_NEXUS_VEP_BRANCH}
     restart: always
-    networks:
+    networks: 
+    - cbio-internal
+    ports:
+      - "8090:8080"  
+    environment:
+      VEP_CACHE: /opt/vep/.vep
+      VEP_ASSEMBLY: GRCh37
+    volumes:
+    - type: bind
+      source: ./mountpoints/genome-nexus-vep-cache
+      target: /opt/vep/.vep
+      read_only: true
+  genome-nexus-vep:
+    image: genomenexus/gn-vep:27223ebc69be55f8d6b31b9111c697ff7b2c0850
+    restart: always
+    networks: 
+    - cbio-internal
     - cbio-bridge
+    ports:
+      - "8090:8080"  
+    environment:
+      VEP_CACHE: /opt/vep/.vep
+      VEP_ASSEMBLY: GRCh37
+    volumes:
+    - type: bind
+      source: ./mountpoints/genome-nexus-vep-cache
+      target: /opt/vep/.vep
+      read_only: true
   import-pipeline:
     build:
       context: services/import-pipeline
@@ -261,14 +306,15 @@ services:
       read_only: true
     networks:
     - cbio-bridge
-    depends_on:
-    - cbioportal
-    - cbioportal-mysql
+    - cbio-internal
     links:
     - cbioportal
     - cbioportal-mysql
 
 networks:
+  cbio-internal:
+    internal: true
+    driver: bridge
   cbio-bridge:
     driver: bridge
     ipam:
